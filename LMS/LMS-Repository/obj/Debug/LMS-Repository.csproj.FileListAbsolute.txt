@@ -1,0 +1,6 @@
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Repository\bin\Debug\LMS-Repository.dll
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Repository\bin\Debug\LMS-Repository.pdb
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Repository\obj\Debug\LMS-Repository.csproj.AssemblyReference.cache
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Repository\obj\Debug\LMS-Repository.csproj.CoreCompileInputs.cache
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Repository\obj\Debug\LMS-Repository.dll
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Repository\obj\Debug\LMS-Repository.pdb

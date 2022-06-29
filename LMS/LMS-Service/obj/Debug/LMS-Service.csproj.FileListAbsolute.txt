@@ -1,0 +1,9 @@
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Service.dll
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Service.pdb
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Data.SqlClient.dll
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Data.SqlClient.xml
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\obj\Debug\LMS-Service.csproj.AssemblyReference.cache
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\obj\Debug\LMS-Service.csproj.CoreCompileInputs.cache
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\obj\Debug\LMS-Service.csproj.CopyComplete
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\obj\Debug\LMS-Service.dll
+C:\Users\Pankesh\Source\Repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\obj\Debug\LMS-Service.pdb

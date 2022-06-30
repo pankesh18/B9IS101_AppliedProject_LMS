@@ -1,4 +1,39 @@
-<p>home works!</p>
 
-<router-outlet></router-outlet>
+<main class="parent-section">
 
+  <section class="side-nav-section">
+
+    <div class="d-flex flex-nowrap sidebar">
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 100%;">
+        <ul class="nav nav-pills flex-column mb-auto">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home" /></svg>
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2" /></svg>
+              Dashboard
+            </a>
+          </li>
+
+
+          <!--<div class=" b-example-vr"></div>-->
+        </ul>
+
+
+      </div>
+    </div>
+    <div class=" b-example-vr"></div>
+  </section>
+
+
+  <section class="main-section">
+    <router-outlet></router-outlet>
+  </section>
+
+</main>

@@ -1,0 +1,22 @@
+
+
+.main-container {
+  background-color: mediumslateblue;
+  min-height: 100vh;
+  background-image: linear-gradient(rebeccapurple, ghostwhite);
+  padding-left:25%;
+  padding-right:25%;
+  padding-top:10%;
+}
+
+
+.secondary-container {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+
+
+.card-box {
+  
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -20,11 +21,35 @@ namespace LMS_Library
 
             Obj_SQLConneciton = new SqlConnection(Db_ConnectionString);
             Obj_SQLCommand = new SqlCommand();
-
+           
             Obj_SQLCommand.Connection= Obj_SQLConneciton;
 
-
+            Obj_SQLConneciton.Open();
         }
+
+
+
+        public int AddParameter(string Name, object Val)
+        {
+            DbParameter objParam = Obj_SQLCommand.CreateParameter();
+            objParam.ParameterName = Name;
+            objParam.Value = Val;
+            objParam.Direction = ParameterDirection.Input;
+            return Obj_SQLCommand.Parameters.Add(objParam);
+        }
+
+
+
+        public void ClearParameter()
+        {
+                if (Obj_SQLCommand.Parameters.Count > 0)
+                {
+                    Obj_SQLCommand.Parameters.Clear();
+                }
+        }
+
+
+
 
         public void Dispose()
         {
@@ -39,6 +64,16 @@ namespace LMS_Library
             {
                 throw new LMSException("Database Service", ex);
             }
+        }
+
+        public SqlConnection GetConnection()
+        {
+            return this.Obj_SQLConneciton;
+        }
+
+        public SqlCommand GetSQLCommand()
+        {
+            return this.Obj_SQLCommand;
         }
     }
 }

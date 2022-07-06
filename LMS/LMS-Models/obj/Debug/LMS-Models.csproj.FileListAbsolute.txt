@@ -1,0 +1,17 @@
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\LMS-Models.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\LMS-Models.pdb
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Microsoft.IdentityModel.Logging.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\obj\Debug\LMS-Models.csproj.AssemblyReference.cache
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\obj\Debug\LMS-Models.csproj.CoreCompileInputs.cache
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\obj\Debug\LMS-Models.csproj.CopyComplete
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\obj\Debug\LMS-Models.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Models\obj\Debug\LMS-Models.pdb

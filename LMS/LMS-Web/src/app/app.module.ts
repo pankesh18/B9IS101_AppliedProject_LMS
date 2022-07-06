@@ -9,6 +9,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { HomeComponent } from './home/home.component';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { NgxLocalStorageModule } from 'ngx-localstorage';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    OAuthModule.forRoot(),
+    NgxLocalStorageModule.forRoot(),
     AuthModule,
     DashboardModule,
     SidebarModule,

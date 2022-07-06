@@ -1,1 +1,41 @@
-<p>login works!</p>
+
+
+
+
+<div class="main-container container-fluid">
+
+  <div class="card secondary-container">
+    <div class="card-header h4"> Login </div>
+    <div class="card-body p-5" id="reg-page1">
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <span class="p-float-label">
+            <input id="float-input" type="text" [(ngModel)]="UserEmail" pInputText>
+            <label for="float-input">Email</label>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <span class="p-float-label">
+            <input id="float-input" type="password" [(ngModel)]="UserPassword" pInputText>
+            <label for="float-input">Password</label>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <p-button label="Login" (click)="loginUser(UserEmail,UserPassword)"></p-button>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,54 @@
+
+<div class="container">
+
+  <div class="container-fluid batch-box">
+
+
+
+
+
+
+
+    <div class="row" style="margin-top:5%; margin-bottom:3%; text-align:center">
+      <div class="col">
+        <p-button label="Create Batch" (click)="showCreateBatch()"></p-button>
+      </div>
+
+
+    </div>
+
+
+    <div class="row m-2" style="width:100%">
+
+      <div class="col">
+        <div class="container-fluid">
+
+          <p-table [value]="Batches" >
+            <ng-template pTemplate="header">
+              <tr>
+                <th>BatchId</th>
+                <th>Batch Name</th>
+                <th>Batch Year</th>
+                <th>Course Name</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-batch>
+              <tr>
+                <td>{{batch.BatchId}}</td>
+                <td>{{batch.BatchName}}</td>
+                <td>{{batch.BatchYear}}</td>
+                <td>{{batch.CourseName}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+</div>

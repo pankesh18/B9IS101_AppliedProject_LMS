@@ -1,0 +1,68 @@
+
+
+
+
+
+
+
+
+<div class="container">
+
+  <div class="row ">
+    <p-carousel [value]="StudentBatches" [numVisible]="3" [numScroll]="3" [circular]="false">
+      <ng-template pTemplate="header">
+        <h5>All Batches</h5>
+      </ng-template>
+      <ng-template let-batch pTemplate="item">
+
+        <!--<div>
+        {{batch.BatchName}}
+      </div>
+      <div>
+        {{batch.BatchYear}}
+      </div>-->
+
+        <p-card>
+          <ng-template pTemplate="header" style="text-align:center">
+            {{batch.BatchName}}
+          </ng-template>
+          {{batch.BatchName}} - {{batch.BatchYear | date:'yyyy'}}
+          <ng-template pTemplate="footer">
+            <p-button label="View"></p-button>
+          </ng-template>
+        </p-card>
+
+
+
+        <!--<div class="product-item">
+        <div class="product-item-content">
+          <div class="p-mb-3">
+          </div>
+          <div>
+            <h4 class="p-mb-1">{{batch.BatchName}}</h4>
+            <h6 class="p-mt-0 p-mb-3">{{batch.BatchYear | date:'yyyy'}}</h6>
+            <span [class]="'product-badge status-'+product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+            <div class="car-buttons p-mt-5">
+              <p-button type="button" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search"></p-button>
+              <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></p-button>
+              <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog"></p-button>
+            </div>
+          </div>
+        </div>
+      </div>-->
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+
+      <app-meetings></app-meetings>
+
+    </div>
+
+
+  </div>
+
+</div>

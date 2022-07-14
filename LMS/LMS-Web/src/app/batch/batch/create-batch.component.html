@@ -1,0 +1,83 @@
+<div class="container">
+
+  <div class="row  p-3">
+    <p-steps [model]="items" [activeIndex]="stepIndex"></p-steps>
+  </div>
+
+ 
+</div>
+
+<div class="container" style="height:100%">
+  <div class="row">
+
+    <div id="batch-details" *ngIf="stepIndex===0">
+      <div class="row">
+        <div class="col container-fluid" style="text-align:center">
+          <div class="col my-2">
+            <span class="p-float-label" style="width:100%">
+              <input id="BatchName" type="text" [(ngModel)]="BatchName" pInputText style="width:100%">
+              <label for="BatchName">Batch Name</label>
+            </span>
+          </div>
+          <div class="col my-2">
+            <span class="p-float-label" style="width: 100%">
+              <p-calendar id="BatchYear" style="width:100%" [inputStyle]="{'width': '100%'}" [(ngModel)]="BatchYear" view="year" dateFormat="yy"></p-calendar>
+              <label for="BatchYear">Batch Year</label>
+            </span>
+          </div>
+          <div class="col my-2">
+            <span class="p-float-label" style="width: 100%">
+              <input id="CourseName" type="text" [(ngModel)]="CourseName" pInputText style="width:100%">
+              <label for="CourseName">Course Name</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <p-pickList [source]="objStudents" [target]="selectedStudents" sourceHeader="Available All Students" targetHeader="Selected Students for Batch"
+                      [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" filterBy="name"
+                      sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name">
+            <ng-template let-stud pTemplate="item">
+              <div>
+
+
+                <div style="font-size:15px;float:right;margin:10px 5px 0 0"><i class="pi pi-user m-2"></i> {{stud.FirstName}} {{stud.LastName}} - {{stud.Email}}</div>
+
+              </div>
+            </ng-template>
+          </p-pickList>
+        </div>
+
+        <div class="row" style="text-align:center">
+          <div class="col">
+            <p-button label="Create Batch" (click)="CreateBatch()"></p-button>
+
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+    <div id="add-meetings" *ngIf="stepIndex===1">
+      <add-meeting [BatchId]="BatchId"></add-meeting>
+      <div class="row" style="text-align:center">
+        <div class="col">
+          <p-button label="Next" (click)="stepIndex=3"></p-button>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+  </div>
+</div>

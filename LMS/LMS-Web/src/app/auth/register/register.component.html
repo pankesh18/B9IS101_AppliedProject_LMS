@@ -1,0 +1,93 @@
+
+
+
+
+<div class="main-container container-fluid">
+
+  <div class="card secondary-container">
+    <div class="card-header h4"> Register form    </div>
+    <div class="card-body p-5" id="reg-page1" *ngIf="page==1">
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <span class="p-float-label">
+            <input id="float-input" type="text" [(ngModel)]="lmsUser.Email" pInputText>
+            <label for="float-input">Email</label>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <span class="p-float-label">
+            <input id="float-input" type="password" [(ngModel)]="lmsUser.password" pInputText>
+            <label for="float-input">Password</label>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <p-button label="Next" (click)="page=2"></p-button>
+        </div>
+      </div>
+
+    </div>
+    <div class="card-body p-5" id="reg-page1" *ngIf="page==2">
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <span class="p-float-label">
+            <input id="float-input" type="text" [(ngModel)]="lmsUser.FirstName" pInputText>
+            <label for="float-input">First Name</label>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <span class="p-float-label">
+            <input id="float-input" type="text" [(ngModel)]="lmsUser.LastName" pInputText>
+            <label for="float-input">Last Name</label>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <span class="p-float-label">
+
+            <p-dropdown [options]="genderOptions" [(ngModel)]="lmsUser.Gender" optionLabel="label" optionValue="value" placeholder="Select Gender"></p-dropdown>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <span class="p-float-label">
+            <!--<input id="float-input" type="text" [(ngModel)]="lmsUser.UserType" pInputText>-->
+            <p-dropdown [options]="UserTypeOptions" [(ngModel)]="lmsUser.UserType" optionLabel="label" optionValue="value" placeholder="Select User Type"></p-dropdown>
+            <!--<label for="float-input">User Type</label>-->
+          </span>
+        </div>
+      </div>
+
+      <div class="row row-space my-5">
+        <div class="col-2 p-field">
+          <p-button label="Register" (click)="register()"></p-button>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+</div>

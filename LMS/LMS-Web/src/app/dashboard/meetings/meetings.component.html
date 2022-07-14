@@ -1,0 +1,46 @@
+
+
+<div class="card meetings-box">
+
+  <div>
+
+    
+        <ul  *ngFor="let meeting of StudentMeetings">
+          <li class="listing">
+            <h4 class="col" style="padding: 2%;">{{meeting.Topic}}</h4>
+            <span class="col" style="color: darkslategray;">
+              {{meeting.BatchName}}-{{meeting.BatchYear | date:'yyyy'}}
+            </span>
+            <span class="col" style="color: darkslategray;">
+              {{meeting.CourseName}}
+            </span>
+            <span class="col" style="color: darkslategray;">
+              {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
+            </span>
+            <span>
+              <a class="btn btn-primary" href="{{meeting.JoinUrl}}">
+                Join
+              </a>
+            </span>
+          </li>
+        </ul>
+   
+
+
+
+
+   
+
+
+
+  </div>
+
+ 
+
+</div>
+
+
+
+
+
+

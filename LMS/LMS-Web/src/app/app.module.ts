@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { NgxLocalStorageModule } from 'ngx-localstorage';
+import { BatchModule } from './batch/batch.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NgxLocalStorageModule } from 'ngx-localstorage';
     NgxLocalStorageModule.forRoot(),
     AuthModule,
     DashboardModule,
+    BatchModule,
     SidebarModule,
     ButtonModule,
     AppRoutingModule

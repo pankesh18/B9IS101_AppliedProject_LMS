@@ -33,7 +33,7 @@ export class IntermediateComponent implements OnInit {
     }
     else {
       console.log('trying to login from intermediate!')
-      this.authservice.login()
+      this.router.navigate(['/login'])
     }
 
 

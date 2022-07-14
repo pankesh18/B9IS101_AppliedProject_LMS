@@ -62,8 +62,10 @@ namespace LMS_Repository
                         objLMSUser= new LMSUser();
                         while (reader.Read())
                         {
+                            objLMSUser.UserId = Convert.ToInt32(reader["UserId"]);
                             objLMSUser.FirstName = reader["FirstName"].ToString();
                             objLMSUser.LastName = reader["LastName"].ToString();
+                            objLMSUser.Email = reader["Useremail"].ToString();
                             objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
                             objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
 

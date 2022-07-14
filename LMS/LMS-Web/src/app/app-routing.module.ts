@@ -12,7 +12,7 @@ const routes: Routes = [
   //{ path: '', component: DashboardComponent },
   { path: '', component: IntermediateComponent },
   { path: 'intermediate', component: IntermediateComponent },
-  { path: '**', redirectTo: '' },
+  //{ path: '**', redirectTo: '' },
 ];
 
 @NgModule({

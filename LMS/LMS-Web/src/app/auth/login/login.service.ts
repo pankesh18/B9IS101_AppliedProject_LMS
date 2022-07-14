@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-localstorage';
 import { tap } from 'rxjs';
 import { LMSUser } from '../auth.models';
@@ -9,7 +10,13 @@ import { LMSUser } from '../auth.models';
 })
 export class LoginService {
   APIURL: string = "https://localhost:44301/api/"
-  constructor(private http: HttpClient, private localStorage: LocalStorageService) { }
+  constructor(private http: HttpClient, private localStorage: LocalStorageService, private router: Router) {
+
+    if (!this.isLogin()) {
+      this.router.navigate(['/login'])
+    }
+
+  }
 
   public isLogin() {
     var item = localStorage.getItem('LoggedInUser');
@@ -19,6 +26,31 @@ export class LoginService {
       return false
     }
   }
+
+  public getLoggedInUser() {
+    var item = localStorage.getItem('LoggedInUser');
+
+    if (item === null || item === "null" || item === undefined) {
+      this.logout()
+      return new LMSUser;
+
+
+    } else {
+
+      return JSON.parse(item) as LMSUser;;
+    }
+      
+  }
+
+
+  logout() {
+    //this.authservice.logout();
+    this.localStorage.remove('LoggedInUser')
+    this.router.navigate(['/'])
+  }
+
+
+
 
 
   public loginUser(UserEmail: string, UserPassword:string) {
@@ -32,4 +64,10 @@ export class LoginService {
       tap(res => res)    
     );
   }
+
+
+
+
+
+
 }

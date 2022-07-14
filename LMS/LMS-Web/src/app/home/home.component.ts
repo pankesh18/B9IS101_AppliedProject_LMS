@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-localstorage';
 import { UserProfile } from '../auth/auth.models';
 import { AuthService } from '../auth/auth.service';
 
@@ -14,7 +16,7 @@ export class HomeComponent implements OnInit {
   islogin: boolean = false;
   userProfile: UserProfile | undefined;
 
-  constructor(private authservice: AuthService) {
+  constructor(private authservice: AuthService, private router: Router, private localStorage: LocalStorageService) {
 
 
   
@@ -30,9 +32,18 @@ export class HomeComponent implements OnInit {
     //}
   }
 
+  goToBatches() {
+    this.router.navigate(['/batch/list'])
+  }
 
+
+  goToDash() {
+    this.router.navigate(['/dash'])
+  }
 
   logout() {
-    this.authservice.logout();
+    //this.authservice.logout();
+    this.localStorage.remove('LoggedInUser')
+    this.router.navigate(['/'])
   }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
+import { AddMeetingComponent } from './batch/add-meeting.component';
 import { BatchComponent } from './batch/batch.component';
 
 
@@ -17,9 +18,10 @@ const routes: Routes = [
       {
         path: '',
         children: [
-          { path: 'list', component: BatchComponent }
+          { path: 'list', component: BatchComponent },
+          { path: 'meetings/:BatchId', component: AddMeetingComponent }
         ]
-      },
+      }
 
     ]
   },

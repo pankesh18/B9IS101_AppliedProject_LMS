@@ -16,26 +16,26 @@
 
         <ul class="nav nav-pills flex-column mb-auto">
 
-          <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home" /></svg>
+          <li class="nav-item" (click)="goToDash()">
+            <a class="nav-link active" aria-current="page">
+              <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Home
             </a>
           </li>
 
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2" /></svg>
-              Dashboard
+          <li (click)="goToBatches()">
+            <a  class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"></svg>
+              Batch
             </a>
           </li>
 
 
 
-          <li>
-            <a (click)="logout()" class="nav-link text-white">
-              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2" /></svg>
-              signout
+          <li (click)="logout()">
+            <a  class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"></svg>
+              Logout
             </a>
           </li>
 

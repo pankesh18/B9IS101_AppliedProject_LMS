@@ -10,6 +10,7 @@ export class UserProfile {
 
 
 export class LMSUser {
+  UserId: number;
   FirstName: string;
   LastName: string;
   Email: string;

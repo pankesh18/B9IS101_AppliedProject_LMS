@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col container-fluid" style="text-align:center">
+      <div class="col my-2">
+        <span class="p-float-label" style="width:100%">
+          <input id="MeetingTopic" type="text" [(ngModel)]="MeetingTopic" pInputText style="width:100%">
+          <label for="MeetingTopic">Meeting Topic</label>
+        </span>
+      </div>
+      <div class="col my-2">
+        <span class="p-float-label" style="width: 100%">
+
+          <p-calendar id="meeting-starttime" style="width:100%" [inputStyle]="{'width': '100%'}" [showTime]="true" [(ngModel)]="MeetingStartTime"></p-calendar>
+
+          <label for="meeting-starttime">Meeting StartTime</label>
+        </span>
+      </div>
+
+      <div class="row" style="text-align:center">
+        <div class="col">
+          <p-button label="Add Meeting" (click)="addMeeting()"></p-button>
+
+        </div>
+      </div>
+
+      <div class="row my-3">
+
+        <p-table [value]="MeetingList" [scrollable]="true" scrollHeight="350px">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Sr. No.</th>
+              <th>Meeting Topic</th>
+              <th>Start Date</th>
+              <th>Start Time</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-meeting let-rowIndex="rowIndex">
+            <tr>
+              <td>{{rowIndex+1}}</td>
+              <td>{{meeting.MeetingTopic}}</td>
+              <td>{{meeting.MeetingStarttine | date:'longDate' }}</td>
+              <td>{{meeting.MeetingStarttine | date:'shortTime'}}</td>
+
+            </tr>
+          </ng-template>
+        </p-table>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

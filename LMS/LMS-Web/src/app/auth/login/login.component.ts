@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(UserEmail,UserPassword)
       .subscribe( (response) => {
         console.log(response)
-        localStorage.setItem("LoggedInUser", response)
+        localStorage.setItem("LoggedInUser", JSON.stringify(response))
         this.router.navigate(['/intermediate'])
 
       }, function (rejection) {

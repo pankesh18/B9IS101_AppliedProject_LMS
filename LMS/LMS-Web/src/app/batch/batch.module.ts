@@ -13,6 +13,7 @@ import { TableModule } from 'primeng/table';
 import { StepsModule } from 'primeng/steps';
 import { AddMeetingComponent } from './batch/add-meeting.component';
 import { OrderListModule } from 'primeng/orderlist';
+import { AddFilesComponent } from './batch/add-files.component';
 
 
 
@@ -20,6 +21,7 @@ import { OrderListModule } from 'primeng/orderlist';
   declarations: [
     BatchComponent,
     CreateBatchComponent,
+    AddFilesComponent,
     AddMeetingComponent
   ],
   imports: [

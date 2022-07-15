@@ -1,6 +1,9 @@
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Service.dll.config
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Service.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Service.pdb
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Azure.Core.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Azure.Storage.Blobs.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Azure.Storage.Common.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Library.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Models.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Repository.dll
@@ -13,7 +16,10 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Deb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\RestSharp.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Buffers.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Data.SqlClient.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.IO.Hashing.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Memory.Data.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Memory.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Net.Http.Extensions.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Net.Http.Primitives.dll
@@ -27,6 +33,9 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Deb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Models.dll.config
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Repository.pdb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Repository.dll.config
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Azure.Core.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Azure.Storage.Blobs.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Azure.Storage.Common.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Library.pdb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
@@ -37,8 +46,11 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Deb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\RestSharp.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Buffers.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Data.SqlClient.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.IO.Hashing.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Memory.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Memory.Data.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Net.Http.Primitives.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Numerics.Vectors.xml

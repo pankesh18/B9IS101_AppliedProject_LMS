@@ -14,6 +14,7 @@ import { StepsModule } from 'primeng/steps';
 import { AddMeetingComponent } from './batch/add-meeting.component';
 import { OrderListModule } from 'primeng/orderlist';
 import { AddFilesComponent } from './batch/add-files.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 
@@ -33,6 +34,7 @@ import { AddFilesComponent } from './batch/add-files.component';
     ButtonModule,
     FormsModule,
     StepsModule,
+    FileUploadModule,
     OrderListModule,
     CalendarModule,
     BatchRoutingModule

@@ -23,7 +23,7 @@
       <div class="col">
         <div class="container-fluid">
 
-          <p-table [value]="Batches" >
+          <p-table [value]="Batches" [scrollable]="true" scrollHeight="750px">
             <ng-template pTemplate="header">
               <tr>
                 <th>BatchId</th>
@@ -36,7 +36,7 @@
               <tr>
                 <td>{{batch.BatchId}}</td>
                 <td>{{batch.BatchName}}</td>
-                <td>{{batch.BatchYear}}</td>
+                <td>{{batch.BatchYear | date:'YYYY'}}</td>
                 <td>{{batch.CourseName}}</td>
               </tr>
             </ng-template>

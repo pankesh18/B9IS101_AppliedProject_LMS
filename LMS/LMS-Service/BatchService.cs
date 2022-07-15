@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace LMS_Service
 {
@@ -155,6 +156,46 @@ namespace LMS_Service
             {
                 throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
             }
+        }
+
+
+
+        public BatchFiles AddFilesToBatch(HttpContext objhttpcontext)
+        {
+            BatchFiles objBatchFiles= new BatchFiles();
+            try
+            {
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string ContainerName = "lmsbatchcontainer";
+
+                objBatchFiles.FileName = objhttpcontext.Request.Form["FileName"].ToString();
+                objBatchFiles.Caption = objhttpcontext.Request.Form["Caption"].ToString();
+                objBatchFiles.BatchId = Convert.ToInt32(objhttpcontext.Request.Form["BatchId"]);
+                objBatchFiles.FileSize = objhttpcontext.Request.Form["FileSize"].ToString();
+                objBatchFiles.FileExtension = objhttpcontext.Request.Form["FileExtension"].ToString();
+
+
+                CloudStorageService objCloudStorageService=   new CloudStorageService(ContainerName);
+                System.IO.Stream httpPostedFile = objhttpcontext.Request.Files["File"].InputStream;
+
+                objCloudStorageService.UploadFromStream(objBatchFiles.FileName + objBatchFiles.FileExtension, httpPostedFile);
+                string FileURL = "https://lmsbatchstorage.blob.core.windows.net/"+ ContainerName +"/"+ objBatchFiles.FileName+ objBatchFiles.FileExtension;
+
+                objBatchFiles.ContainerName = ContainerName;
+                objBatchFiles.FileURL = FileURL;
+                                
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    BatchRepository.AddFilesToBatch(objdatabaseService, objBatchFiles);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+            return objBatchFiles;
         }
 
     }

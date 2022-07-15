@@ -144,3 +144,8 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\obj\Debug\L
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\obj\Debug\LMS-API.csproj.CopyComplete
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\obj\Debug\LMS-API.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\obj\Debug\LMS-API.pdb
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.WindowsAzure.Storage.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Azure.KeyVault.Core.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.WindowsAzure.Storage.pdb
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.WindowsAzure.Storage.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Azure.KeyVault.Core.xml

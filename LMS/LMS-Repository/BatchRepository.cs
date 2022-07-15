@@ -284,5 +284,39 @@ namespace LMS_Repository
         }
 
 
+
+
+
+        public static void AddFilesToBatch(DatabaseService objdatabaseService, BatchFiles objBatchFiles)
+        {
+
+            try
+            {
+
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("BatchId", objBatchFiles.BatchId);
+                objdatabaseService.AddParameter("FileName", objBatchFiles.FileName);
+                objdatabaseService.AddParameter("FileExtension", objBatchFiles.FileExtension);
+                objdatabaseService.AddParameter("ContainerName", objBatchFiles.ContainerName);
+                objdatabaseService.AddParameter("FileURL", objBatchFiles.FileURL);
+                objdatabaseService.AddParameter("FileSize", objBatchFiles.FileSize);
+                objdatabaseService.AddParameter("Caption", objBatchFiles.Caption);
+
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_AddFilesToBatch";
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
     }
 }

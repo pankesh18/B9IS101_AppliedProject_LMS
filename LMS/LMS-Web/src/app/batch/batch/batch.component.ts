@@ -11,9 +11,9 @@ import { CreateBatchComponent } from './create-batch.component';
   styleUrls: ['./batch.component.css']
 })
 export class BatchComponent implements OnInit {
-  ref: DynamicDialogRef;
+  ref: DynamicDialogRef
   Batches: Batch[] = [];
-  constructor(private dialogService: DialogService, private objBatchService: BatchService) { }
+  constructor(private dialogService: DialogService, private objBatchService: BatchService ) { }
 
   ngOnInit(): void {
     this.GetAllBatches()

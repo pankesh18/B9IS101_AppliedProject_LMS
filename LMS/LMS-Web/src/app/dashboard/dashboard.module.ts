@@ -8,6 +8,9 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { MeetingsComponent } from './meetings/meetings.component';
+import { CalendarModule } from 'primeng/calendar';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 
@@ -22,6 +25,9 @@ import { MeetingsComponent } from './meetings/meetings.component';
     CommonModule,
     CarouselModule,
     CardModule,
+    CalendarModule,
+    InputTextModule,
+    VirtualScrollerModule,
     ButtonModule,
     FormsModule,
     DashboardRoutingModule

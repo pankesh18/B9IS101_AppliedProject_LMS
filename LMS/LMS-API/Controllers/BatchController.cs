@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace LMS_API.Controllers
@@ -125,6 +126,28 @@ namespace LMS_API.Controllers
                 List<StudentMeeting> objStudentMeeting = objBatchService.GetAllStudentMetings(StudentUserId);
 
                 return Request.CreateResponse(HttpStatusCode.OK, objStudentMeeting);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
+
+
+
+        [HttpPost]
+        [ActionName("AddFilesToBatch")]
+        public HttpResponseMessage AddFilesToBatch()
+        {
+            try
+            {
+                
+                BatchService objBatchService = new BatchService();
+
+                BatchFiles objBatchFiles = objBatchService.AddFilesToBatch(HttpContext.Current);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objBatchFiles);
             }
             catch (Exception ex)
             {

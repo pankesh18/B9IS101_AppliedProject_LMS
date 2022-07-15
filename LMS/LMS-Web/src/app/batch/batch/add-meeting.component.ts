@@ -61,7 +61,7 @@ export class AddMeetingComponent implements OnInit {
 
     this.objBatchService.AddMeeting(objStudentMeeting)
       .subscribe((response) => {
-        this.BatchId = response
+ 
         this.stepIndex = 1
         console.log("Batch Created")
 

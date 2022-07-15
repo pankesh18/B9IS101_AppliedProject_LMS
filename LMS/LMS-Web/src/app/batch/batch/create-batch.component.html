@@ -65,7 +65,7 @@
       <add-meeting [BatchId]="BatchId"></add-meeting>
       <div class="row" style="text-align:center">
         <div class="col">
-          <p-button label="Next" (click)="stepIndex=3"></p-button>
+          <p-button label="Next" (click)="stepIndex=2"></p-button>
 
         </div>
       </div>
@@ -73,7 +73,10 @@
 
 
 
+    <div id="add-Files" *ngIf="stepIndex===2">
+      <add-files [BatchId]="BatchId"></add-files>
 
+    </div>
 
 
 

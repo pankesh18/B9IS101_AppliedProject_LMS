@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { Batch, StudentMeeting } from './batch.models';
+import { Batch, BatchFiles, StudentMeeting } from './batch.models';
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +60,12 @@ export class BatchService {
     );
   }
 
-
+  public AddFileToBatch(objForm: FormData) {
+    let httpOptions = {
+      headers: this.httpheaders
+    }
+    return this.http.post<any>(this.APIURL + "Batch/AddFilesToBatch", objForm, httpOptions).pipe(
+      tap(res => res)
+    );
+  }
 }

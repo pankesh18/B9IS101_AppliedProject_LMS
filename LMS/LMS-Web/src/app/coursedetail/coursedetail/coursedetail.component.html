@@ -1,0 +1,110 @@
+
+
+
+<div class="row p-3" style="border-bottom:1px groove">
+  <p>coursedetail works!</p>
+
+</div>
+<div class="row p-5" >
+  <div class="container">
+
+    <p-tabView [scrollable]="true">
+      <p-tabPanel header="Meetings">
+
+        <p-virtualScroller [value]="MeetingList" scrollHeight="500px" [itemSize]="150">
+
+          <ng-template pTemplate="header">
+            <div class="row">
+              <div class="col-6 my-2">
+                <span class="p-float-label" style="width:100%">
+                  <input id="MeetingTopic" type="text" [(ngModel)]="topicSearchKey" (ngModelChange)="searchByMeetingTopic()" pInputText style="width:100%">
+                  <label for="MeetingTopic">Meeting Topic</label>
+                </span>
+              </div>
+
+              <div class="col-6 my-2">
+                <span class="p-float-label" style="width: 100%">
+
+                  <p-calendar id="meeting-starttime" [(ngModel)]="searchrangeDates" (onSelect)="searchByDateRange()" selectionMode="range" [showButtonBar]="true" [showClear]="true" style="width:100%" [inputStyle]="{'width': '100%'}"></p-calendar>
+
+                  <label for="meeting-starttime">Meeting StartTime</label>
+                </span>
+
+              </div>
+            </div>
+
+
+
+
+          </ng-template>
+          <ng-template pTemplate="item" let-meeting>
+            <li class="listing">
+              <h4 class="col" style="padding: 2%;">{{meeting.Topic}}</h4>
+              <span class="col" style="color: darkslategray;">
+                {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
+              </span>
+              <span>
+                <a class="btn btn-primary" href="{{meeting.JoinUrl}}">
+                  Join
+                </a>
+              </span>
+            </li>
+          </ng-template>
+
+
+
+        </p-virtualScroller>
+
+
+
+
+      </p-tabPanel>
+      <p-tabPanel header="Files">
+ 
+
+
+
+
+          <p-carousel [value]="FileList">
+            <ng-template let-item pTemplate="item">
+
+              <div *ngIf="item.isURL">
+
+
+                <youtube-player videoId="{{getYoutubeVideoId(item.FileURL)}}"
+                                suggestedQuality="highres"
+                                [height]="250"
+                                [width]="500"
+                                [startSeconds]="4"
+                                [endSeconds]="8">
+                </youtube-player>
+
+
+
+
+              </div>
+              <div *ngIf="!item.isURL">
+                2
+              </div>
+            </ng-template>
+          </p-carousel>
+
+
+
+
+
+
+
+
+
+
+      </p-tabPanel>
+    </p-tabView>
+
+
+
+
+
+
+  </div>
+</div>

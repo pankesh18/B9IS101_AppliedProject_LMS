@@ -24,6 +24,8 @@ export class AddFilesComponent implements OnInit {
   FileList: BatchFiles[] = [];
   FileName: string;
   FileCaption: string;
+  isURL: boolean = false;
+  URL: string;
   constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig) {
 
     this.LoggedInUser = loginService.getLoggedInUser();
@@ -34,7 +36,7 @@ export class AddFilesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.GetAllFilesByBatchId(this.BatchId );
   }
 
 
@@ -46,15 +48,25 @@ export class AddFilesComponent implements OnInit {
 
   UploadFile() {
 
-    let ext = this.Files[0].name.substring(this.Files[0].name.lastIndexOf('.'), this.Files[0].name.length);
 
     let formData = new FormData();
     formData.append("BatchId", JSON.stringify(this.BatchId))
     formData.append("FileName", this.FileName)
     formData.append("Caption", this.FileCaption)
-    formData.append("File", this.Files[0])
-    formData.append("FileExtension",ext )
-    formData.append("FileSize", JSON.stringify(this.Files[0].size / (1024 * 1024)))
+    formData.append("isURL", JSON.stringify(this.isURL) )
+    if (this.isURL) {
+      formData.append("URL", this.URL)
+
+    }
+    else {
+      let ext = this.Files[0].name.substring(this.Files[0].name.lastIndexOf('.'), this.Files[0].name.length);
+
+      formData.append("File", this.Files[0])
+      formData.append("FileExtension", ext)
+      formData.append("FileSize", JSON.stringify(this.Files[0].size / (1024 * 1024)))
+    }
+
+
 
 
     this.objBatchService.AddFileToBatch(formData)
@@ -71,7 +83,26 @@ export class AddFilesComponent implements OnInit {
 
 
 
+  GetAllFilesByBatchId(BatchId: number) {
+    this.objBatchService.GetAllFilesByBatchId(this.BatchId)
+      .subscribe((response) => {
+        if (response != null && response != undefined) {
+          this.FileList = response;
 
+        }
+        else {
+          this.FileList = [];
+        }
+
+      }, function (rejection) {
+
+      })
+  }
+
+
+
+
+  
 
 
 }

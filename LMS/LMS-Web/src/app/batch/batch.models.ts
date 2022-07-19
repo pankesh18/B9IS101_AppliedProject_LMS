@@ -33,9 +33,14 @@ export class StudentMeeting {
 
 
 export class BatchFiles {
+  BatchFileId: number
   BatchId: number
   FileName: string
+  FileExtension: string 
   ContainerName: string
   FileURL: string
+  isURL: string
+  FileSize: string
+  Caption: string
 }
 

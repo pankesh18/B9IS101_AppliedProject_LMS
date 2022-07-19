@@ -68,4 +68,33 @@ export class BatchService {
       tap(res => res)
     );
   }
+
+
+
+  public GetAllMeetingsByBatchId(BatchId: number) {
+    let httpOptions = {
+      headers: this.httpheaders,
+      params: { BatchId: BatchId }
+      
+    }
+    return this.http.get<any>(this.APIURL + "Batch/GetAllMeetingsByBatchId", httpOptions).pipe(
+      tap(res => res)
+    );
+  }
+
+
+  public GetAllFilesByBatchId(BatchId:number) {
+    let httpOptions = {
+      headers: this.httpheaders,
+      params: { BatchId: BatchId }
+    }
+    return this.http.get<any>(this.APIURL + "Batch/GetAllFilesByBatchId", httpOptions).pipe(
+      tap(res => res)
+    );
+  }
+
+
+
+
+
 }

@@ -39,9 +39,9 @@
           <ng-template pTemplate="body" let-meeting let-rowIndex="rowIndex">
             <tr>
               <td>{{rowIndex+1}}</td>
-              <td>{{meeting.MeetingTopic}}</td>
-              <td>{{meeting.MeetingStarttine | date:'longDate' }}</td>
-              <td>{{meeting.MeetingStarttine | date:'shortTime'}}</td>
+              <td>{{meeting.Topic}}</td>
+              <td>{{meeting.StartTime | date:'longDate' }}</td>
+              <td>{{meeting.StartTime | date:'shortTime'}}</td>
 
             </tr>
           </ng-template>

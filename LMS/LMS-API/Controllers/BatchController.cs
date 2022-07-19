@@ -155,5 +155,44 @@ namespace LMS_API.Controllers
 
             }
         }
+
+
+        [HttpGet]
+        [ActionName("GetAllMeetingsByBatchId")]
+        public HttpResponseMessage GetAllMeetingsByBatchId(int BatchId)
+        {
+            try
+            {
+                BatchService objBatchService = new BatchService();
+
+                List<StudentMeeting> objStudentMeeting = objBatchService.GetAllMeetingsByBatchId(BatchId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objStudentMeeting);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
+
+        [HttpGet]
+        [ActionName("GetAllFilesByBatchId")]
+        public HttpResponseMessage GetAllFilesByBatchId(int BatchId)
+        {
+            try
+            {
+                BatchService objBatchService = new BatchService();
+
+                List<BatchFiles> objBatchFiles = objBatchService.GetAllFilesByBatchId(BatchId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objBatchFiles);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
     }
 }

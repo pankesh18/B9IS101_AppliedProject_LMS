@@ -16,6 +16,7 @@ CREATE PROCEDURE LMS_AddFilesToBatch
 ,@FileExtension	NVARCHAR(MAX)
 ,@ContainerName	NVARCHAR(MAX)
 ,@FileURL	NVARCHAR(MAX)
+,@isURL	BIT
 ,@FileSize	NVARCHAR(MAX)
 ,@Caption	NVARCHAR(MAX)
 )
@@ -28,6 +29,7 @@ BatchId
 ,FileExtension
 ,ContainerName	
 ,FileURL
+,isURL
 ,FileSize
 ,Caption
 )
@@ -38,6 +40,7 @@ values
 ,@FileExtension
 ,@ContainerName
 ,@FileURL
+,@isURL
 ,@FileSize
 ,@Caption
 )

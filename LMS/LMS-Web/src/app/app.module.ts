@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { NgxLocalStorageModule } from 'ngx-localstorage';
 import { BatchModule } from './batch/batch.module';
+import { CoursedetailModule } from './coursedetail/coursedetail.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BatchModule } from './batch/batch.module';
     NgxLocalStorageModule.forRoot(),
     AuthModule,
     DashboardModule,
+    CoursedetailModule,
     BatchModule,
     SidebarModule,
     ButtonModule,

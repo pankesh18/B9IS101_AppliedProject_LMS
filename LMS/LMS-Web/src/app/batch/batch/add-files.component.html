@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col container-fluid" style="text-align:center">
-      <div class="col my-2">
+    <div class="col container-fluid" >
+      <div class="col my-2" style="text-align:center">
         <span class="p-float-label" style="width:100%">
           <input id="file-name" type="text" [(ngModel)]="FileName" pInputText style="width:100%">
           <label for="file-name">File Name</label>
         </span>
       </div>
-      <div class="col my-2">
+      <div class="col my-2" style="text-align:center">
         <span class="p-float-label" style="width: 100%">
 
           <input id="file-caption" type="text" [(ngModel)]="FileCaption" pInputText style="width:100%">
@@ -15,34 +15,55 @@
         </span>
       </div>
       <div class="col my-2">
-        <p-fileUpload [auto]="true" (onSelect)="AddFiles($event)" title="Choose File" name="image"></p-fileUpload>
+        <span style="width: 100%; text-align:left !important">
+
+
+          <label class="px-5 py-2" for="toggle-file">Is it a file or URL?</label>
+          <p-toggleButton if="toggle-file" onLabel="URL" offLabel="File"
+                          onIcon="pi pi-link" offIcon="pi pi-file" [(ngModel)]="isURL"></p-toggleButton>
+
+
+
+        </span>
+      </div>
+      <div class="col my-2" style="text-align:center">
+
+        <span class="p-float-label" style="width: 100%" *ngIf="isURL">
+
+          <input id="file-url" type="text" [(ngModel)]="URL" pInputText style="width:100%">
+          <label for="file-url">URL</label>
+        </span>
+
+        <p-fileUpload *ngIf="!isURL" [auto]="true" (onSelect)="AddFiles($event)" title="Choose File" name="image"></p-fileUpload>
 
       </div>
       <div class="row" style="text-align:center">
         <div class="col">
           <p-button label="Upload File" (click)="UploadFile()"></p-button>
 
+
+
         </div>
       </div>
 
-      <div class="row my-3">
+      <div class="row my-3" style="text-align:center">
 
         <p-table [value]="FileList" [scrollable]="true" scrollHeight="350px">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Sr. No.</th>
-          <th>FileName</th>
-          <th>FileCaption</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-file let-rowIndex="rowIndex">
-        <tr>
-          <td>{{rowIndex+1}}</td>
-          <td>{{file.FileName}}</td>
-          <td>{{file.Caption }}</td>
-        </tr>
-      </ng-template>
-    </p-table>
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Sr. No.</th>
+              <th>FileName</th>
+              <th>FileCaption</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-file let-rowIndex="rowIndex">
+            <tr>
+              <td>{{rowIndex+1}}</td>
+              <td>{{file.FileName}}</td>
+              <td>{{file.Caption }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
 
 
 

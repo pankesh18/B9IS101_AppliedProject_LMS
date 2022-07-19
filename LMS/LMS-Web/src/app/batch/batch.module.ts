@@ -15,6 +15,8 @@ import { AddMeetingComponent } from './batch/add-meeting.component';
 import { OrderListModule } from 'primeng/orderlist';
 import { AddFilesComponent } from './batch/add-files.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DialogModule } from 'primeng/dialog';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 
 
@@ -29,7 +31,9 @@ import { FileUploadModule } from 'primeng/fileupload';
     CommonModule,
     DynamicDialogModule,
     InputTextModule,
+    ToggleButtonModule,
     PickListModule,
+    DialogModule,
     TableModule,
     ButtonModule,
     FormsModule,

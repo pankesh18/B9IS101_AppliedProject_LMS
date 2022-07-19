@@ -171,18 +171,36 @@ namespace LMS_Service
                 objBatchFiles.FileName = objhttpcontext.Request.Form["FileName"].ToString();
                 objBatchFiles.Caption = objhttpcontext.Request.Form["Caption"].ToString();
                 objBatchFiles.BatchId = Convert.ToInt32(objhttpcontext.Request.Form["BatchId"]);
-                objBatchFiles.FileSize = objhttpcontext.Request.Form["FileSize"].ToString();
-                objBatchFiles.FileExtension = objhttpcontext.Request.Form["FileExtension"].ToString();
+
+                objBatchFiles.isURL= Convert.ToBoolean(objhttpcontext.Request.Form["isURL"]);
 
 
-                CloudStorageService objCloudStorageService=   new CloudStorageService(ContainerName);
-                System.IO.Stream httpPostedFile = objhttpcontext.Request.Files["File"].InputStream;
+                if (objBatchFiles.isURL)
+                {
+                    objBatchFiles.FileURL = objhttpcontext.Request.Form["URL"].ToString();
+                    objBatchFiles.FileSize = String.Empty;
+                    objBatchFiles.FileExtension = String.Empty;
+                    objBatchFiles.ContainerName = String.Empty;
+                }
+                else
+                {
+                    objBatchFiles.FileSize = objhttpcontext.Request.Form["FileSize"].ToString();
+                    objBatchFiles.FileExtension = objhttpcontext.Request.Form["FileExtension"].ToString();
 
-                objCloudStorageService.UploadFromStream(objBatchFiles.FileName + objBatchFiles.FileExtension, httpPostedFile);
-                string FileURL = "https://lmsbatchstorage.blob.core.windows.net/"+ ContainerName +"/"+ objBatchFiles.FileName+ objBatchFiles.FileExtension;
 
-                objBatchFiles.ContainerName = ContainerName;
-                objBatchFiles.FileURL = FileURL;
+                    CloudStorageService objCloudStorageService = new CloudStorageService(ContainerName);
+                    System.IO.Stream httpPostedFile = objhttpcontext.Request.Files["File"].InputStream;
+
+                    objCloudStorageService.UploadFromStream(objBatchFiles.FileName + objBatchFiles.FileExtension, httpPostedFile);
+                    string FileURL = "https://lmsbatchstorage.blob.core.windows.net/" + ContainerName + "/" + objBatchFiles.FileName + objBatchFiles.FileExtension;
+
+                    objBatchFiles.ContainerName = ContainerName;
+                    objBatchFiles.FileURL = FileURL;
+                }
+
+
+
+
                                 
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
@@ -196,6 +214,55 @@ namespace LMS_Service
                 throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
             }
             return objBatchFiles;
+        }
+
+
+
+
+
+
+
+
+        public List<StudentMeeting> GetAllMeetingsByBatchId(int BatchId)
+        {
+            try
+            {
+                List<StudentMeeting> objStudentMeeting = null;
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    objStudentMeeting = BatchRepository.GetAllMeetingsByBatchId(objdatabaseService, BatchId);
+                }
+                return objStudentMeeting;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+        }
+
+        public List<BatchFiles> GetAllFilesByBatchId(int BatchId)
+        {
+            try
+            {
+                List<BatchFiles> objBatchFiles = null;
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    objBatchFiles = BatchRepository.GetAllFilesByBatchId(objdatabaseService, BatchId);
+                }
+                return objBatchFiles;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
         }
 
     }

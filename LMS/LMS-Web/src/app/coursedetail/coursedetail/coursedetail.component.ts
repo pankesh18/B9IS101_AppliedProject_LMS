@@ -18,15 +18,27 @@ export class CoursedetailComponent implements OnInit {
   courseSearchKey: string;
   searchrangeDates: Date[];
   BatchId: number;
+  BatchFileId: number;
+  isFileNotesView: boolean = false;
+  tabIndex: number;
+  fileIndex: number=0;
+  ImageExtension: any[] = ['.jpeg', '.jpg', '.png', '.gif', '.tiff', '.raw','.bmp']
 
   constructor(private objCoursedetailService: CoursedetailService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.BatchId = params['BatchId']
+      this.BatchFileId = params['BatchFileId']
       this.GetAllMeetingsByBatchId(this.BatchId)
       this.GetAllFilesByBatchId(this.BatchId)
     });
+
+    if (this.BatchFileId != undefined) {
+      this.isFileNotesView = true;
+      this.tabIndex=1
+    }
+
   }
 
 
@@ -34,7 +46,6 @@ export class CoursedetailComponent implements OnInit {
     this.objCoursedetailService.GetAllMeetingsByBatchId(BatchId)
       .subscribe((response) => {
         this.MeetingList = response;
-
 
       }, function (rejection) {
 
@@ -46,6 +57,16 @@ export class CoursedetailComponent implements OnInit {
     this.objCoursedetailService.GetAllFilesByBatchId(BatchId)
       .subscribe((response) => {
         this.FileList = response;
+        this.FileList.forEach(item => { item.FileType= this.ImageExtension.includes(item.FileExtension) ? 'image':'document'  })
+
+        if (this.isFileNotesView) {
+          this.fileIndex = this.FileList.findIndex(item => item.BatchFileId == this.BatchFileId)
+          this.FileList.forEach(item => {
+            if (item.BatchFileId == this.BatchFileId) {
+              item.IsNoteList = true;
+            }
+            })
+        }
 
 
       }, function (rejection) {

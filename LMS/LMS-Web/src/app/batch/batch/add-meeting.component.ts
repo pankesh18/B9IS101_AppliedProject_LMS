@@ -85,7 +85,10 @@ export class AddMeetingComponent implements OnInit, DoCheck {
   GetAllMeetingsByBatchId(BatchId: number) {
     this.objBatchService.GetAllMeetingsByBatchId(this.BatchId)
       .subscribe((response) => {
-        this.MeetingList = response;
+        if (response != null && response != undefined) {
+          this.MeetingList = response;
+
+        }
 
       }, function (rejection) {
 

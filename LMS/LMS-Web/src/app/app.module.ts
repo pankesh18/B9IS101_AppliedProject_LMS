@@ -14,6 +14,11 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { NgxLocalStorageModule } from 'ngx-localstorage';
 import { BatchModule } from './batch/batch.module';
 import { CoursedetailModule } from './coursedetail/coursedetail.module';
+import { NotesModule } from './notes/notes.module';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -30,11 +35,14 @@ import { CoursedetailModule } from './coursedetail/coursedetail.module';
     DashboardModule,
     CoursedetailModule,
     BatchModule,
+    NotesModule,
     SidebarModule,
     ButtonModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

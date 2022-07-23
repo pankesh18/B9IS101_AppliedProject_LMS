@@ -10,12 +10,18 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
 import { YouTubePlayerModule } from "@angular/youtube-player";
+import { NgxDocViewerModule } from 'ngx-doc-viewer2';
+import { NotesModule } from '../notes/notes.module';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { AccordionModule } from 'primeng/accordion';
+import { SplitterModule } from 'primeng/splitter';
+import { ToolbarModule } from 'primeng/toolbar';
 
 
 
 @NgModule({
   declarations: [
-    CoursedetailComponent
+    CoursedetailComponent,
   ],
   imports: [
     CommonModule,
@@ -23,10 +29,16 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
     CalendarModule,
     InputTextModule,
     YouTubePlayerModule,
+    NgxDocViewerModule,
     CarouselModule,
+    SplitterModule,
+    AccordionModule,
+    ToolbarModule,
     ButtonModule,
+    OverlayPanelModule,
     FormsModule,
     VirtualScrollerModule,
+    NotesModule,
     CourseDetailRoutingModule
   ]
 })

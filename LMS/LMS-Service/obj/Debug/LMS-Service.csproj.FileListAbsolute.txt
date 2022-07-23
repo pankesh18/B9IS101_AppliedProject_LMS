@@ -7,11 +7,13 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Deb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Library.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Models.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Repository.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.IdentityModel.Logging.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.WindowsAzure.Storage.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\RestSharp.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Buffers.dll
@@ -37,11 +39,14 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Deb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Azure.Storage.Blobs.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Azure.Storage.Common.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\LMS-Library.pdb
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.IdentityModel.Logging.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.WindowsAzure.Storage.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\RestSharp.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\System.Buffers.xml
@@ -65,8 +70,3 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\obj\Deb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\obj\Debug\LMS-Service.csproj.CopyComplete
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\obj\Debug\LMS-Service.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\obj\Debug\LMS-Service.pdb
-C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
-C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.WindowsAzure.Storage.dll
-C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
-C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
-C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-Service\bin\Debug\Microsoft.WindowsAzure.Storage.xml

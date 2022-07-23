@@ -173,6 +173,7 @@
     <Compile Include="CloudStorageService.cs" />
     <Compile Include="LMSService.cs" />
     <Compile Include="LMSUserService.cs" />
+    <Compile Include="NoteService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZoomService.cs" />
   </ItemGroup>

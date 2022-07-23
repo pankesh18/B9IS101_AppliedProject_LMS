@@ -100,9 +100,11 @@
     <Compile Include="Batch.cs" />
     <Compile Include="BatchFiles.cs" />
     <Compile Include="BatchMeeting.cs" />
+    <Compile Include="BatchNote.cs" />
     <Compile Include="IdList.cs" />
     <Compile Include="LMSUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedNote.cs" />
     <Compile Include="StudentMeeting.cs" />
     <Compile Include="ZoomMeeting.cs" />
   </ItemGroup>

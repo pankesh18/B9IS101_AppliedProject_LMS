@@ -42,5 +42,8 @@ export class BatchFiles {
   isURL: string
   FileSize: string
   Caption: string
+  FileType: string
+  IsNotes: boolean
+  IsNoteList: boolean
 }
 

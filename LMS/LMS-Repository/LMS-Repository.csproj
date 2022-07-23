@@ -106,6 +106,7 @@
     <Compile Include="BatchRepository.cs" />
     <Compile Include="LMSRepository.cs" />
     <Compile Include="LMSUserRepository.cs" />
+    <Compile Include="NoteRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

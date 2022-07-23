@@ -5,10 +5,26 @@
   <p>coursedetail works!</p>
 
 </div>
-<div class="row p-5" >
+<div class="row p-5">
   <div class="container">
 
-    <p-tabView [scrollable]="true">
+
+    <!--<p-splitter>
+      <ng-template pTemplate>
+
+
+
+
+
+      </ng-template>
+      <ng-template pTemplate>
+        Panel 2
+      </ng-template>
+    </p-splitter>-->
+
+
+
+    <p-tabView [scrollable]="true" [(activeIndex)]="tabIndex">
       <p-tabPanel header="Meetings">
 
         <p-virtualScroller [value]="MeetingList" scrollHeight="500px" [itemSize]="150">
@@ -60,51 +76,105 @@
 
       </p-tabPanel>
       <p-tabPanel header="Files">
- 
 
 
 
 
-          <p-carousel [value]="FileList">
-            <ng-template let-item pTemplate="item">
+        <div class="container mx-0" style="text-align:center; width:100%">
 
-              <div *ngIf="item.isURL">
+          
 
+            <p-carousel [value]="FileList" [page]="fileIndex">
 
-                <youtube-player videoId="{{getYoutubeVideoId(item.FileURL)}}"
-                                suggestedQuality="highres"
-                                [height]="250"
-                                [width]="500"
-                                [startSeconds]="4"
-                                [endSeconds]="8">
-                </youtube-player>
+              <ng-template let-item pTemplate="item">
+                <div class="row">
+                  <div [ngClass]="item.IsNotes ? 'col-8 mx-0' : 'col mx-0'">
+
+                    <div *ngIf="item.isURL">
 
 
-
-
-              </div>
-              <div *ngIf="!item.isURL">
-                2
-              </div>
-            </ng-template>
-          </p-carousel>
+                      <youtube-player videoId="{{getYoutubeVideoId(item.FileURL)}}"
+                                      suggestedQuality="highres"
+                                      [width]="720"
+                                      [height]="576"
+                                      [startSeconds]="4"
+                                      [endSeconds]="8">
+                      </youtube-player>
 
 
 
 
+                    </div>
+                    <div *ngIf="!item.isURL">
+
+                      <div *ngIf="item.FileType=='image'">
+
+                        <img src="{{item.FileURL}}" width="720" height="576" />
+
+
+                      </div>
+                      <div *ngIf="item.FileType=='document'">
+
+
+                        <ngx-doc-viewer [url]="item.FileURL" viewer="google" style="width:100%;height:60vh;"></ngx-doc-viewer>
+
+                      </div>
 
 
 
 
 
 
-      </p-tabPanel>
+                    </div>
+
+                  </div>
+                  <div class="col-4" [hidden]="!item.IsNotes">
+                    <app-create-notes [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-create-notes>
+
+                  </div>
+                  <div class="col-4" [hidden]="!item.IsNoteList">
+                    <app-notes-list [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false" ></app-notes-list>
+                  </div>
+                  
+
+                </div>
+
+
+                <p-toolbar>
+                  <div class="p-toolbar-group-left">
+
+                    <i class="pi pi-bars" [hidden]="true"></i>
+
+                  </div>
+
+                  <div class="p-toolbar-group-right">
+                    <p-button icon="pi pi-plus" class="m-2" (click)="item.IsNotes=!item.IsNotes;item.IsNoteList=false;"></p-button>
+                    <p-button icon="pi pi-list" class="m-2" (click)="item.IsNoteList=!item.IsNoteList;item.IsNotes=false;" styleClass="p-button-success"></p-button>
+                  </div>
+                </p-toolbar>
+
+
+              </ng-template>
+
+            </p-carousel>
+          
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+</p-tabPanel>
     </p-tabView>
-
-
-
 
 
 
   </div>
 </div>
+

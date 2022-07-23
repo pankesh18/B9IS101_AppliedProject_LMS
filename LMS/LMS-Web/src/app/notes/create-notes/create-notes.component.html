@@ -1,0 +1,60 @@
+
+
+<div class="container px-5 py-3 my-2" *ngIf="!IsFromBatch">
+
+  <div class="row  my-2" style="">
+    <div class="col" style="text-align:center">
+      <span class="p-float-label" style="width: 100%">
+
+        <input id="note-title" type="text" [(ngModel)]="objBatchNote.NoteTile" pInputText style="width:100%">
+        <label for="note-title">Title</label>
+      </span>
+    </div>
+  </div>
+  <div class="row  my-2">
+    <p-editor [(ngModel)]="objBatchNote.NoteBody" [style]="{'height':'70%'}"></p-editor>
+
+  </div>
+  <div class="row  my-2">
+
+    <div class="col">
+      <p-dropdown [options]="BatchOptions" (onChange)="onBatchChange()" [(ngModel)]="BatchId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Batch"></p-dropdown>
+
+    </div>
+    <div class="col" *ngIf="IsFile">
+      <p-dropdown [options]="FileOptions" [(ngModel)]="BatchFileId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select File"></p-dropdown>
+
+    </div>
+    <div class="col" *ngIf="IsMeeting">
+      <p-dropdown [options]="MeetingOptions" [(ngModel)]="BatchMeetingId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Meeting"></p-dropdown>
+
+
+    </div>
+    <div class="col text-center">
+
+      <p-button class="p-button-lg" label="Save"></p-button>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div *ngIf="IsFromBatch" class="my-2">
+  <div class="col" style="text-align:center">
+    <span class="p-float-label" style="width: 100%">
+      <input id="note-title" class="p-inputtext-sm" type="text" [(ngModel)]="objBatchNote.NoteTile" pInputText style="width:100%">
+      <label for="note-title">Title</label>
+    </span>
+  </div>
+  <div class="col  my-1">
+    <p-editor [(ngModel)]="objBatchNote.NoteBody" [style]="{'height':'35vh', 'width':'100%'}"></p-editor>
+
+  </div>
+  <div class="col text-center">
+
+    <p-button class="p-button-sm" *ngIf="!IsNoteUpdate" label="Save" (click)="AddBatchNote(objBatchNote)" ></p-button>
+     <p-button class="p-button-sm" *ngIf="IsNoteUpdate" label="Save" (click)="UpdateBatchNote(objBatchNote)" ></p-button>
+  </div>
+</div>

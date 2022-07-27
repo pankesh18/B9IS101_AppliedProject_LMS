@@ -267,6 +267,7 @@ namespace LMS_Repository
                             obj.Status = reader["Status"].ToString();
                             obj.StartTime = Convert.ToDateTime(reader["StartTime"]);
                             obj.Duration = Convert.ToInt32(reader["Duration"]);
+                            obj.Password = Convert.ToString(reader["Password"]);
 
                             objMeetings.Add(obj);
                         }

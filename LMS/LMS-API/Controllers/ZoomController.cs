@@ -31,24 +31,11 @@ namespace LMS_API.Controllers
     {
         [HttpGet]
         [ActionName("CreateMeeting")]
-        public async Task<HttpResponseMessage> CreateMeeting(int batchId)
+        public async Task<HttpResponseMessage> CreateMeeting()
         {
             try
             {
 
-                var ZoomEmailId = "wadekar.pankesh@gmail.com";
-                var meeting = "https://api.zoom.us/v2/users/{userId}/meetings";
-                meeting = meeting.Replace("{userId}", ZoomEmailId);
-                var JWTToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6InNWVURYdElCUmEtQW9Vbm9VZ281d3ciLCJleHAiOjE2NTgyNjk3MjgsImlhdCI6MTY1NzY2NDkyOH0.zTNdjxy5QXq_d5vNWMDOvXYS07KkyfYkJiekLpLmvE0";
-
-                var APIkey = "sVUDXtIBRa-AoUnoUgo5ww";
-                var Secret = "kuwZys1lCL94hprzSvSGFSrz4X9Dc6BeFte6";
-
-                ZoomService objZoom = new ZoomService();
-
-                //var JWTToken = objZoom.GenerateJWToken(APIkey, Secret);
-
-                //ZoomMeeting zoomMeeting = await objZoom.CreateZoomMeetingAsync(meeting, JWTToken, batchId);
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
@@ -59,7 +46,42 @@ namespace LMS_API.Controllers
             }
         }
 
+        [HttpPost]
+        [ActionName("oauthredirect")]
+        public HttpResponseMessage oauthredirect(string code)
+        {
+            try
+            {
+                
+
+                return Request.CreateResponse(HttpStatusCode.OK, "sucess");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
 
 
+        [HttpGet]
+        [ActionName("ZoomTest")]
+        public System.Web.Http.Results.RedirectResult ZoomTest()
+        {
+            var ClientId = "KOC1VPYjSaaBH39NB82kg";
+            var ClientSecret = "5TvtePHr5pKtAp6Tx2TmH6VNHKOu092B";
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes($"{ClientId}:{ClientSecret}");
+            var encodedString = $"Basic {System.Convert.ToBase64String(plainTextBytes)}";
+
+            var url = "https://zoom.us/oauth/authorize?response_type=code&client_id=KOC1VPYjSaaBH39NB82kg&redirect_uri=https%3A%2F%2Flocalhost%3A44301";
+            RestClient restClient = new RestClient();
+            RestRequest request = new RestRequest();
+
+            //var AuthorizationUrl = "https://zoom.us/oauth/authorize?response_type=code&client_id=KOC1VPYjSaaBH39NB82kg&redirect_uri=https%3A%2F%2Flocalhost%3A44310%2Fzoom%2Foauthredirect";
+            //var RedirectUrl=
+
+
+            return Redirect(url);
+        }
     }
 }

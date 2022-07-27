@@ -11,6 +11,7 @@ import { MeetingsComponent } from './meetings/meetings.component';
 import { CalendarModule } from 'primeng/calendar';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { InputTextModule } from 'primeng/inputtext';
+import { ZoomModule } from '../zoom/zoom.module';
 
 
 
@@ -28,6 +29,7 @@ import { InputTextModule } from 'primeng/inputtext';
     CalendarModule,
     InputTextModule,
     VirtualScrollerModule,
+    ZoomModule,
     ButtonModule,
     FormsModule,
     DashboardRoutingModule

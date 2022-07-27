@@ -110,7 +110,7 @@ namespace LMS_Service
                 ZoomService objZoomService = new ZoomService();
 
                 string ZoomMeetingUrl= "https://api.zoom.us/v2/users/{userId}/meetings";
-                string token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6InNWVURYdElCUmEtQW9Vbm9VZ281d3ciLCJleHAiOjE2NTgyNjk3MjgsImlhdCI6MTY1NzY2NDkyOH0.zTNdjxy5QXq_d5vNWMDOvXYS07KkyfYkJiekLpLmvE0";
+                string token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6InNWVURYdElCUmEtQW9Vbm9VZ281d3ciLCJleHAiOjE2NTk0NTQ3MzIsImlhdCI6MTY1ODg0OTkzM30.OjbJGHDDlKTY2gzWAFYdqvEkejjZ0dSNcFlUUfiS3lA";
 
                 ZoomMeetingUrl= ZoomMeetingUrl.Replace("{userId}", HostEmail);
 

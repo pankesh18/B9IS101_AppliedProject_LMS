@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private objDashboardService: DashboardService) { }
 
   ngOnInit(): void {
   }
+  zoom() {
+    this.objDashboardService.ZoomTest()
+      .subscribe((response) => {
+        console.log(response);
 
+      }, function (rejection) {
+
+      })
+  }
 }

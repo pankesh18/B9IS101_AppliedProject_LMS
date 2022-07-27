@@ -15,6 +15,7 @@ import { NgxLocalStorageModule } from 'ngx-localstorage';
 import { BatchModule } from './batch/batch.module';
 import { CoursedetailModule } from './coursedetail/coursedetail.module';
 import { NotesModule } from './notes/notes.module';
+import { ZoomModule } from './zoom/zoom.module';
 
 
 

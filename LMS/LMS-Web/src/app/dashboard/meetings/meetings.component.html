@@ -57,9 +57,13 @@
               {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
             </span>
             <span>
-              <a class="btn btn-primary" href="{{meeting.JoinUrl}}">
+              <!--<a class="btn btn-primary" href="{{meeting.JoinUrl}}">
+                Join
+              </a>-->
+              <a class="btn btn-primary" (click)="startZoom(meeting.ZoomMeetingId,meeting.Password)">
                 Join
               </a>
+
             </span>
           </li>
         </ng-template>

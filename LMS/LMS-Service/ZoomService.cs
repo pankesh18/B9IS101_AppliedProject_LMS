@@ -30,8 +30,12 @@ namespace LMS_Service
 
             var time = Convert.ToDateTime(startTime).ToString("yyyy-MM-ddTHH\\:mm\\:ssZ");
 
+            
             MeetingParameters.Add("start_time", time);
             BatchMeeting zoomMeeting = new BatchMeeting();
+
+            var generatedToken = ZoomToken("sVUDXtIBRa-AoUnoUgo5ww", "kuwZys1lCL94hprzSvSGFSrz4X9Dc6BeFte6");
+
 
             try
             {
@@ -136,6 +140,42 @@ namespace LMS_Service
             return JWToken;
         }
 
+
+
+        public static string ZoomToken(string APIKey, string SecretKey)
+        {
+            // Token will be good for 20 minutes
+            DateTime Expiry = DateTime.UtcNow.AddMinutes(20);
+
+            string ApiKey = APIKey;
+            string ApiSecret = SecretKey;
+
+            int ts = (int)(Expiry - new DateTime(1970, 1, 1)).TotalSeconds;
+
+            // Create Security key  using private key above:
+            var securityKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(Encoding.UTF8.GetBytes(ApiSecret));
+
+            // length should be >256b
+            var credentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+
+            //Finally create a Token
+            var header = new JwtHeader(credentials);
+
+            //Zoom Required Payload
+            var payload = new JwtPayload
+        {
+            { "iss", ApiKey},
+            { "exp", ts },
+        };
+
+            var secToken = new JwtSecurityToken(header, payload);
+            var handler = new JwtSecurityTokenHandler();
+
+            // Token to String so you can use it in your client
+            var tokenString = handler.WriteToken(secToken);
+
+            return tokenString;
+        }
 
     }
 }

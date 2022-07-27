@@ -255,7 +255,7 @@ namespace LMS_Repository
                             obj.BatchName = reader["BatchName"].ToString();
                             obj.BatchYear = reader["BatchYear"].ToString();
                             obj.CourseName = reader["CourseName"].ToString();
-                            
+                            obj.BatchMeetingId = Convert.ToInt32(reader["BatchMeetingId"]);
                             obj.UserId = Convert.ToInt32(reader["UserId"]);
                             obj.ZoomMeetingId = reader["ZoomMeetingId"].ToString();
                             obj.StartUrl = reader["StartUrl"].ToString();
@@ -424,5 +424,54 @@ namespace LMS_Repository
 
         }
 
+
+
+        public static StudentMeeting GetBatchMeetingDetails(DatabaseService objdatabaseService, int BatchMeetingId)
+        {
+            try
+            {
+                StudentMeeting objMeeting = null;
+            
+                objdatabaseService.ClearParameter();
+                objdatabaseService.AddParameter("BatchMeetingId", BatchMeetingId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetBatchMeetingDetails";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            objMeeting = new StudentMeeting();
+                            objMeeting.BatchMeetingId = Convert.ToInt32(reader["BatchMeetingId"]);
+                            objMeeting.BatchId = Convert.ToInt32(reader["BatchId"]);
+                            objMeeting.ZoomMeetingId = reader["ZoomMeetingId"].ToString();
+                            objMeeting.StartUrl = reader["StartUrl"].ToString();
+                            objMeeting.JoinUrl = reader["JoinUrl"].ToString();
+                            objMeeting.UUID = reader["UUID"].ToString();
+                            objMeeting.HostId = reader["HostId"].ToString();
+                            objMeeting.HostEmail = reader["HostEmail"].ToString();
+                            objMeeting.Topic = reader["Topic"].ToString();
+                            objMeeting.Status = reader["Status"].ToString();
+                            objMeeting.StartTime = Convert.ToDateTime(reader["StartTime"]);
+                            objMeeting.Duration = Convert.ToInt32(reader["Duration"]);
+                            objMeeting.Password = reader["Password"].ToString();
+                        }
+                
+                    }
+                }
+
+                return objMeeting;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
     }
 }

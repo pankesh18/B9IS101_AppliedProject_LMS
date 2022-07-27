@@ -194,5 +194,24 @@ namespace LMS_API.Controllers
 
             }
         }
+
+        [HttpGet]
+        [ActionName("GetBatchMeetingDetails")]
+        public HttpResponseMessage GetBatchMeetingDetails(int BatchMeetingId)
+        {
+            try
+            {
+                BatchService objBatchService = new BatchService();
+
+                StudentMeeting objStudentMeeting = objBatchService.GetBatchMeetingDetails(BatchMeetingId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objStudentMeeting);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
     }
 }

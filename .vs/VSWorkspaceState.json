@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\LMS",
+    "\\LMS\\LMS-Zoom",
+    "\\LMS\\LMS-Zoom\\LMS-Zoom",
+    "\\LMS\\LMS-Zoom\\LMS-Zoom\\src",
+    "\\LMS\\LMS-Zoom\\LMS-Zoom\\src\\app"
   ],
-  "SelectedNode": "\\LMS-Library.sln",
+  "SelectedNode": "\\LMS\\LMS-Zoom\\LMS-Zoom",
   "PreviewInSolutionExplorer": false
 }

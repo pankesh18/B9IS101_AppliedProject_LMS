@@ -14,6 +14,7 @@ AS
 
 select 
 b.BatchId
+,BatchMeetingId
 ,BatchName
 ,BatchYear
 ,CourseName

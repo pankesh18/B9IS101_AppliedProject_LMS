@@ -443,7 +443,8 @@ namespace LMS_Repository
                 {
                     if (reader.HasRows)
                     {
-
+                        while (reader.Read())
+                        {
                             objMeeting = new StudentMeeting();
                             objMeeting.BatchMeetingId = Convert.ToInt32(reader["BatchMeetingId"]);
                             objMeeting.BatchId = Convert.ToInt32(reader["BatchId"]);
@@ -458,6 +459,7 @@ namespace LMS_Repository
                             objMeeting.StartTime = Convert.ToDateTime(reader["StartTime"]);
                             objMeeting.Duration = Convert.ToInt32(reader["Duration"]);
                             objMeeting.Password = reader["Password"].ToString();
+                        }
                 
                     }
                 }

@@ -139,8 +139,8 @@ export class MeetingsComponent implements OnInit {
   }
 
 
-  startZoom(MeetingId: any, passWord:any) {
-    var url = 'http://localhost:4200/zoom?' + 'meetingNumber=' + MeetingId + '&role=1' + '&passWord=' + passWord
+  startZoom(MeetingId: number) {
+    var url = 'http://localhost:4201?' + 'MeetingId=' + MeetingId + '&role=1' + '&UserId=' + this.LoggedInUser.UserId
     window.open(url, '_blank');
 
   }

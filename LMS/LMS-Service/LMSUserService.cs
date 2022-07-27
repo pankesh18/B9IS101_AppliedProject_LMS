@@ -53,5 +53,28 @@ namespace LMS_Service
                 throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
             }
         }
+
+
+
+        public LMSUser GetUserDetails(int UserId)
+        {
+            try
+            {
+                LMSUser loggedInUser;
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    loggedInUser = LMSUserRepository.GetUserDetails(objdatabaseService, UserId);
+                }
+                return loggedInUser;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+        }
     }
 }

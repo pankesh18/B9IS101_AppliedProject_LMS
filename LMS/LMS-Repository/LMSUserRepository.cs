@@ -84,6 +84,46 @@ namespace LMS_Repository
         }
 
 
+        public static LMSUser GetUserDetails(DatabaseService objdatabaseService, int UserId)
+        {
+            try
+            {
+                LMSUser objLMSUser = null;
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("UserId", UserId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetUserDetails";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    if (reader.HasRows)
+                    {
+                        objLMSUser = new LMSUser();
+                        while (reader.Read())
+                        {
+                            objLMSUser.UserId = Convert.ToInt32(reader["UserId"]);
+                            objLMSUser.FirstName = reader["FirstName"].ToString();
+                            objLMSUser.LastName = reader["LastName"].ToString();
+                            objLMSUser.Email = reader["Useremail"].ToString();
+                            objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
+                            objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
+
+                        }
+                    }
+                }
+
+                return objLMSUser;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
 
     }
 

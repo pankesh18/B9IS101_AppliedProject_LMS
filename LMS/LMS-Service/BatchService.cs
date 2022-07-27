@@ -265,5 +265,27 @@ namespace LMS_Service
             }
         }
 
+
+
+        public StudentMeeting GetBatchMeetingDetails(int BatchMeetingId)
+        {
+            try
+            {
+                StudentMeeting objStudentMeeting = null;
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    objStudentMeeting = BatchRepository.GetBatchMeetingDetails(objdatabaseService, BatchMeetingId);
+                }
+                return objStudentMeeting;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+        }
     }
 }

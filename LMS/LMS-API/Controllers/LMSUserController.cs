@@ -55,5 +55,27 @@ namespace LMS_API.Controllers
 
             }
         }
+
+
+
+        [HttpGet]
+        [ActionName("GetUserDetails")]
+        public HttpResponseMessage GetUserDetails(int UserId)
+        {
+            try
+            {
+                LMSUser loggedInUser;
+                LMSUserService objLMSUserService = new LMSUserService();
+
+                loggedInUser = objLMSUserService.GetUserDetails(UserId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, loggedInUser);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
     }
 }

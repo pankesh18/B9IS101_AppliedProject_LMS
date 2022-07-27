@@ -1,0 +1,180 @@
+
+
+
+<div class="row p-3" style="border-bottom:1px groove">
+  <p>coursedetail works!</p>
+
+</div>
+<div class="row p-5">
+  <div class="container">
+
+
+    <!--<p-splitter>
+      <ng-template pTemplate>
+
+
+
+
+
+      </ng-template>
+      <ng-template pTemplate>
+        Panel 2
+      </ng-template>
+    </p-splitter>-->
+
+
+
+    <p-tabView [scrollable]="true" [(activeIndex)]="tabIndex">
+      <p-tabPanel header="Meetings">
+
+        <p-virtualScroller [value]="MeetingList" scrollHeight="500px" [itemSize]="150">
+
+          <ng-template pTemplate="header">
+            <div class="row">
+              <div class="col-6 my-2">
+                <span class="p-float-label" style="width:100%">
+                  <input id="MeetingTopic" type="text" [(ngModel)]="topicSearchKey" (ngModelChange)="searchByMeetingTopic()" pInputText style="width:100%">
+                  <label for="MeetingTopic">Meeting Topic</label>
+                </span>
+              </div>
+
+              <div class="col-6 my-2">
+                <span class="p-float-label" style="width: 100%">
+
+                  <p-calendar id="meeting-starttime" [(ngModel)]="searchrangeDates" (onSelect)="searchByDateRange()" selectionMode="range" [showButtonBar]="true" [showClear]="true" style="width:100%" [inputStyle]="{'width': '100%'}"></p-calendar>
+
+                  <label for="meeting-starttime">Meeting StartTime</label>
+                </span>
+
+              </div>
+            </div>
+
+
+
+
+          </ng-template>
+          <ng-template pTemplate="item" let-meeting>
+            <li class="listing">
+              <h4 class="col" style="padding: 2%;">{{meeting.Topic}}</h4>
+              <span class="col" style="color: darkslategray;">
+                {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
+              </span>
+              <span>
+                <a class="btn btn-primary" href="{{meeting.JoinUrl}}">
+                  Join
+                </a>
+              </span>
+            </li>
+          </ng-template>
+
+
+
+        </p-virtualScroller>
+
+
+
+
+      </p-tabPanel>
+      <p-tabPanel header="Files">
+
+
+
+
+        <div class="container mx-0" style="text-align:center; width:100%">
+
+          
+
+            <p-carousel [value]="FileList" [page]="fileIndex">
+
+              <ng-template let-item pTemplate="item">
+                <div class="row">
+                  <div [ngClass]="item.IsNotes ? 'col-8 mx-0' : 'col mx-0'">
+
+                    <div *ngIf="item.isURL">
+
+
+                      <youtube-player videoId="{{getYoutubeVideoId(item.FileURL)}}"
+                                      suggestedQuality="highres"
+                                      [width]="720"
+                                      [height]="576"
+                                      [startSeconds]="4"
+                                      [endSeconds]="8">
+                      </youtube-player>
+
+
+
+
+                    </div>
+                    <div *ngIf="!item.isURL">
+
+                      <div *ngIf="item.FileType=='image'">
+
+                        <img src="{{item.FileURL}}" width="720" height="576" />
+
+
+                      </div>
+                      <div *ngIf="item.FileType=='document'">
+
+
+                        <ngx-doc-viewer [url]="item.FileURL" viewer="google" style="width:100%;height:60vh;"></ngx-doc-viewer>
+
+                      </div>
+
+
+
+
+
+
+                    </div>
+
+                  </div>
+                  <div class="col-4" [hidden]="!item.IsNotes">
+                    <app-create-notes [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-create-notes>
+
+                  </div>
+                  <div class="col-4" [hidden]="!item.IsNoteList">
+                    <app-notes-list [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false" ></app-notes-list>
+                  </div>
+                  
+
+                </div>
+
+
+                <p-toolbar>
+                  <div class="p-toolbar-group-left">
+
+                    <i class="pi pi-bars" [hidden]="true"></i>
+
+                  </div>
+
+                  <div class="p-toolbar-group-right">
+                    <p-button icon="pi pi-plus" class="m-2" (click)="item.IsNotes=!item.IsNotes;item.IsNoteList=false;"></p-button>
+                    <p-button icon="pi pi-list" class="m-2" (click)="item.IsNoteList=!item.IsNoteList;item.IsNotes=false;" styleClass="p-button-success"></p-button>
+                  </div>
+                </p-toolbar>
+
+
+              </ng-template>
+
+            </p-carousel>
+          
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+</p-tabPanel>
+    </p-tabView>
+
+
+
+  </div>
+</div>
+

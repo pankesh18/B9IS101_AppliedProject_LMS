@@ -15,7 +15,7 @@ import { LoginService } from '../../auth/login/login.service';
   templateUrl: './add-meeting.component.html',
   styleUrls: ['./batch.component.css']
 })
-export class AddMeetingComponent implements OnInit {
+export class AddMeetingComponent implements OnInit, DoCheck {
   BatchName: string;
   CourseName: string;
   BatchYear: any;
@@ -28,7 +28,7 @@ export class AddMeetingComponent implements OnInit {
   MeetingStartTime: any;
   @Input() BatchId: number;
   LoggedInUser: LMSUser;
-  MeetingList: any[] = [];
+  MeetingList: StudentMeeting[] = [];
 
   constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig) {
     this.items = [
@@ -40,30 +40,31 @@ export class AddMeetingComponent implements OnInit {
     this.LoggedInUser = loginService.getLoggedInUser();
 
   }
-  ngAfterViewInit(): void {
+  ngDoCheck(): void {
     this.checkwidth()
     }
 
   ngOnInit(): void {
-
+    console.log(this.BatchId)
+    this.GetAllMeetingsByBatchId(this.BatchId);
   }
 
   addMeeting() {
 
-    var meeting = { 'BatchId':  1, 'HostEmail': this.LoggedInUser.Email, 'MeetingTopic': this.MeetingTopic, 'MeetingStarttine': this.MeetingStartTime.toString() }
 
-    this.MeetingList.push(meeting);
+
     let objStudentMeeting = new StudentMeeting()
     objStudentMeeting.BatchId = this.BatchId;
     objStudentMeeting.HostEmail = this.LoggedInUser.Email
     objStudentMeeting.Topic = this.MeetingTopic
     objStudentMeeting.StartTime = this.MeetingStartTime
 
+    this.MeetingList.push(objStudentMeeting);
+
     this.objBatchService.AddMeeting(objStudentMeeting)
       .subscribe((response) => {
-        this.BatchId = response
+ 
         this.stepIndex = 1
-        console.log("Batch Created")
 
       }, function (rejection) {
 
@@ -78,5 +79,24 @@ export class AddMeetingComponent implements OnInit {
     
     
   }
+
+
+
+  GetAllMeetingsByBatchId(BatchId: number) {
+    this.objBatchService.GetAllMeetingsByBatchId(this.BatchId)
+      .subscribe((response) => {
+        if (response != null && response != undefined) {
+          this.MeetingList = response;
+
+        }
+
+      }, function (rejection) {
+
+      })
+  }
+
+
+
+
 
 }

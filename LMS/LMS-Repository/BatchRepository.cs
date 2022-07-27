@@ -267,6 +267,7 @@ namespace LMS_Repository
                             obj.Status = reader["Status"].ToString();
                             obj.StartTime = Convert.ToDateTime(reader["StartTime"]);
                             obj.Duration = Convert.ToInt32(reader["Duration"]);
+                            obj.Password = Convert.ToString(reader["Password"]);
 
                             objMeetings.Add(obj);
                         }
@@ -283,6 +284,145 @@ namespace LMS_Repository
 
         }
 
+
+
+
+
+        public static void AddFilesToBatch(DatabaseService objdatabaseService, BatchFiles objBatchFiles)
+        {
+
+            try
+            {
+
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("BatchId", objBatchFiles.BatchId);
+                objdatabaseService.AddParameter("FileName", objBatchFiles.FileName);
+                objdatabaseService.AddParameter("FileExtension", objBatchFiles.FileExtension);
+                objdatabaseService.AddParameter("ContainerName", objBatchFiles.ContainerName);
+                objdatabaseService.AddParameter("FileURL", objBatchFiles.FileURL);
+                objdatabaseService.AddParameter("isURL", objBatchFiles.isURL);
+                objdatabaseService.AddParameter("FileSize", objBatchFiles.FileSize);
+                objdatabaseService.AddParameter("Caption", objBatchFiles.Caption);
+
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_AddFilesToBatch";
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
+
+
+        public static List<StudentMeeting> GetAllMeetingsByBatchId(DatabaseService objdatabaseService, int BatchId)
+        {
+            try
+            {
+                List<StudentMeeting> objMeetings = null;
+                StudentMeeting obj = null;
+                objdatabaseService.ClearParameter();
+                objdatabaseService.AddParameter("BatchId", BatchId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetAllMeetingsByBatchId";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    if (reader.HasRows)
+                    {
+                        objMeetings = new List<StudentMeeting>();
+
+                        while (reader.Read())
+                        {
+                            obj = new StudentMeeting();
+                            obj.BatchMeetingId = Convert.ToInt32(reader["BatchMeetingId"]);
+                            obj.BatchId = Convert.ToInt32(reader["BatchId"]);
+                           
+                            obj.ZoomMeetingId = reader["ZoomMeetingId"].ToString();
+                            obj.StartUrl = reader["StartUrl"].ToString();
+                            obj.JoinUrl = reader["JoinUrl"].ToString();
+                            obj.UUID = reader["UUID"].ToString();
+                            obj.HostId = reader["HostId"].ToString();
+                            obj.HostEmail = reader["HostEmail"].ToString();
+                            obj.Topic = reader["Topic"].ToString();
+                            obj.Status = reader["Status"].ToString();
+                            obj.StartTime = Convert.ToDateTime(reader["StartTime"]);
+                            obj.Duration = Convert.ToInt32(reader["Duration"]);
+                            obj.Password = reader["Password"].ToString();
+
+                            objMeetings.Add(obj);
+                        }
+                    }
+                }
+
+                return objMeetings;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
+
+
+
+        public static List<BatchFiles> GetAllFilesByBatchId(DatabaseService objdatabaseService, int BatchId)
+        {
+            try
+            {
+                List<BatchFiles> objBatchFiles = null;
+                BatchFiles obj = null;
+                objdatabaseService.ClearParameter();
+                objdatabaseService.AddParameter("BatchId", BatchId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetAllFilesByBatchId";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    if (reader.HasRows)
+                    {
+                        objBatchFiles = new List<BatchFiles>();
+
+                        while (reader.Read())
+                        {
+                            obj = new BatchFiles();
+                            obj.BatchFileId = Convert.ToInt32(reader["BatchFileId"]);
+                            obj.BatchId = Convert.ToInt32(reader["BatchId"]);
+                            obj.FileName = reader["FileName"].ToString();
+                            obj.FileExtension = reader["FileExtension"].ToString();
+                            obj.ContainerName = reader["ContainerName"].ToString();
+                            obj.FileURL = reader["FileURL"].ToString();
+                            obj.isURL = Convert.ToBoolean( reader["isURL"]);
+                            obj.FileSize = reader["FileSize"].ToString();
+                            obj.Caption = reader["Caption"].ToString();
+
+
+                            objBatchFiles.Add(obj);
+                        }
+                    }
+                }
+
+                return objBatchFiles;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
 
     }
 }

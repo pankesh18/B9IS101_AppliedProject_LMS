@@ -28,7 +28,7 @@
           </ng-template>
           {{batch.BatchName}} - {{batch.BatchYear | date:'yyyy'}}
           <ng-template pTemplate="footer">
-            <p-button label="View"></p-button>
+            <p-button label="View" (click)="goToCourseDetail(batch.BatchId)"></p-button>
           </ng-template>
         </p-card>
 

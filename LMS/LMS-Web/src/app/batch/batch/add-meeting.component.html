@@ -1,5 +1,7 @@
 <div class="container">
   <div class="row">
+
+
     <div class="col container-fluid" style="text-align:center">
       <div class="col my-2">
         <span class="p-float-label" style="width:100%">
@@ -25,7 +27,7 @@
 
       <div class="row my-3">
 
-        <p-table [value]="MeetingList" [scrollable]="true" scrollHeight="350px">
+        <p-table [value]="MeetingList" [scrollable]="true" scrollHeight="50%">
           <ng-template pTemplate="header">
             <tr>
               <th>Sr. No.</th>
@@ -37,9 +39,9 @@
           <ng-template pTemplate="body" let-meeting let-rowIndex="rowIndex">
             <tr>
               <td>{{rowIndex+1}}</td>
-              <td>{{meeting.MeetingTopic}}</td>
-              <td>{{meeting.MeetingStarttine | date:'longDate' }}</td>
-              <td>{{meeting.MeetingStarttine | date:'shortTime'}}</td>
+              <td>{{meeting.Topic}}</td>
+              <td>{{meeting.StartTime | date:'longDate' }}</td>
+              <td>{{meeting.StartTime | date:'shortTime'}}</td>
 
             </tr>
           </ng-template>

@@ -42,4 +42,13 @@ export class DashboardService {
       tap(res => res)
     );
   }
+
+
+  //public ZoomTest(StudentUserId: number) {
+  //  return this.http.get<any>(this.APIURL + "Zoom/ZoomTest").pipe(
+  //    tap(res => res)
+  //  );
+  //}
+
+
 }

@@ -3,6 +3,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Batch } from '../batch.models';
 import { BatchService } from '../batch.service';
+import { AddMeetingComponent } from './add-meeting.component';
 import { CreateBatchComponent } from './create-batch.component';
 
 @Component({
@@ -11,9 +12,13 @@ import { CreateBatchComponent } from './create-batch.component';
   styleUrls: ['./batch.component.css']
 })
 export class BatchComponent implements OnInit {
-  ref: DynamicDialogRef;
+  ref: DynamicDialogRef
   Batches: Batch[] = [];
-  constructor(private dialogService: DialogService, private objBatchService: BatchService) { }
+  meetingDialog: boolean;
+  selectedbatchId: number;
+  isMeetingShow: boolean;
+  isFileShow: boolean;
+  constructor(private dialogService: DialogService, private objBatchService: BatchService ) { }
 
   ngOnInit(): void {
     this.GetAllBatches()
@@ -45,6 +50,13 @@ export class BatchComponent implements OnInit {
       }, function (rejection) {
 
       })
+  }
+
+
+
+  showMeetings(BatchId: number) {
+    
+    this.selectedbatchId = BatchId;
   }
 
 

@@ -13,6 +13,10 @@ import { TableModule } from 'primeng/table';
 import { StepsModule } from 'primeng/steps';
 import { AddMeetingComponent } from './batch/add-meeting.component';
 import { OrderListModule } from 'primeng/orderlist';
+import { AddFilesComponent } from './batch/add-files.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DialogModule } from 'primeng/dialog';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 
 
@@ -20,17 +24,21 @@ import { OrderListModule } from 'primeng/orderlist';
   declarations: [
     BatchComponent,
     CreateBatchComponent,
+    AddFilesComponent,
     AddMeetingComponent
   ],
   imports: [
     CommonModule,
     DynamicDialogModule,
     InputTextModule,
+    ToggleButtonModule,
     PickListModule,
+    DialogModule,
     TableModule,
     ButtonModule,
     FormsModule,
     StepsModule,
+    FileUploadModule,
     OrderListModule,
     CalendarModule,
     BatchRoutingModule

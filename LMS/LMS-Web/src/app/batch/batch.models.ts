@@ -30,3 +30,20 @@ export class StudentMeeting {
   Timezone: string
   Password: string
 }
+
+
+export class BatchFiles {
+  BatchFileId: number
+  BatchId: number
+  FileName: string
+  FileExtension: string 
+  ContainerName: string
+  FileURL: string
+  isURL: string
+  FileSize: string
+  Caption: string
+  FileType: string
+  IsNotes: boolean
+  IsNoteList: boolean
+}
+

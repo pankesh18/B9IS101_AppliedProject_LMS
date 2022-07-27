@@ -3,9 +3,48 @@
 <div class="card meetings-box">
 
   <div>
-
     
-        <ul  *ngFor="let meeting of StudentMeetings">
+    <div class="row">
+     
+      <p-virtualScroller [value]="StudentMeetings" scrollHeight="500px" [itemSize]="150">
+
+        <ng-template pTemplate="header">
+          <div class="row">
+            <div class="col-3 my-2">
+              <span class="p-float-label" style="width:100%">
+                <input id="MeetingTopic" type="text" [(ngModel)]="topicSearchKey" (ngModelChange)="searchByMeetingTopic()" pInputText style="width:100%">
+                <label for="MeetingTopic">Meeting Topic</label>
+              </span>
+            </div>
+            <div class="col-3 my-2">
+              <span class="p-float-label" style="width:100%">
+                <input id="batchName" type="text" [(ngModel)]="batchSearchKey" (ngModelChange)="searchByBatchName()" pInputText style="width:100%">
+                <label for="batchName">Batch Name</label>
+              </span>
+
+            </div>
+            <div class="col-3 my-2">
+              <span class="p-float-label" style="width:100%">
+                <input id="CourseName" type="text" [(ngModel)]="courseSearchKey" (ngModelChange)="searchByCourseName()" pInputText style="width:100%">
+                <label for="CourseName">Course Name</label>
+              </span>
+            </div>
+            <div class="col-3 my-2">
+              <span class="p-float-label" style="width: 100%">
+
+                <p-calendar id="meeting-starttime" [(ngModel)]="searchrangeDates" (onSelect)="searchByDateRange()"  selectionMode="range" [showButtonBar]="true" [showClear]="true" style="width:100%" [inputStyle]="{'width': '100%'}"></p-calendar>
+
+                <label for="meeting-starttime">Meeting StartTime</label>
+              </span>
+
+            </div>
+          </div>
+
+
+
+
+        </ng-template>
+        <ng-template pTemplate="item" let-meeting>
           <li class="listing">
             <h4 class="col" style="padding: 2%;">{{meeting.Topic}}</h4>
             <span class="col" style="color: darkslategray;">
@@ -18,14 +57,44 @@
               {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
             </span>
             <span>
-              <a class="btn btn-primary" href="{{meeting.JoinUrl}}">
+              <!--<a class="btn btn-primary" href="{{meeting.JoinUrl}}">
+                Join
+              </a>-->
+              <a class="btn btn-primary" (click)="startZoom(meeting.ZoomMeetingId,meeting.Password)">
                 Join
               </a>
+
             </span>
           </li>
-        </ul>
-   
+        </ng-template>
 
+
+
+      </p-virtualScroller>
+
+
+      <!--<ul *ngFor="let meeting of StudentMeetings">
+    <li class="listing">
+      <h4 class="col" style="padding: 2%;">{{meeting.Topic}}</h4>
+      <span class="col" style="color: darkslategray;">
+        {{meeting.BatchName}}-{{meeting.BatchYear | date:'yyyy'}}
+      </span>
+      <span class="col" style="color: darkslategray;">
+        {{meeting.CourseName}}
+      </span>
+      <span class="col" style="color: darkslategray;">
+        {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
+      </span>
+      <span>
+        <a class="btn btn-primary" href="{{meeting.JoinUrl}}">
+          Join
+        </a>
+      </span>
+    </li>
+  </ul>-->
+
+
+    </div>
 
 
 

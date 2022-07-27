@@ -1,0 +1,162 @@
+
+
+<div class="container px-5 py-3" *ngIf="!IsFromBatch">
+
+  <div class="row  my-2">
+
+    <div class="col">
+      <p-dropdown [options]="BatchOptions" (onChange)="onBatchChange(BatchId)" [(ngModel)]="BatchId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Batch"></p-dropdown>
+
+    </div>
+    <div class="col" *ngIf="IsFile">
+      <p-dropdown [options]="FileOptions" (onChange)="GetBatchNotes(BatchId,BatchFileId, BatchMeetingId)" [(ngModel)]="BatchFileId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select File"></p-dropdown>
+
+    </div>
+    <div class="col" *ngIf="IsMeeting">
+      <p-dropdown [options]="MeetingOptions" (onChange)="GetBatchNotes(BatchId,BatchFileId,BatchMeetingId)" [(ngModel)]="BatchMeetingId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Meeting"></p-dropdown>
+
+
+    </div>
+    <div class="col text-center">
+
+      <!--<p-button class="p-button-lg" label="Save"></p-button>-->
+
+    </div>
+  </div>
+  <div class="row  my-2">
+    <p-table [value]="BatchNoteList">
+      <!--<ng-template pTemplate="header">
+        <tr>
+          <th>Sr. No.</th>
+          <th>NoteTile</th>
+          <th>Reference Of</th>
+
+        </tr>
+      </ng-template>-->
+      <ng-template pTemplate="body" let-note let-ri="rowIndex">
+        <tr>
+          <td>{{ri+1}}</td>
+          <td>{{note.NoteTile}}</td>
+          <td>
+            <div *ngIf="note.ReferenceType==1">
+              <span class="badge text-bg-primary">
+                Meeting
+              </span>
+              <span class="placeholder col-12 bg-light">
+                {{note.Topic}} - {{note.StartTime }}
+              </span>
+
+            </div>
+            <h4>
+              <span class="badge text-bg-success" *ngIf="note.ReferenceType==2">
+                File
+              </span>
+            </h4>
+            <span class="col-12 text-secondary">
+              {{note.FileName}}
+            </span>
+            <span *ngIf="note.ReferenceType==3"></span>
+
+          </td>
+          <td>
+            <p-button class="p-button-sm" label="view" (click)="goToFile(note.BatchId,note.BatchFileId,note.BatchNoteId)" ></p-button>
+          </td>
+
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+
+</div>
+
+
+
+
+<div *ngIf="IsFromBatch">
+  <div class="col" style="text-align:center">
+    <p-table [value]="BatchNoteList" *ngIf="!IsNoteView && !IsNoteUpdate">
+
+      <ng-template pTemplate="body" let-note let-ri="rowIndex">
+        <tr>
+          <td>{{ri+1}}.</td>
+          <td>{{note.NoteTile}}</td>
+          <td>
+            <div *ngIf="note.ReferenceType==1">
+              <span class="badge text-bg-primary">
+                Meeting
+              </span>
+              <span class="placeholder col-12 bg-light">
+                {{note.Topic}} - {{note.StartTime }}
+              </span>
+
+            </div>
+            <h4>
+              <span class="badge text-bg-success" *ngIf="note.ReferenceType==2">
+                File
+              </span>
+            </h4>
+            <span class="col-12 text-secondary">
+              {{note.FileName}}
+            </span>
+            <span *ngIf="note.ReferenceType==3"></span>
+
+          </td>
+          <td>
+
+            <p-button icon="pi pi-eye" styleClass="p-button-primary p-button-rounded" (click)="viewNote(note)"></p-button>
+
+
+          </td>
+
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <div>
+      <div class="row">
+        <div style="text-align:justify">
+          <p-button icon="pi pi-arrow-left" styleClass="p-button-outlined p-button-success" (click)="IsNoteView=false;IsNoteUpdate=false;" *ngIf="IsNoteView || IsNoteUpdate"></p-button>
+          <div style="float:right">
+            <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-primary mx-2" (click)="IsNoteUpdate=true;IsNoteView=false;" *ngIf="IsNoteView && selectednote.OwnerName==null"></p-button>
+            <p-button icon="pi pi-share-alt" styleClass="p-button-rounded p-button-primary mx-2" (click)="GetAllStudentsInBatch(BatchId);op.toggle($event)" *ngIf="IsNoteView && selectednote.OwnerName==null"></p-button>
+            <p-overlayPanel #op>
+              <ng-template pTemplate>
+                <p-listbox [options]="StudentsInBatch" [(ngModel)]="selectedStudents" [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true" optionLabel="name" [listStyle]="{'max-height':'450px'}" [style]="{'width':'15rem'}">
+                  <ng-template let-student pTemplate="item">
+                    <div>
+                      <div>{{student.FirstName}} {{student.LastName}}</div>
+                    </div>
+                  </ng-template>
+                  <ng-template pTemplate="footer" >
+                    <div style="text-align:right" *ngIf="selectedStudents.length>0">
+                      <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-outlined" (click)="ShareBatchNote(selectedStudents, BatchId, selectednote.BatchNoteId)"></button>
+
+                    </div>
+                  </ng-template>
+                </p-listbox>
+
+
+
+              </ng-template>
+            </p-overlayPanel>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <app-viewnote *ngIf="IsNoteView"  [note]="selectednote"></app-viewnote>
+
+        <app-create-notes *ngIf="IsNoteUpdate" [IsNoteUpdate]="true" [IsFromBatch]="true"  [BatchFileId]="selectednote.BatchFileId"  [objBatchNote]="selectednote"></app-create-notes>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+

@@ -80,4 +80,8 @@ export class CreateBatchComponent implements OnInit, DoCheck {
     $(".p-calendar").css("width", "100%")
   }
 
+
+
+
+
 }

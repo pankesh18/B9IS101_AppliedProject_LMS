@@ -36,6 +36,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/batch/list'])
   }
 
+  goToNotes() {
+    this.router.navigate(['/note/list'])
+  }
+
 
   goToDash() {
     this.router.navigate(['/dash'])

@@ -23,21 +23,30 @@
       <div class="col">
         <div class="container-fluid">
 
-          <p-table [value]="Batches" >
+          <p-table [value]="Batches" [scrollable]="true" scrollHeight="750px">
             <ng-template pTemplate="header">
               <tr>
                 <th>BatchId</th>
                 <th>Batch Name</th>
                 <th>Batch Year</th>
                 <th>Course Name</th>
+                <th colspan="2">Actions</th>
+                <!--<t  h>Actions</th>-->
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-batch>
               <tr>
                 <td>{{batch.BatchId}}</td>
                 <td>{{batch.BatchName}}</td>
-                <td>{{batch.BatchYear}}</td>
+                <td>{{batch.BatchYear | date:'YYYY'}}</td>
                 <td>{{batch.CourseName}}</td>
+                <td>
+                  <p-button class="p-button-sm px-2" label="Meetings" (click)="selectedbatchId=batch.BatchId;isMeetingShow=true"></p-button>
+                  <!--<i class="bi bi-camera-video"></i>-->
+
+                  <p-button class="p-button-sm px-2" label="Files" (click)="selectedbatchId=batch.BatchId;isFileShow=true"></p-button>
+
+                </td>
               </tr>
             </ng-template>
           </p-table>
@@ -51,4 +60,17 @@
 
 
   </div>
+</div>
+
+
+
+
+<div *ngFor="let batch of Batches">
+  <p-dialog [style]="{width: '70%', height:'85%'}"  header="Batch Files" [(visible)]="batch.BatchId==selectedbatchId && isMeetingShow" (onHide)="selectedbatchId=0;isMeetingShow=false ">
+    <add-meeting *ngIf="batch.BatchId==selectedbatchId && isMeetingShow" [BatchId]="batch.BatchId"></add-meeting>
+  </p-dialog>
+
+  <p-dialog [style]="{width: '70%', height:'85%'}" header="Batch Files" [(visible)]="batch.BatchId==selectedbatchId && isFileShow" (onHide)="selectedbatchId=0;isFileShow=false;">
+    <add-files *ngIf="batch.BatchId==selectedbatchId && isFileShow" [BatchId]="batch.BatchId"></add-files>
+  </p-dialog>
 </div>

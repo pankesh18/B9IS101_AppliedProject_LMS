@@ -1,5 +1,8 @@
+/*
 
+exec LMS_GetAllStudentMetings 4
 
+*/
 IF OBJECT_ID ( 'LMS_GetAllStudentMetings', 'P' ) IS NOT NULL
     DROP PROCEDURE LMS_GetAllStudentMetings;
 GO
@@ -25,10 +28,11 @@ b.BatchId
 ,[Status]
 ,StartTime
 ,Duration
+,[Password]
 from batch b
 inner join batchstudent bs on b.batchid=bs.batchid
 inner join BatchMeeting BM on b.batchid=BM.batchid
-   
+where   bs.userId= @StudentUserId
 
 
 

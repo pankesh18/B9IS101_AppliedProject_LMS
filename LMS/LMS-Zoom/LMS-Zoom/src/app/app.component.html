@@ -1,0 +1,91 @@
+<main>
+
+
+  <!-- For Component View -->
+  <div id="meetingSDKElement">
+    <!-- Zoom Meeting SDK Component View Rendered Here -->
+  </div>
+
+
+
+  <div class="container mx-5 px-3">
+    <div class="row">
+      <div class="col">
+        <h1>Zoom Meeting : {{StudentMeeting.Topic}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="table p-5">
+        <div class="row">
+          <div class="col text-right">
+            Meeting Topic : 
+          </div>
+          <div class="col text-left">
+            {{StudentMeeting.Topic}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-right">
+            Meeting Status :
+          </div>
+          <div class="col text-left">
+            {{StudentMeeting.Status}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-right">
+            Start Date & Time :
+          </div>
+          <div class="col text-left">
+            {{StudentMeeting.StartTime | date:'fullDate' }} {{StudentMeeting.StartTime | date:'shortTime'}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-right">
+            Duration :
+          </div>
+          <div class="col text-left">
+            {{StudentMeeting.Duration}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-right">
+            Host Details :
+          </div>
+          <div class="col text-left">
+            {{StudentMeeting.HostEmail}}
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col">
+        <button (click)="getSignature()">Join Meeting</button>
+      </div>
+    </div>
+
+    <!--<table>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+      </tr>
+      <tr>
+        <td>Peter</td>
+        <td>Griffin</td>
+      </tr>
+      <tr>
+        <td>Lois</td>
+        <td>Griffin</td>
+      </tr>
+    </table>-->
+
+  </div>
+
+
+
+
+
+</main>

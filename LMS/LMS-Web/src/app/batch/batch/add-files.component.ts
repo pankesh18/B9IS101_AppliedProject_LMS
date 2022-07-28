@@ -53,7 +53,8 @@ export class AddFilesComponent implements OnInit {
     formData.append("BatchId", JSON.stringify(this.BatchId))
     formData.append("FileName", this.FileName)
     formData.append("Caption", this.FileCaption)
-    formData.append("isURL", JSON.stringify(this.isURL) )
+    formData.append("isURL", JSON.stringify(this.isURL))
+    formData.append("CreatedBy", JSON.stringify(this.LoggedInUser.UserId))
     if (this.isURL) {
       formData.append("URL", this.URL)
 

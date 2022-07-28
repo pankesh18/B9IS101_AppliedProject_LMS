@@ -22,5 +22,7 @@ namespace LMS_Models
         public int Duration { get; set; }
         public string Timezone { get; set; }
         public string Password { get; set; }
+        public int CreatedBy { get; set; }
+
     }
 }

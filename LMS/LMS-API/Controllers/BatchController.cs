@@ -57,13 +57,13 @@ namespace LMS_API.Controllers
 
         [HttpGet]
         [ActionName("GetAllBatches")]
-        public HttpResponseMessage GetAllBatches()
+        public HttpResponseMessage GetAllBatches(int UserId)
         {
             try
             {
                 BatchService objBatchService = new BatchService();
 
-                List<Batch> objBatches = objBatchService.GetAllBatches();
+                List<Batch> objBatches = objBatchService.GetAllBatches(UserId);
 
                 return Request.CreateResponse(HttpStatusCode.OK, objBatches);
             }

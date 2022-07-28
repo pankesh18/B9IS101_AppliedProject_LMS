@@ -15,7 +15,7 @@ CREATE PROCEDURE LMS_GetAllFilesByBatchId
 )
 AS
 (
-SELECT  BatchFileId,	BatchId,	[FileName],	FileExtension,	ContainerName,	FileURL,isURL	,FileSize,	Caption
+SELECT  BatchFileId,	BatchId,	[FileName],	FileExtension,	ContainerName,	FileURL,isURL	,FileSize,	Caption, CreatedBy
  FROM BatchFile WHERE BatchId=@BatchId
 )
 

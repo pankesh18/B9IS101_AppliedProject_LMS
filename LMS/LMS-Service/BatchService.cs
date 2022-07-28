@@ -56,7 +56,7 @@ namespace LMS_Service
         }
 
 
-        public List<Batch> GetAllBatches()
+        public List<Batch> GetAllBatches(int UserId)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace LMS_Service
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
 
-                    objBatches = BatchRepository.GetAllBatches(objdatabaseService);
+                    objBatches = BatchRepository.GetAllBatches(objdatabaseService, UserId);
                 }
                 return objBatches;
             }
@@ -171,7 +171,7 @@ namespace LMS_Service
                 objBatchFiles.FileName = objhttpcontext.Request.Form["FileName"].ToString();
                 objBatchFiles.Caption = objhttpcontext.Request.Form["Caption"].ToString();
                 objBatchFiles.BatchId = Convert.ToInt32(objhttpcontext.Request.Form["BatchId"]);
-
+                objBatchFiles.CreatedBy = Convert.ToInt32(objhttpcontext.Request.Form["CreatedBy"]);
                 objBatchFiles.isURL= Convert.ToBoolean(objhttpcontext.Request.Form["isURL"]);
 
 

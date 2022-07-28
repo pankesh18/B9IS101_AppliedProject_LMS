@@ -36,6 +36,7 @@ namespace LMS_Repository
                 objdatabaseService.AddParameter("BatchYear", objBatch.BatchYear);
                 objdatabaseService.AddParameter("CourseName", objBatch.CourseName);
                 objdatabaseService.AddParameter("StudentId", studentIdlist.AsDataTable<IdList>());
+                objdatabaseService.AddParameter("CreatedBy", objBatch.CreatedBy);
 
 
 
@@ -101,14 +102,14 @@ namespace LMS_Repository
         }
 
 
-        public static List<Batch> GetAllBatches(DatabaseService objdatabaseService)
+        public static List<Batch> GetAllBatches(DatabaseService objdatabaseService, int UserId)
         {
             try
             {
                 List<Batch> objBatches = null;
                 Batch objBatch = null;
                 objdatabaseService.ClearParameter();
-
+                objdatabaseService.AddParameter("UserId", UserId);
 
                 SqlCommand command = objdatabaseService.GetSQLCommand();
 
@@ -127,6 +128,8 @@ namespace LMS_Repository
                             objBatch.BatchName = reader["BatchName"].ToString();
                             objBatch.BatchYear = reader["BatchYear"].ToString();
                             objBatch.CourseName = reader["CourseName"].ToString();
+                            objBatch.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
+
                             objBatches.Add(objBatch);
                         }
                     }
@@ -171,6 +174,7 @@ namespace LMS_Repository
                             objBatch.BatchName = reader["BatchName"].ToString();
                             objBatch.BatchYear = reader["BatchYear"].ToString();
                             objBatch.CourseName = reader["CourseName"].ToString();
+                            objBatch.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
                             objBatches.Add(objBatch);
                         }
                     }
@@ -207,6 +211,7 @@ namespace LMS_Repository
                 objdatabaseService.AddParameter("StartTime", objBatchMeeting.StartTime);
                 objdatabaseService.AddParameter("Duration", objBatchMeeting.Duration);
                 objdatabaseService.AddParameter("Password", objBatchMeeting.Password);
+                objdatabaseService.AddParameter("CreatedBy", objBatchMeeting.CreatedBy);
                
 
 
@@ -268,6 +273,7 @@ namespace LMS_Repository
                             obj.StartTime = Convert.ToDateTime(reader["StartTime"]);
                             obj.Duration = Convert.ToInt32(reader["Duration"]);
                             obj.Password = Convert.ToString(reader["Password"]);
+                            obj.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
 
                             objMeetings.Add(obj);
                         }
@@ -304,6 +310,7 @@ namespace LMS_Repository
                 objdatabaseService.AddParameter("isURL", objBatchFiles.isURL);
                 objdatabaseService.AddParameter("FileSize", objBatchFiles.FileSize);
                 objdatabaseService.AddParameter("Caption", objBatchFiles.Caption);
+                objdatabaseService.AddParameter("CreatedBy", objBatchFiles.CreatedBy);
 
 
                 SqlCommand command = objdatabaseService.GetSQLCommand();
@@ -358,6 +365,7 @@ namespace LMS_Repository
                             obj.StartTime = Convert.ToDateTime(reader["StartTime"]);
                             obj.Duration = Convert.ToInt32(reader["Duration"]);
                             obj.Password = reader["Password"].ToString();
+                            obj.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
 
                             objMeetings.Add(obj);
                         }
@@ -407,6 +415,7 @@ namespace LMS_Repository
                             obj.isURL = Convert.ToBoolean( reader["isURL"]);
                             obj.FileSize = reader["FileSize"].ToString();
                             obj.Caption = reader["Caption"].ToString();
+                            obj.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
 
 
                             objBatchFiles.Add(obj);
@@ -459,6 +468,7 @@ namespace LMS_Repository
                             objMeeting.StartTime = Convert.ToDateTime(reader["StartTime"]);
                             objMeeting.Duration = Convert.ToInt32(reader["Duration"]);
                             objMeeting.Password = reader["Password"].ToString();
+                            objMeeting.CreatedBy = Convert.ToInt32(reader["CreatedBy"]); 
                         }
                 
                     }

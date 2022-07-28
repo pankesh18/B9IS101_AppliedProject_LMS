@@ -5,6 +5,7 @@ export class Batch {
   BatchName: string
   BatchYear: string
   CourseName: string
+  CreatedBy: number
   BatchStudents: LMSUser[]
 }
 
@@ -29,6 +30,7 @@ export class StudentMeeting {
   Duration: number
   Timezone: string
   Password: string
+  CreatedBy: number
 }
 
 
@@ -45,5 +47,6 @@ export class BatchFiles {
   FileType: string
   IsNotes: boolean
   IsNoteList: boolean
+  CreatedBy: number
 }
 

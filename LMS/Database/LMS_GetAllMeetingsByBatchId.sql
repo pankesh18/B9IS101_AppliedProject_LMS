@@ -15,8 +15,22 @@ CREATE PROCEDURE LMS_GetAllMeetingsByBatchId
 )
 AS
 (
-SELECT BatchMeetingId, BatchId,	ZoomMeetingId,	StartUrl,	JoinUrl,	UUID,	HostId,	HostEmail,	Topic,	[Status],	StartTime,	Duration,	[Password]
+SELECT BatchMeetingId
+, BatchId
+,	ZoomMeetingId
+,	StartUrl
+,	JoinUrl
+,	UUID
+,	HostId
+,	HostEmail
+,	Topic
+,	[Status]
+,	StartTime
+,	Duration
+,	[Password]
+,CreatedBy
  FROM BatchMeeting WHERE BatchId=@BatchId
+
 )
 
 GO

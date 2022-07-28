@@ -58,7 +58,7 @@ export class AddMeetingComponent implements OnInit, DoCheck {
     objStudentMeeting.HostEmail = this.LoggedInUser.Email
     objStudentMeeting.Topic = this.MeetingTopic
     objStudentMeeting.StartTime = this.MeetingStartTime
-
+    objStudentMeeting.CreatedBy = this.LoggedInUser.UserId
     this.MeetingList.push(objStudentMeeting);
 
     this.objBatchService.AddMeeting(objStudentMeeting)

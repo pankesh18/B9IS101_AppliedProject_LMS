@@ -30,6 +30,7 @@ b.BatchId
 ,StartTime
 ,Duration
 ,[Password]
+,BM.CreatedBy
 from batch b
 inner join batchstudent bs on b.batchid=bs.batchid
 inner join BatchMeeting BM on b.batchid=BM.batchid

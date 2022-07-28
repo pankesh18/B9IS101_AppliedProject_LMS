@@ -7,6 +7,7 @@ import { Batch } from '../batch.models';
 import { BatchService } from '../batch.service';
 import { MenuItem } from 'primeng/api';
 import * as $ from 'jquery';
+import { LoginService } from '../../auth/login/login.service';
 
 
 @Component({
@@ -26,9 +27,9 @@ export class CreateBatchComponent implements OnInit, DoCheck {
   MeetingTopic: string;
   MeetingStartTime: any;
   BatchId: number;
+  LoggedInUser: LMSUser;
 
-
-  constructor(private dialogService: DialogService, private objBatchService: BatchService) {
+  constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService) {
     this.items = [
       { label: 'Step 1: Batch Details' },
       { label: 'Step 2: Add Meetings' },
@@ -41,6 +42,7 @@ export class CreateBatchComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.GetAllStudents();
+    this.LoggedInUser = this.objLoginService.getLoggedInUser()
   }
 
   GetAllStudents() {
@@ -64,6 +66,7 @@ export class CreateBatchComponent implements OnInit, DoCheck {
     this.objBatch.CourseName = this.CourseName
     this.objBatch.BatchYear = this.BatchYear
     this.objBatch.BatchStudents = this.selectedStudents
+    this.objBatch.CreatedBy = this.LoggedInUser.UserId
     this.objBatchService.CreateBatch(this.objBatch)
       .subscribe((response) => {
         this.BatchId = response

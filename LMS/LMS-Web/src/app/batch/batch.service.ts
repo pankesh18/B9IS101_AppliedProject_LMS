@@ -99,6 +99,14 @@ export class BatchService {
 
 
 
+  public UpdateBatch(objBatch: Batch): Observable<any> {
 
+
+    let httpOptions = { headers: this.httpheaders }
+
+    return this.http.post<any>(this.APIURL + "Batch/UpdateBatch", objBatch, httpOptions).pipe(
+      tap(res => res)
+    );
+  }
 
 }

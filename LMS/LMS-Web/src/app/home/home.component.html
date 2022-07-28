@@ -9,7 +9,8 @@
 
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap" /></svg>
-          <span class="fs-4">Welcome {{userProfile?.userinfo?.name}}</span>
+          <span *ngIf="LoggedInUser.UserType==1" class="fs-4">Welcome, {{LoggedInUser.FirstName}} {{LoggedInUser.LastName}}</span>
+          <span *ngIf="LoggedInUser.UserType==2" class="fs-4">Welcome, {{LoggedInUser.FirstName}} {{LoggedInUser.LastName}}</span>
         </a>
         <hr>
 
@@ -17,9 +18,13 @@
         <ul class="nav nav-pills flex-column mb-auto">
 
           <li class="nav-item" (click)="goToDash()">
-            <a class="nav-link active" aria-current="page">
+            <a class="nav-link active" *ngIf="LoggedInUser.UserType==1" aria-current="page">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
-              Home
+              Teacher Dashboard
+            </a>
+            <a class="nav-link active" *ngIf="LoggedInUser.UserType==2" aria-current="page">
+              <svg class="bi pe-none me-2" width="16" height="16"></svg>
+              Student Dashboard
             </a>
           </li>
 

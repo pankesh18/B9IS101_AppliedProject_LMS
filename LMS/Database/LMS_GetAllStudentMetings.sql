@@ -1,6 +1,8 @@
 /*
 
-exec LMS_GetAllStudentMetings 4
+exec LMS_GetAllStudentMetings 6
+select * from LMSUser
+select * from BatchMeeting
 
 */
 IF OBJECT_ID ( 'LMS_GetAllStudentMetings', 'P' ) IS NOT NULL

@@ -28,7 +28,13 @@ export class MeetingsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.GetAllStudentMetings(this.LoggedInUser.UserId);
+    if (this.LoggedInUser.UserType == 1) {
+      this.GetAllTeacherMetings(this.LoggedInUser.UserId);
+    }
+    else {
+      this.GetAllStudentMetings(this.LoggedInUser.UserId);
+
+    }
   }
 
 
@@ -41,6 +47,19 @@ export class MeetingsComponent implements OnInit {
 
       })
   }
+
+
+  GetAllTeacherMetings(UserId: number) {
+    this.objDashboardService.GetAllTeacherMetings(UserId)
+      .subscribe((response) => {
+        this.StudentMeetings = response;
+        this.ojStudentMeetings = this.StudentMeetings
+      }, function (rejection) {
+
+      })
+  }
+
+
 
   searchByMeetingTopic() {
 
@@ -141,8 +160,8 @@ export class MeetingsComponent implements OnInit {
 
   startZoom(Meeting: any) {
 
-    let role = Meeting.HostEmail == this.LoggedInUser.Email ? 1 : 0;
-    var url = 'http://localhost:4201/zoom?' + 'MeetingId=' + Meeting.MeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId
+    let role = Meeting.CreatedBy == this.LoggedInUser.UserId ? 1 : 0;
+    var url = 'http://localhost:4201/zoom?' + 'MeetingId=' + Meeting.BatchMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId
     window.open(url, '_blank');
 
   }

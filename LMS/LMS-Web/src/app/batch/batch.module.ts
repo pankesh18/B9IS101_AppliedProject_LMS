@@ -17,7 +17,9 @@ import { AddFilesComponent } from './batch/add-files.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 @NgModule({
@@ -37,9 +39,11 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     TableModule,
     ButtonModule,
     FormsModule,
+    CheckboxModule,
     StepsModule,
     FileUploadModule,
     OrderListModule,
+    SelectButtonModule,
     CalendarModule,
     BatchRoutingModule
   ],

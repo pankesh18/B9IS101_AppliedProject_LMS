@@ -3,8 +3,9 @@ import { LMSUser } from "../auth/auth.models"
 export class Batch {
   BatchId: number
   BatchName: string
-  BatchYear: string
+  BatchYear: any
   CourseName: string
+  IsGroupMeetingAllowed: boolean
   CreatedBy: number
   BatchStudents: LMSUser[]
 }

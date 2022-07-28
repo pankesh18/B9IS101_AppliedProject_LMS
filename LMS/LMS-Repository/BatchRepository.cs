@@ -36,6 +36,7 @@ namespace LMS_Repository
                 objdatabaseService.AddParameter("BatchYear", objBatch.BatchYear);
                 objdatabaseService.AddParameter("CourseName", objBatch.CourseName);
                 objdatabaseService.AddParameter("StudentId", studentIdlist.AsDataTable<IdList>());
+                objdatabaseService.AddParameter("IsGroupMeetingAllowed", objBatch.IsGroupMeetingAllowed);
                 objdatabaseService.AddParameter("CreatedBy", objBatch.CreatedBy);
 
 
@@ -291,6 +292,60 @@ namespace LMS_Repository
         }
 
 
+        public static List<StudentMeeting> GetAllTeacherMetings(DatabaseService objdatabaseService, int UserId)
+        {
+            try
+            {
+                List<StudentMeeting> objMeetings = null;
+                StudentMeeting obj = null;
+                objdatabaseService.ClearParameter();
+                objdatabaseService.AddParameter("UserId", UserId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetAllTeacherMetings";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    if (reader.HasRows)
+                    {
+                        objMeetings = new List<StudentMeeting>();
+
+                        while (reader.Read())
+                        {
+                            obj = new StudentMeeting();
+                            obj.BatchId = Convert.ToInt32(reader["BatchId"]);
+                            obj.BatchName = reader["BatchName"].ToString();
+                            obj.BatchYear = reader["BatchYear"].ToString();
+                            obj.CourseName = reader["CourseName"].ToString();
+                            obj.BatchMeetingId = Convert.ToInt32(reader["BatchMeetingId"]);
+                            obj.ZoomMeetingId = reader["ZoomMeetingId"].ToString();
+                            obj.StartUrl = reader["StartUrl"].ToString();
+                            obj.JoinUrl = reader["JoinUrl"].ToString();
+                            obj.UUID = reader["UUID"].ToString();
+                            obj.HostId = reader["HostId"].ToString();
+                            obj.HostEmail = reader["HostEmail"].ToString();
+                            obj.Topic = reader["Topic"].ToString();
+                            obj.Status = reader["Status"].ToString();
+                            obj.StartTime = Convert.ToDateTime(reader["StartTime"]);
+                            obj.Duration = Convert.ToInt32(reader["Duration"]);
+                            obj.Password = Convert.ToString(reader["Password"]);
+                            obj.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
+
+                            objMeetings.Add(obj);
+                        }
+                    }
+                }
+
+                return objMeetings;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
 
 
 
@@ -482,6 +537,41 @@ namespace LMS_Repository
                 throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
             }
 
+        }
+
+
+
+        public static void UpdateBatch(DatabaseService objdatabaseService, Batch objBatch)
+        {
+          
+            try
+            {
+
+
+
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("BatchName", objBatch.BatchName);
+                objdatabaseService.AddParameter("BatchYear", objBatch.BatchYear);
+                objdatabaseService.AddParameter("CourseName", objBatch.CourseName);
+                objdatabaseService.AddParameter("IsGroupMeetingAllowed", objBatch.IsGroupMeetingAllowed);
+                objdatabaseService.AddParameter("BatchId", objBatch.BatchId);
+
+
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_UpdateBatch";
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+     
         }
     }
 }

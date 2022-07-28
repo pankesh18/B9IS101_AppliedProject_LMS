@@ -49,6 +49,8 @@ export class BatchComponent implements OnInit {
     this.objBatchService.GetAllBatches(UserId)
       .subscribe((response) => {
         this.Batches = response;
+        this.Batches.forEach(item => item.BatchYear = new Date(item.BatchYear))
+
         console.log(this.Batches)
 
       }, function (rejection) {
@@ -62,6 +64,23 @@ export class BatchComponent implements OnInit {
     
     this.selectedbatchId = BatchId;
   }
+
+
+
+  UpdateBatch(objBatch: Batch) {
+
+
+    this.objBatchService.UpdateBatch(objBatch)
+      .subscribe((response) => {
+
+
+        console.log(this.Batches)
+
+      }, function (rejection) {
+
+      })
+  }
+
 
 
 }

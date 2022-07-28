@@ -101,7 +101,7 @@ namespace LMS_Service
 
 
 
-        public async Task AddMeeting(int BatchId, string HostEmail, string  Topic, DateTime StartTime)
+        public async Task AddMeeting(int BatchId, string HostEmail, string  Topic, DateTime StartTime, int CreatedBy)
         {
             BatchMeeting objBatchMeeting;
             try
@@ -118,7 +118,7 @@ namespace LMS_Service
                 objBatchMeeting = await objZoomService.CreateZoomMeetingAsync(ZoomMeetingUrl, token, Topic, StartTime);
 
                 objBatchMeeting.BatchId = BatchId;
-                
+                objBatchMeeting.CreatedBy=CreatedBy;
 
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
@@ -158,6 +158,26 @@ namespace LMS_Service
             }
         }
 
+        public List<StudentMeeting> GetAllTeacherMetings(int UserId)
+        {
+            try
+            {
+                List<StudentMeeting> objStudentMeeting = null;
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    objStudentMeeting = BatchRepository.GetAllTeacherMetings(objdatabaseService, UserId);
+                }
+                return objStudentMeeting;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+        }
 
 
         public BatchFiles AddFilesToBatch(HttpContext objhttpcontext)
@@ -286,6 +306,27 @@ namespace LMS_Service
             {
                 throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
             }
+        }
+
+        public void UpdateBatch(Batch objBatch)
+        {
+
+            try
+            {
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    BatchRepository.UpdateBatch(objdatabaseService, objBatch);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+  
         }
     }
 }

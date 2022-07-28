@@ -104,7 +104,7 @@ namespace LMS_API.Controllers
                 
                 BatchService objBatchService = new BatchService();
 
-                await objBatchService.AddMeeting(objStudentMeeting.BatchId, objStudentMeeting.HostEmail, objStudentMeeting.Topic, objStudentMeeting.StartTime);
+                await objBatchService.AddMeeting(objStudentMeeting.BatchId, objStudentMeeting.HostEmail, objStudentMeeting.Topic, objStudentMeeting.StartTime, objStudentMeeting.CreatedBy);
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
@@ -134,6 +134,24 @@ namespace LMS_API.Controllers
             }
         }
 
+        [HttpGet]
+        [ActionName("GetAllTeacherMetings")]
+        public HttpResponseMessage GetAllTeacherMetings(int UserId)
+        {
+            try
+            {
+                BatchService objBatchService = new BatchService();
+
+                List<StudentMeeting> objStudentMeeting = objBatchService.GetAllTeacherMetings(UserId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objStudentMeeting);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
 
 
         [HttpPost]
@@ -206,6 +224,27 @@ namespace LMS_API.Controllers
                 StudentMeeting objStudentMeeting = objBatchService.GetBatchMeetingDetails(BatchMeetingId);
 
                 return Request.CreateResponse(HttpStatusCode.OK, objStudentMeeting);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
+
+
+        [HttpPost]
+        [ActionName("UpdateBatch")]
+        public HttpResponseMessage UpdateBatch(Batch objBatch)
+        {
+            try
+            {
+
+                BatchService objBatchService = new BatchService();
+
+                objBatchService.UpdateBatch(objBatch);
+
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
             {

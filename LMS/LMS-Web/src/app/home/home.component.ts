@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-localstorage';
-import { UserProfile } from '../auth/auth.models';
+import { LMSUser, UserProfile } from '../auth/auth.models';
 import { AuthService } from '../auth/auth.service';
+import { LoginService } from '../auth/login/login.service';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +16,8 @@ export class HomeComponent implements OnInit {
 
   islogin: boolean = false;
   userProfile: UserProfile | undefined;
-
-  constructor(private authservice: AuthService, private router: Router, private localStorage: LocalStorageService) {
+  LoggedInUser: LMSUser;
+  constructor(private authservice: AuthService, private router: Router, private localStorage: LocalStorageService, private objLoginService: LoginService) {
 
 
   
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.LoggedInUser = this.objLoginService.getLoggedInUser();
     //this.islogin = this.authservice.isLogin()
     //if (this.islogin) {
     //   this.authservice.getUserProfile()

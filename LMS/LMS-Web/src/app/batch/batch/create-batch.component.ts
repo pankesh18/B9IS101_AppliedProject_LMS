@@ -28,8 +28,12 @@ export class CreateBatchComponent implements OnInit, DoCheck {
   MeetingStartTime: any;
   BatchId: number;
   LoggedInUser: LMSUser;
-
+  stateOptions: any[];
+  IsGroupMeetingAllowed: boolean = false;
   constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService) {
+    this.stateOptions = [{ label: 'No', value: false }, { label: 'Yes', value: true }];
+
+
     this.items = [
       { label: 'Step 1: Batch Details' },
       { label: 'Step 2: Add Meetings' },
@@ -67,6 +71,7 @@ export class CreateBatchComponent implements OnInit, DoCheck {
     this.objBatch.BatchYear = this.BatchYear
     this.objBatch.BatchStudents = this.selectedStudents
     this.objBatch.CreatedBy = this.LoggedInUser.UserId
+    this.objBatch.IsGroupMeetingAllowed = this.IsGroupMeetingAllowed
     this.objBatchService.CreateBatch(this.objBatch)
       .subscribe((response) => {
         this.BatchId = response

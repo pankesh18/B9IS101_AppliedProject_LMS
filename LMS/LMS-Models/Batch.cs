@@ -13,6 +13,7 @@ namespace LMS_Models
         public string BatchYear { get; set; }
         public string CourseName { get; set; }
         public int CreatedBy { get; set; }
+        public bool IsGroupMeetingAllowed { get; set; }   
         public List<LMSUser> BatchStudents { get; set; }
     }
 }

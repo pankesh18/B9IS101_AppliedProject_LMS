@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { param } from 'jquery';
 import { Observable, tap } from 'rxjs';
 import { Batch, BatchFiles, StudentMeeting } from './batch.models';
 
@@ -43,8 +44,11 @@ export class BatchService {
   }
 
 
-  public GetAllBatches() {
-    let httpOptions = { headers: this.httpheaders }
+  public GetAllBatches(UserId: number) {
+    let httpOptions = {
+      headers: this.httpheaders,
+      params: { UserId: UserId }
+    }
     return this.http.get<any>(this.APIURL + "Batch/GetAllBatches", httpOptions).pipe(
       tap(res => res)
     );

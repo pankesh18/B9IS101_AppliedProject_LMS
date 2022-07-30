@@ -5,7 +5,8 @@ import { DOCUMENT } from '@angular/common';
 import { ZoomMtg } from '@zoomus/websdk';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from './app.service';
-import { LMSUser, StudentMeeting } from './app.models';
+import { GroupMeeting, LMSUser, StudentMeeting } from './app.models';
+
 
 ZoomMtg.setZoomJSLib('https://source.zoom.us/2.5.0/lib', '/av');
 
@@ -38,6 +39,8 @@ export class AppComponent implements OnInit {
   UserId: number
   LoggedInUser: LMSUser
   StudentMeeting: StudentMeeting
+  GroupMeeting: GroupMeeting
+  IsGroupMeeting: boolean = false;
 
   constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document, private route: ActivatedRoute, private objAppService: AppService) {
 
@@ -49,6 +52,7 @@ export class AppComponent implements OnInit {
     this.MeetingId = parseInt( urlParams.get('MeetingId'))
     this.UserId = parseInt(urlParams.get('UserId'))
     this.role = parseInt(urlParams.get('Role'))
+    this.IsGroupMeeting = Boolean(urlParams.get('IsGroupMeeting'))
     this.GetUserDetails(this.UserId);
  
     //this.route.params.subscribe((params) => {
@@ -112,9 +116,14 @@ export class AppComponent implements OnInit {
 
         this.userName = this.LoggedInUser.FirstName.concat(" ", this.LoggedInUser.LastName)
         this.userEmail = this.LoggedInUser.Email
-        
 
-        this.GetBatchMeetingDetails(this.MeetingId)
+        if (!this.IsGroupMeeting) {
+          this.GetBatchMeetingDetails(this.MeetingId)
+        }
+        else {
+          this.GetGroupMeetingDetails(this.MeetingId)
+        }
+
       }, function (rejection) {
 
       })
@@ -132,7 +141,16 @@ export class AppComponent implements OnInit {
       })
   }
 
+  GetGroupMeetingDetails(GroupMeetingId: number) {
+    this.objAppService.GetGroupMeetingDetails(GroupMeetingId)
+      .subscribe((response) => {
+        this.GroupMeeting = response;
+        this.meetingNumber = this.GroupMeeting.ZoomMeetingId;
+        this.passWord = this.GroupMeeting.Password;
+      }, function (rejection) {
 
+      })
+  }
 
 
 }

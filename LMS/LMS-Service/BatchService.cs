@@ -328,5 +328,124 @@ namespace LMS_Service
             }
   
         }
+
+        public Batch GetBatchDetails(int BatchId)
+        {
+            try
+            {
+                Batch objBatches = null;
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    objBatches = BatchRepository.GetBatchDetails(objdatabaseService, BatchId);
+                    objBatches.BatchStudents= BatchRepository.GetAllStudentsByBatchId(objdatabaseService, BatchId);
+                }
+                return objBatches;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+        }
+
+
+
+        public async Task<GroupMeeting> StartGroupMeeting(GroupMeeting objGroupMeeting)
+        {
+            BatchMeeting objBatchMeeting;
+
+            try
+            {
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                ZoomService objZoomService = new ZoomService();
+
+                string ZoomMeetingUrl = "https://api.zoom.us/v2/users/{userId}/meetings";
+                string token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6InNWVURYdElCUmEtQW9Vbm9VZ281d3ciLCJleHAiOjE2NTk0NTQ3MzIsImlhdCI6MTY1ODg0OTkzM30.OjbJGHDDlKTY2gzWAFYdqvEkejjZ0dSNcFlUUfiS3lA";
+
+                ZoomMeetingUrl = ZoomMeetingUrl.Replace("{userId}", "wadekar.pankesh@gmail.com");
+
+                objGroupMeeting.StartTime = System.DateTime.Now;
+
+                // var isExists = await objZoomService.CheckUserExistsAsync(objGroupMeeting.HostEmail, token);
+
+
+                objBatchMeeting = await objZoomService.CreateZoomMeetingAsync(ZoomMeetingUrl, token, objGroupMeeting.Topic, objGroupMeeting.StartTime);
+
+                objGroupMeeting.ZoomMeetingId = objBatchMeeting.ZoomMeetingId;
+                objGroupMeeting.StartUrl = objBatchMeeting.StartUrl;
+                objGroupMeeting.JoinUrl = objBatchMeeting.JoinUrl;
+                objGroupMeeting.UUID = objBatchMeeting.UUID;
+                objGroupMeeting.HostId = objBatchMeeting.HostId;
+                objGroupMeeting.Topic = objBatchMeeting.Topic;
+                objGroupMeeting.Status = objBatchMeeting.Status;
+                objGroupMeeting.StartTime = objBatchMeeting.StartTime;
+                objGroupMeeting.Duration = objBatchMeeting.Duration;
+                objGroupMeeting.Password = objBatchMeeting.Password;
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    objGroupMeeting= BatchRepository.AddGroupMeeting(objdatabaseService, objGroupMeeting);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+            return objGroupMeeting;
+        }
+
+
+        public List<GroupMeeting> GetGroupMeetings(int BatchId, int UserId)
+        {
+            try
+            {
+                List<GroupMeeting> objGroupMeeting = null;
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    objGroupMeeting = BatchRepository.GetGroupMeetings(objdatabaseService, BatchId, UserId);
+
+                    foreach(var GroupMeeting in objGroupMeeting)
+                    {
+                        GroupMeeting.GroupMeetingStudents = BatchRepository.GetGroupMeetingStudents(objdatabaseService,GroupMeeting.GroupMeetingId);
+
+                    }
+                }
+                return objGroupMeeting;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+        }
+
+        public GroupMeeting GetGroupMeetingDetails(int GroupMeetingId)
+        {
+            try
+            {
+                GroupMeeting objGroupMeeting = null;
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    objGroupMeeting = BatchRepository.GetGroupMeetingDetails(objdatabaseService, GroupMeetingId);
+                }
+                return objGroupMeeting;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+        }
     }
 }

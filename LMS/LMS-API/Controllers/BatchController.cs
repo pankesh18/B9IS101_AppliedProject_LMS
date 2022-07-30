@@ -252,5 +252,89 @@ namespace LMS_API.Controllers
 
             }
         }
+
+
+
+        [HttpGet]
+        [ActionName("GetBatchDetails")]
+        public HttpResponseMessage GetBatchDetails(int BatchId)
+        {
+            try
+            {
+                BatchService objBatchService = new BatchService();
+
+                Batch objBatches = objBatchService.GetBatchDetails(BatchId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objBatches);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
+
+
+        [HttpPost]
+        [ActionName("StartGroupMeeting")]
+        public async Task<HttpResponseMessage> StartGroupMeeting(GroupMeeting objGroupMeeting)
+        {
+            try
+            {
+
+                BatchService objBatchService = new BatchService();
+
+                objGroupMeeting= await objBatchService.StartGroupMeeting(objGroupMeeting);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objGroupMeeting);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
+
+
+
+        [HttpGet]
+        [ActionName("GetGroupMeetings")]
+        public HttpResponseMessage GetGroupMeetings(int BatchId, int UserId)
+        {
+            try
+            {
+                BatchService objBatchService = new BatchService();
+
+                List<GroupMeeting> objGroupMeeting = objBatchService.GetGroupMeetings(BatchId, UserId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objGroupMeeting);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
+
+
+        [HttpGet]
+        [ActionName("GetGroupMeetingDetails")]
+        public HttpResponseMessage GetGroupMeetingDetails(int GroupMeetingId)
+        {
+            try
+            {
+                BatchService objBatchService = new BatchService();
+
+                GroupMeeting objStudentMeeting = objBatchService.GetGroupMeetingDetails(GroupMeetingId);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objStudentMeeting);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
+
     }
 }

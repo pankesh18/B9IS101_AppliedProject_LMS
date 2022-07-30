@@ -29,3 +29,24 @@ export class StudentMeeting {
   Timezone: string
   Password: string
 }
+
+export class GroupMeeting {
+  GroupMeetingId: number
+  BatchId: number
+  BatchName: string
+  BatchYear: string
+  CourseName: string
+  UserId: number
+  ZoomMeetingId: string
+  StartUrl: string
+  JoinUrl: string
+  UUID: string
+  HostId: string
+  HostEmail: string
+  Topic: string
+  Status: string
+  StartTime: Date
+  Duration: number
+  Timezone: string
+  Password: string
+}

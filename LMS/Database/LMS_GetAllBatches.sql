@@ -9,7 +9,7 @@ CREATE PROCEDURE LMS_GetAllBatches
 )
 AS
 
-select BatchId,	BatchName,	BatchYear,	CourseName, CreatedBy
+select BatchId,	BatchName,	BatchYear,	CourseName, CreatedBy, IsGroupMeetingAllowed
 from Batch
 where CreatedBy=@UserId  
 

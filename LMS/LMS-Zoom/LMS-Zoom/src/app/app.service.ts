@@ -25,4 +25,12 @@ export class AppService {
     );
   }
 
+
+  public GetGroupMeetingDetails(GroupMeetingId: number) {
+
+    return this.http.get<any>(this.APIURL + "Batch/GetGroupMeetingDetails", { params: { GroupMeetingId: GroupMeetingId } }).pipe(
+      tap(res => res)
+    );
+  }
+
 }

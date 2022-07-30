@@ -161,7 +161,7 @@ export class MeetingsComponent implements OnInit {
   startZoom(Meeting: any) {
 
     let role = Meeting.CreatedBy == this.LoggedInUser.UserId ? 1 : 0;
-    var url = 'http://localhost:4201/zoom?' + 'MeetingId=' + Meeting.BatchMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId
+    var url = 'http://localhost:4201/zoom?' + 'MeetingId=' + Meeting.BatchMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId + '&IsGroupMeeting=false'
     window.open(url, '_blank');
 
   }

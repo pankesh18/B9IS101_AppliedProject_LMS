@@ -33,7 +33,7 @@ namespace LMS_Service
 
 
 
-        public LMSUser LoginUser(string UserEmail, string UserPassword)
+        public LMSUser LoginUser(string UserEmail, string GoogleUserId)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace LMS_Service
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
 
-                    loggedInUser = LMSUserRepository.LoginUser(objdatabaseService, UserEmail, UserPassword);
+                    loggedInUser = LMSUserRepository.LoginUser(objdatabaseService, UserEmail, GoogleUserId);
                 }
                 return loggedInUser;
             }

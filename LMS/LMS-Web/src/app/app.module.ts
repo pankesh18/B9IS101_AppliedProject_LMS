@@ -25,6 +25,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
+import { LoginComponent } from './auth/login/login.component';
 
 
 
@@ -34,7 +35,8 @@ import { ToastModule } from 'primeng/toast';
     AppComponent,
     HomeComponent,
     GoogleLoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@
 
 <div class="main-container container-fluid">
 
-  <div class="card secondary-container">
+  <div class="card secondary-container" *ngIf="false">
     <div class="card-header h4"> Login </div>
     <div class="card-body p-5" id="reg-page1">
 
@@ -37,5 +37,14 @@
     </div>
 
 
+  </div>
+
+
+
+  <div style="text-align:center; top:55%; right:46% ;position:absolute">
+    <button>
+      <asl-google-signin-button type='standard' size='large'></asl-google-signin-button>
+
+    </button>
   </div>
 </div>

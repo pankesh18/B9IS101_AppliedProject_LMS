@@ -6,13 +6,13 @@ GO
 CREATE PROCEDURE LMS_LoginUser
 (
 	@Email NVARCHAR(MAX),
-	@password NVARCHAR(MAX)
+	@GoogleUserId NVARCHAR(MAX)
 )
 AS
 
 select 
-UserId,Useremail,	Userpassword,	FirstName,	LastName,	Gender,	UserType
-from LMSUser where Useremail=@Email and Userpassword=@password
+UserId,Useremail,	FirstName,	LastName,	Gender,	UserType,ProfilePic, GoogleUserId
+from LMSUser where Useremail=@Email and GoogleUserId=@GoogleUserId
    
 GO
 

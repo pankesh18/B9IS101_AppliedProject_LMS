@@ -42,7 +42,7 @@ namespace LMS_Repository
 
         }
 
-        public static LMSUser LoginUser(DatabaseService objdatabaseService, string UserEmail, string UserPassword)
+        public static LMSUser LoginUser(DatabaseService objdatabaseService, string UserEmail, string GoogleUserId)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace LMS_Repository
                 objdatabaseService.ClearParameter();
 
                 objdatabaseService.AddParameter("Email", UserEmail);
-                objdatabaseService.AddParameter("password", UserPassword);
+                objdatabaseService.AddParameter("GoogleUserId", GoogleUserId);
 
                 SqlCommand command = objdatabaseService.GetSQLCommand();
 
@@ -69,6 +69,8 @@ namespace LMS_Repository
                             objLMSUser.Email = reader["Useremail"].ToString();
                             objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
                             objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
+                            objLMSUser.ProfilePic = Convert.ToString(reader["ProfilePic"]);
+                            objLMSUser.GoogleUserId = Convert.ToString(reader["GoogleUserId"]);
 
                         }
                     }

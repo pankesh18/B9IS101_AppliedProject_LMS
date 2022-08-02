@@ -53,14 +53,14 @@ export class LoginService {
 
 
 
-  public loginUser(UserEmail: string, UserPassword:string) {
+  public loginUser(UserEmail: string, GoogleUserId:string) {
     let httpheaders = new HttpHeaders()
     httpheaders.append('content-type', 'application/json')
     httpheaders.append('Access-Control-Allow-Origin', '*')
     httpheaders.append('Accept', 'application/json')
     let httpOptions = { headers: httpheaders }
 
-    return this.http.get<any>(this.APIURL + "LMSUser/LoginUser", { params: { UserEmail: UserEmail, UserPassword: UserPassword } }).pipe(
+    return this.http.get<any>(this.APIURL + "LMSUser/LoginUser", { params: { UserEmail: UserEmail, GoogleUserId: GoogleUserId } }).pipe(
       tap(res => res)    
     );
   }

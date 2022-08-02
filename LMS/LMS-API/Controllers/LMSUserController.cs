@@ -38,14 +38,14 @@ namespace LMS_API.Controllers
 
         [HttpGet]
         [ActionName("LoginUser")]
-        public HttpResponseMessage LoginUser(string UserEmail, string UserPassword)
+        public HttpResponseMessage LoginUser(string UserEmail, string GoogleUserId)
         {
             try
             {
                 LMSUser loggedInUser;
                 LMSUserService objLMSUserService = new LMSUserService();
                 // LMSUser objLMSUser = null;
-                loggedInUser=objLMSUserService.LoginUser(UserEmail, UserPassword);
+                loggedInUser=objLMSUserService.LoginUser(UserEmail, GoogleUserId);
 
                 return Request.CreateResponse(HttpStatusCode.OK, loggedInUser);
             }

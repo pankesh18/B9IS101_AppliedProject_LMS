@@ -2,11 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\LMS",
-    "\\LMS\\LMS-Zoom",
+    "\\LMS\\LMS-Web",
+    "\\LMS\\LMS-Web\\src",
     "\\LMS\\LMS-Zoom\\LMS-Zoom",
     "\\LMS\\LMS-Zoom\\LMS-Zoom\\src",
     "\\LMS\\LMS-Zoom\\LMS-Zoom\\src\\app"
   ],
-  "SelectedNode": "\\LMS\\LMS-Zoom\\LMS-Zoom",
+  "SelectedNode": "\\LMS\\LMS-Web\\src\\assets",
   "PreviewInSolutionExplorer": false
 }

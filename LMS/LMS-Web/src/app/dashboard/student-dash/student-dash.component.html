@@ -34,22 +34,7 @@
 
 
 
-        <!--<div class="product-item">
-        <div class="product-item-content">
-          <div class="p-mb-3">
-          </div>
-          <div>
-            <h4 class="p-mb-1">{{batch.BatchName}}</h4>
-            <h6 class="p-mt-0 p-mb-3">{{batch.BatchYear | date:'yyyy'}}</h6>
-            <span [class]="'product-badge status-'+product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-            <div class="car-buttons p-mt-5">
-              <p-button type="button" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search"></p-button>
-              <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></p-button>
-              <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog"></p-button>
-            </div>
-          </div>
-        </div>
-      </div>-->
+    
       </ng-template>
     </p-carousel>
   </div>
@@ -57,12 +42,58 @@
   <div class="row">
 
     <div class="col">
+      <div class="card meetings-box" style="min-height: 250px; overflow-y: scroll; max-height: 450px;">
+        <div *ngFor="let meeting of GroupMeetings">
+          <li class="listing">
 
-      <app-meetings></app-meetings>
+            <div class="col-6">
+              <div class="col">
+                <div class="row">
+                  <h4 class="col" style="padding: 2%;">{{meeting.Topic}}</h4>
+                </div>
+                <div class="row">
+                  <span class="col" style="color: darkslategray;">
+                    {{meeting.CourseName}}
+                  </span>
+                </div>
+                <div class="row">
+                  <span class="col" style="color: darkslategray;">
+                    {{meeting.BatchName}}-{{meeting.BatchYear | date:'yyyy'}}
+                  </span>
+                </div>
+              </div>
+
+
+            </div>
+            
+            <div class="col-4">
+              <span class="col" style="color: darkslategray;">
+                {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
+              </span>
+
+            </div>
+            <div class="col-2">
+            <span>
+
+              <a class="btn btn-primary">
+                Join
+              </a>
+
+            </span>
+            </div>
+            
+          </li>
+        </div>
+      </div>
+      </div>
+
+      <div class="col">
+
+        <app-meetings></app-meetings>
+
+      </div>
+
 
     </div>
-
-
-  </div>
 
 </div>

@@ -733,7 +733,7 @@ namespace LMS_Repository
 
                 command.CommandText = @"LMS_GetGroupMeetings";
                 command.CommandType = CommandType.StoredProcedure;
-                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.Default))
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
                 {
                     if (reader.HasRows)
                     {
@@ -755,6 +755,10 @@ namespace LMS_Repository
                             objMeeting.Duration = Convert.ToInt32(reader["Duration"]);
                             objMeeting.Password = reader["Password"].ToString();
                             objMeeting.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
+
+                            objMeeting.BatchName = Convert.ToString(reader["BatchName"]);
+                            objMeeting.BatchYear = Convert.ToString(reader["BatchYear"]);
+                            objMeeting.CourseName = Convert.ToString(reader["CourseName"]);
 
                             objGroupList.Add(objMeeting);
                         }
@@ -786,7 +790,7 @@ namespace LMS_Repository
 
                 command.CommandText = @"LMS_GetGroupMeetingStudents";
                 command.CommandType = CommandType.StoredProcedure;
-                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.Default))
                 {
                     if (reader.HasRows)
                     {

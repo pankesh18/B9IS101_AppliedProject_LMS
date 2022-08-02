@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LMSUser } from '../../auth/auth.models';
 import { LoginService } from '../../auth/login/login.service';
-import { Batch } from '../../batch/batch.models';
+import { Batch, GroupMeeting } from '../../batch/batch.models';
+import { CoursedetailService } from '../../coursedetail/coursedetail.service';
 import { DashboardService } from '../dashboard.service';
 
 @Component({
@@ -14,12 +15,15 @@ export class StudentDashComponent implements OnInit {
 
   StudentBatches: Batch[] = [];
   loggednInUser: LMSUser;
-  constructor(private objLoginService: LoginService, private objDashboardService: DashboardService, private router: Router) { }
+  GroupMeetings: GroupMeeting[] = [];
+  constructor(private objLoginService: LoginService, private objDashboardService: DashboardService, private router: Router
+    , private objCourseService: CoursedetailService
+  ) { }
 
   ngOnInit(): void {
     this.loggednInUser = this.objLoginService.getLoggedInUser();
     this.GetAllBatches(this.loggednInUser.UserId)
-
+    this.GetGroupMeetings(this.loggednInUser.UserId)
   }
 
 
@@ -33,7 +37,15 @@ export class StudentDashComponent implements OnInit {
       })
   }
 
+  GetGroupMeetings(UserId: number) {
+    this.objCourseService.GetGroupMeetings(0, UserId)
+      .subscribe((response) => {
+        this.GroupMeetings = response;
 
+      }, function (rejection) {
+
+      })
+  }
 
 
   zoom() {

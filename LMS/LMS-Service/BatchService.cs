@@ -413,12 +413,21 @@ namespace LMS_Service
 
                     objGroupMeeting = BatchRepository.GetGroupMeetings(objdatabaseService, BatchId, UserId);
 
-                    foreach(var GroupMeeting in objGroupMeeting)
-                    {
-                        GroupMeeting.GroupMeetingStudents = BatchRepository.GetGroupMeetingStudents(objdatabaseService,GroupMeeting.GroupMeetingId);
 
+
+                }
+                if (objGroupMeeting!=null && objGroupMeeting.Count > 0)
+                {
+                    using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                    {
+                        foreach (var GroupMeeting in objGroupMeeting)
+                        {
+                            GroupMeeting.GroupMeetingStudents = BatchRepository.GetGroupMeetingStudents(objdatabaseService, GroupMeeting.GroupMeetingId);
+
+                        }
                     }
                 }
+                
                 return objGroupMeeting;
             }
             catch (Exception ex)

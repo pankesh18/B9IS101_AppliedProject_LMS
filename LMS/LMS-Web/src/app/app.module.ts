@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarModule } from 'primeng/sidebar';
-import { AppComponent } from './app.component';
+import { AppComponent } from './app - Copy.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HomeComponent } from './home/home.component';
@@ -16,7 +16,11 @@ import { BatchModule } from './batch/batch.module';
 import { CoursedetailModule } from './coursedetail/coursedetail.module';
 import { NotesModule } from './notes/notes.module';
 import { ZoomModule } from './zoom/zoom.module';
-
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
 
 
 

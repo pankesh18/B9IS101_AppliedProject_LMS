@@ -62,8 +62,13 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microso
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.IdentityModel.Logging.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Owin.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Owin.Security.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Newtonsoft.Json.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Owin.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\RestSharp.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\System.Buffers.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\System.Diagnostics.DiagnosticSource.dll
@@ -109,6 +114,10 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microso
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.IdentityModel.JsonWebTokens.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.IdentityModel.Logging.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Owin.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Owin.Security.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Newtonsoft.Json.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\RestSharp.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\System.Buffers.xml

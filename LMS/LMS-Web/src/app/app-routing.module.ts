@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { IntermediateComponent } from './auth/intermediate/intermediate.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { GoogleLoginComponent } from './google-login/google-login.component';
 import { HomeComponent } from './home/home.component';
 import { ZoomComponent } from './zoom/zoom/zoom.component';
 

@@ -14,8 +14,8 @@ export class LMSUser {
   FirstName: string;
   LastName: string;
   Email: string;
-  password:string
+  GoogleUserId:string
   Gender: number;
   UserType: number;
-
+  ProfilePic: string;
 }

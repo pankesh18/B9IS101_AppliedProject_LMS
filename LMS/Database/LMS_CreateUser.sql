@@ -8,22 +8,24 @@ CREATE PROCEDURE LMS_CreateUser
     @FirstName NVARCHAR(MAX	),
 	@LastName NVARCHAR(MAX),
 	@Email NVARCHAR(MAX),
-	@password NVARCHAR(MAX),
+	@GoogleUserId NVARCHAR(MAX),
 	@UserType NVARCHAR(MAX),
-	@Gender NVARCHAR(MAX)
+	@Gender NVARCHAR(MAX),
+	@ProfilePic NVARCHAR(MAX)
 )
 AS
 
 
-	insert into LMSUser(Useremail,	Userpassword,	FirstName,	LastName,	Gender,	UserType)
+	insert into LMSUser(Useremail,	GoogleUserId,	FirstName,	LastName,	Gender,	UserType, ProfilePic)
 	values
 	(
 	@Email
-	,@password
+	,@GoogleUserId
 	,@FirstName
 	,@LastName
 	,@Gender
 	,@UserType
+	,@ProfilePic
 	)
    
 GO

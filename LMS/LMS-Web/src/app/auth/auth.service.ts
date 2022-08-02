@@ -1,7 +1,8 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LMSUser, UserProfile } from './auth.models'
 
 
@@ -9,7 +10,7 @@ const oAuthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
   strictDiscoveryDocumentValidation: false,
   redirectUri: window.location.origin,
-  clientId: '936277757414-hmmhl3rn4falcjefkn0jeu5dec35otur.apps.googleusercontent.com',
+  clientId: '621686135789-hk19l687pm2u9sum04h341pik5lvbsv6.apps.googleusercontent.com',
   userinfoEndpoint: 'https://localhost:9443/oauth2/userinfo',
   scope: 'openid profile email'
 
@@ -27,119 +28,31 @@ export class AuthService {
 
   APIURL: string ="https://localhost:44301/api/"
 
+  public isLogin = new BehaviorSubject<boolean>(false);
 
-  constructor(private readonly oAuthService: OAuthService, private http: HttpClient) {
+  isUserLogin = this.isLogin.asObservable()
 
+  constructor(private http: HttpClient, private authService: SocialAuthService) {
 
-    //oAuthService.configure(oAuthConfig)
-    //oAuthService.logoutUrl = 'https://www.google.com/accounts/logout'
-    //if (!oAuthService.hasValidAccessToken()) {
-    //  oAuthService.loadDiscoveryDocument().then(() => {
-    //    oAuthService.tryLoginImplicitFlow().then(() => {
-    //      oAuthService.initLoginFlow()
+    this.authService.authState
+      .subscribe(user => {
+        if (user) {
+          this.isLogin.next(true);
+        }
+        else {
 
-    //    })
-    //  })
+        }
 
-    //}
-    //else {
-
-    //  //var up = this.oAuthService.loadUserProfile()
-
-
-    //  oAuthService.loadUserProfile().then((userProfile) => {
-
-
-    //    console.log(JSON.stringify(userProfile))
-
-    //  })
-
-    //}
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-  isLogin() {
-
-    console.log(this.oAuthService.getAccessToken())
-    return this.oAuthService.hasValidAccessToken()
-  }
-
-
-  login() {
-
-
-
-    this.oAuthService.configure(oAuthConfig)
-    this.oAuthService.logoutUrl = 'https://www.google.com/accounts/logout'
-    if (!this.isLogin()) {
-      this.oAuthService.loadDiscoveryDocument().then(() => {
-        this.oAuthService.tryLoginImplicitFlow().then(() => {
-          this.oAuthService.initLoginFlow()
-          
-        })
-      })
-
-    }
-    else {
-
-      var up = this.oAuthService.loadUserProfile()
-      
-
-      this.oAuthService.loadUserProfile().then((userProfile) => {
-
-        this.userProfile = userProfile as UserProfile;
-        console.log('first login: ', JSON.stringify(this.userProfile))
-
-      })
-
-    }
-
-
-
-
-
-
-
-  }
-
-  loadUser() {
-    this.oAuthService.loadUserProfile().then((userProfile) => {
-      this.userProfile = userProfile as UserProfile;
     })
+
+
+
   }
 
 
-  getUserProfile() {
-    ////if (this.isLogin()) {
-    ////  return this.userProfile
-    ////}
-    ////else {
-    //  this.loadUser()
-    //  return this.userProfile
-    ///*    }*/
 
-    console.log('testing')
-    this.oAuthService.loadUserProfile().then((userProfile) => {
-      this.userProfile = userProfile as UserProfile;
-      console.log('INFO login: ', JSON.stringify(this.userProfile))
-    })
-   
+  setSocialUserasLMSUser(socialUser: SocialUser) {
 
-    
-  }
-
-  logout() {
-    this.oAuthService.logOut();
   }
 
 
@@ -147,26 +60,44 @@ export class AuthService {
 
 
 
+  //isLogin() {
 
-
-
-
-
-
-  //public GetCoursesForSchedule(): Observable<any> {
-  //  return this.http.get<any>(this.ServiceBaseUrl + "CourseBatch/GetCoursesForSchedule").pipe(
-  //    tap(res => res)
-  //  );
+  //  console.log(this.oAuthService.getAccessToken())
+  //  return this.oAuthService.hasValidAccessToken()
   //}
 
 
+  //login() {
 
 
 
+  //  this.oAuthService.configure(oAuthConfig)
+  //  this.oAuthService.logoutUrl = 'https://www.google.com/accounts/logout'
+  //  if (!this.isLogin()) {
+  //    this.oAuthService.loadDiscoveryDocument().then(() => {
+  //      this.oAuthService.tryLoginImplicitFlow().then(() => {
+  //        this.oAuthService.initLoginFlow()
+          
+  //      })
+  //    })
+
+  //  }
+  //  else {
+
+  //    var up = this.oAuthService.loadUserProfile()
+      
+
+  //    this.oAuthService.loadUserProfile().then((userProfile) => {
+
+  //      this.userProfile = userProfile as UserProfile;
+  //      console.log('first login: ', JSON.stringify(this.userProfile))
+
+  //    })
+
+  //  }
 
 
-
-
+  //}
 
 
 }

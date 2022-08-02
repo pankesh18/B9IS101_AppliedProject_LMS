@@ -22,9 +22,10 @@ namespace LMS_Repository
                 objdatabaseService.AddParameter("FirstName", objLMSUser.FirstName);
                 objdatabaseService.AddParameter("LastName", objLMSUser.LastName);
                 objdatabaseService.AddParameter("Email", objLMSUser.Email);
-                objdatabaseService.AddParameter("password", objLMSUser.password);
+                objdatabaseService.AddParameter("GoogleUserId", objLMSUser.GoogleUserId);
                 objdatabaseService.AddParameter("UserType", objLMSUser.UserType);
                 objdatabaseService.AddParameter("Gender", objLMSUser.Gender);
+                objdatabaseService.AddParameter("ProfilePic", objLMSUser.ProfilePic);
 
                 SqlCommand command = objdatabaseService.GetSQLCommand();
 

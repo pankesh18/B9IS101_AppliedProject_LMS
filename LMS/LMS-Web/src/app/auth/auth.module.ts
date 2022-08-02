@@ -13,8 +13,8 @@ import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     LoginComponent,
-    IntermediateComponent,
-    RegisterComponent
+    IntermediateComponent
+    
   ],
   imports: [
     CommonModule,

@@ -12,11 +12,7 @@ export class RegisterService {
 
   constructor( private http: HttpClient) { }
 
-  //httpOptions = {
-  //  headers:HttpHeaders {
-  //    "Access-Control-Allow-Origin":"*"
-  //  }
-  //}
+
 
   public registerUser(objLMSUser: LMSUser): Observable<any> {
 
@@ -25,22 +21,9 @@ export class RegisterService {
     httpheaders.append('Access-Control-Allow-Origin', '*')
     httpheaders.append('Accept', 'application/json')
 
-    //httpheaders.append('Access-Control-Allow-Methods', '*')
-    //httpheaders.append('Access-Control-Allow-Headers', '*')
     let httpOptions = { headers: httpheaders }
 
 
-
-    var body = JSON.stringify(objLMSUser);
-    //var headerOptions = new Headers({
-    //  'content-type': 'application/json',
-    //  'Access-Control-Allow-Origin': '*',
-    //  'Access-Control-Allow-Methods': '*',
-    //  'Access-Control-Allow-Headers': '*',
-
-    //})
-   // var requestOptions = new RequestOptions({method: RequestMethod })
-    let num=12
 
     return this.http.post<any>(this.APIURL + "LMSUser/RegisterUser", objLMSUser, httpOptions).pipe(
       tap(res => res)

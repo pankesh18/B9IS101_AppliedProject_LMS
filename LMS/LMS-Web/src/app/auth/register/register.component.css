@@ -14,9 +14,20 @@
   margin: 0 auto; /* Added */
   float: none; /* Added */
   margin-bottom: 10px; /* Added */
+  max-height:500px
 }
 
 
 .card-box {
   
+}
+
+
+.bg-image {
+  background-image: url('../../.././assets/LMS.png'), linear-gradient(rebeccapurple, ghostwhite);
+  background-color: mediumslateblue;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }

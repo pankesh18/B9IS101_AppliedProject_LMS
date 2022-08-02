@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
 import { Batch, GroupMeeting } from '../../batch/batch.models';
 import { CoursedetailService } from '../../coursedetail/coursedetail.service';
@@ -17,11 +18,11 @@ export class StudentDashComponent implements OnInit {
   loggednInUser: LMSUser;
   GroupMeetings: GroupMeeting[] = [];
   constructor(private objLoginService: LoginService, private objDashboardService: DashboardService, private router: Router
-    , private objCourseService: CoursedetailService
+    , private objCourseService: CoursedetailService, private auth: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.loggednInUser = this.objLoginService.getLoggedInUser();
+    this.loggednInUser = this.auth.getLoggedInUser();
     this.GetAllBatches(this.loggednInUser.UserId)
     this.GetGroupMeetings(this.loggednInUser.UserId)
   }

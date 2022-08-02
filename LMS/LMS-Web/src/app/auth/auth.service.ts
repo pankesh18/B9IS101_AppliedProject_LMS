@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LMSUser, UserProfile } from './auth.models'
-
+import { LocalStorageService } from 'ngx-localstorage';
+import { Router } from '@angular/router';
 
 const oAuthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
@@ -32,15 +33,18 @@ export class AuthService {
 
   isUserLogin = this.isLogin.asObservable()
 
-  constructor(private http: HttpClient, private authService: SocialAuthService) {
+  constructor(private http: HttpClient, private authService: SocialAuthService, private localStorage: LocalStorageService, private router: Router) {
 
     this.authService.authState
       .subscribe(user => {
         if (user) {
           this.isLogin.next(true);
+
+
         }
         else {
-
+          this.isLogin.next(false);
+          alert("LOGOUT!!")
         }
 
     })
@@ -50,15 +54,36 @@ export class AuthService {
   }
 
 
+  setLMSUserStorage(user: LMSUser) {
+    localStorage.setItem("LoggedInUser", JSON.stringify(user))
+  }
 
-  setSocialUserasLMSUser(socialUser: SocialUser) {
+
+  logout() {
+    //this.authservice.logout();
+    this.localStorage.remove('LoggedInUser')
+    localStorage.removeItem("GoogleUser")
+    this.router.navigate(['/'])
+  }
+
+
+  public getLoggedInUser() {
+    var item = localStorage.getItem('LoggedInUser');
+
+    if (item === null || item === "null" || item === undefined) {
+      this.logout()
+      return new LMSUser;
+
+
+    } else {
+
+      return JSON.parse(item) as LMSUser;;
+    }
 
   }
 
 
-
-
-
+  
 
   //isLogin() {
 

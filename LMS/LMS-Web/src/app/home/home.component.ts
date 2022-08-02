@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   islogin: boolean = false;
   userProfile: UserProfile | undefined;
   LoggedInUser: LMSUser;
-  constructor(private authservice: AuthService, private router: Router, private localStorage: LocalStorageService, private objLoginService: LoginService) {
+  constructor(private authservice: AuthService, private router: Router, private localStorage: LocalStorageService, private objLoginService: LoginService, private auth: AuthService) {
 
 
   
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.LoggedInUser = this.objLoginService.getLoggedInUser();
+    this.LoggedInUser = this.auth.getLoggedInUser();
     //this.islogin = this.authservice.isLogin()
     //if (this.islogin) {
     //   this.authservice.getUserProfile()

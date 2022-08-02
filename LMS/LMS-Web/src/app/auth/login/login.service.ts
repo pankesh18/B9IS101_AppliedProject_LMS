@@ -12,42 +12,42 @@ export class LoginService {
   APIURL: string = "https://localhost:44301/api/"
   constructor(private http: HttpClient, private localStorage: LocalStorageService, private router: Router) {
 
-    if (!this.isLogin()) {
-      this.router.navigate(['/login'])
-    }
+    //if (!this.isLogin()) {
+    //  this.router.navigate(['/login'])
+    //}
 
   }
 
-  public isLogin() {
-    var item = localStorage.getItem('LoggedInUser');
-    if (item != null && item != undefined) {
-      return true
-    } else {
-      return false
-    }
-  }
+  //public isLogin() {
+  //  var item = localStorage.getItem('LoggedInUser');
+  //  if (item != null && item != undefined) {
+  //    return true
+  //  } else {
+  //    return false
+  //  }
+  //}
 
-  public getLoggedInUser() {
-    var item = localStorage.getItem('LoggedInUser');
+  //public getLoggedInUser() {
+  //  var item = localStorage.getItem('LoggedInUser');
 
-    if (item === null || item === "null" || item === undefined) {
-      this.logout()
-      return new LMSUser;
+  //  if (item === null || item === "null" || item === undefined) {
+  //    this.logout()
+  //    return new LMSUser;
 
 
-    } else {
+  //  } else {
 
-      return JSON.parse(item) as LMSUser;;
-    }
+  //    return JSON.parse(item) as LMSUser;;
+  //  }
       
-  }
+  //}
 
 
-  logout() {
-    //this.authservice.logout();
-    this.localStorage.remove('LoggedInUser')
-    this.router.navigate(['/'])
-  }
+  //logout() {
+  //  //this.authservice.logout();
+  //  this.localStorage.remove('LoggedInUser')
+  //  this.router.navigate(['/'])
+  //}
 
 
 

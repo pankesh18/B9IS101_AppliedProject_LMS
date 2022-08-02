@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
 import { Batch, BatchFiles, GroupMeeting, StudentMeeting } from '../../batch/batch.models';
 import { BatchService } from '../../batch/batch.service';
@@ -37,10 +38,10 @@ export class CoursedetailComponent implements OnInit {
 
 
   constructor(private objCoursedetailService: CoursedetailService, private router: Router, private route: ActivatedRoute, private objBatchService: BatchService
-    , private objLoginService: LoginService) { }
+    , private objLoginService: LoginService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.LoggedInUser = this.objLoginService.getLoggedInUser();
+    this.LoggedInUser = this.auth.getLoggedInUser();
 
     this.route.params.subscribe(params => {
       this.BatchId = params['BatchId']

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
 import { Batch } from '../batch.models';
 import { BatchService } from '../batch.service';
@@ -21,10 +22,10 @@ export class BatchComponent implements OnInit {
   isMeetingShow: boolean;
   isFileShow: boolean;
   LoggedInUser: LMSUser;
-  constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService ) { }
+  constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.LoggedInUser = this.objLoginService.getLoggedInUser()
+    this.LoggedInUser = this.auth.getLoggedInUser()
     this.GetAllBatches(this.LoggedInUser.UserId)
   }
 

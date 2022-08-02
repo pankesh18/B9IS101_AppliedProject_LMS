@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
 import { Batch, BatchFiles, StudentMeeting } from '../../batch/batch.models';
 import { BatchNote } from '../note.models';
@@ -33,11 +34,11 @@ export class NotesListComponent implements OnInit {
   selectednote: BatchNote;
   IsNoteUpdate: boolean;
   StudentsInBatch: LMSUser[] = [];
-  selectedStudents: LMSUser[]=[];
-  constructor(private objNotesService: NotesService, private objLoginService: LoginService, private router: Router, private route: ActivatedRoute) { }
+  selectedStudents: LMSUser[] = [];
+  constructor(private objNotesService: NotesService, private objLoginService: LoginService, private router: Router, private route: ActivatedRoute, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.LoggedInUser = this.objLoginService.getLoggedInUser();
+    this.LoggedInUser = this.auth.getLoggedInUser();
     this.route.params.subscribe(params => {
       this.selectedBatchNoteId = params['BatchNoteId']
     })

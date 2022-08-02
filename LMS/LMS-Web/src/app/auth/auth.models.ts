@@ -1,3 +1,5 @@
+import { SocialUser } from "@abacritt/angularx-social-login";
+
 export class UserProfile {
   userinfo?: {
       sub: string;
@@ -18,4 +20,5 @@ export class LMSUser {
   Gender: number;
   UserType: number;
   ProfilePic: string;
+  GoogleUser: SocialUser;
 }

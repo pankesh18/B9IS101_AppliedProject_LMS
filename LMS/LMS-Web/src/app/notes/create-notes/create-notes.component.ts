@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
 import { Batch, BatchFiles, StudentMeeting } from '../../batch/batch.models';
 import { BatchNote } from '../note.models';
@@ -38,10 +39,10 @@ export class CreateNotesComponent implements OnInit {
 
   IsMeeting: boolean = false;
   loggednInUser: LMSUser;
-  constructor(private objNotesService: NotesService, private objLoginService: LoginService ) { }
+  constructor(private objNotesService: NotesService, private objLoginService: LoginService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.loggednInUser = this.objLoginService.getLoggedInUser();
+    this.loggednInUser = this.auth.getLoggedInUser();
     if (this.IsNoteUpdate) {
 
 

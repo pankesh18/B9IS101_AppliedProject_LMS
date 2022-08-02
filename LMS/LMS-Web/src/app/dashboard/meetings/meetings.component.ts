@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
 import { StudentMeeting } from '../../batch/batch.models';
 import { DashboardService } from '../dashboard.service';
@@ -12,8 +13,8 @@ import { DashboardService } from '../dashboard.service';
 })
 export class MeetingsComponent implements OnInit {
 
-  constructor(private objLoginService: LoginService, private objDashboardService: DashboardService, private router: Router) {
-    this.LoggedInUser = this.objLoginService.getLoggedInUser();
+  constructor(private objLoginService: LoginService, private objDashboardService: DashboardService, private router: Router, private auth: AuthService) {
+    this.LoggedInUser = this.auth.getLoggedInUser();
 
   }
   StudentMeetings: StudentMeeting[] = [];

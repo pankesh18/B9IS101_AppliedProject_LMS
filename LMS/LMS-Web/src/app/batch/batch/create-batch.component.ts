@@ -8,6 +8,7 @@ import { BatchService } from '../batch.service';
 import { MenuItem } from 'primeng/api';
 import * as $ from 'jquery';
 import { LoginService } from '../../auth/login/login.service';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class CreateBatchComponent implements OnInit, DoCheck {
   LoggedInUser: LMSUser;
   stateOptions: any[];
   IsGroupMeetingAllowed: boolean = false;
-  constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService) {
+  constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService, private auth: AuthService) {
     this.stateOptions = [{ label: 'No', value: false }, { label: 'Yes', value: true }];
 
 
@@ -46,7 +47,7 @@ export class CreateBatchComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.GetAllStudents();
-    this.LoggedInUser = this.objLoginService.getLoggedInUser()
+    this.LoggedInUser = this.auth.getLoggedInUser()
   }
 
   GetAllStudents() {

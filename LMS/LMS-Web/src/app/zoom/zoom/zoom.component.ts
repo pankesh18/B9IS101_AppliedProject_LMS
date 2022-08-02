@@ -7,6 +7,7 @@ import { LoginService } from '../../auth/login/login.service';
 import { DOCUMENT } from '@angular/common';
 import { ZoomMtg } from '@zoomus/websdk';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 
 
@@ -32,8 +33,8 @@ export class ZoomComponent implements OnInit {
   //client = ZoomMtgEmbedded.createClient();
   loggednInUser: LMSUser;
 
-  constructor(private objLoginService: LoginService, private httpClient: HttpClient, @Inject(DOCUMENT) document: any, private router: Router, private route: ActivatedRoute) {
-    this.loggednInUser = this.objLoginService.getLoggedInUser();
+  constructor(private objLoginService: LoginService, private httpClient: HttpClient, @Inject(DOCUMENT) document: any, private router: Router, private route: ActivatedRoute, private auth: AuthService) {
+    this.loggednInUser = this.auth.getLoggedInUser();
     this.userName = this.loggednInUser.FirstName.concat(' ', this.loggednInUser.LastName)
     this.userEmail = this.loggednInUser.Email
   

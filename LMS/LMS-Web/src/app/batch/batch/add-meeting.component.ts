@@ -8,6 +8,7 @@ import { BatchService } from '../batch.service';
 import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import * as $ from 'jquery';
 import { LoginService } from '../../auth/login/login.service';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -30,14 +31,14 @@ export class AddMeetingComponent implements OnInit, DoCheck {
   LoggedInUser: LMSUser;
   MeetingList: StudentMeeting[] = [];
 
-  constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig) {
+  constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig, private auth: AuthService) {
     this.items = [
       { label: 'Step 1: Batch Details' },
       { label: 'Step 2: Add Meetings' },
       { label: 'Step 3: Add Files' }
     ];
 
-    this.LoggedInUser = loginService.getLoggedInUser();
+    this.LoggedInUser = auth.getLoggedInUser();
 
   }
   ngDoCheck(): void {

@@ -1,6 +1,6 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { DoCheck, Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LMSUser, UserProfile } from './auth.models'
@@ -39,19 +39,17 @@ export class AuthService {
       .subscribe(user => {
         if (user) {
           this.isLogin.next(true);
-
-
         }
         else {
           this.isLogin.next(false);
-          alert("LOGOUT!!")
+          this.logout()
         }
 
-    })
-
+      })
 
 
   }
+   
 
 
   setLMSUserStorage(user: LMSUser) {
@@ -59,11 +57,19 @@ export class AuthService {
   }
 
 
+  signoout() {
+    this.authService.signOut()
+  }
+
   logout() {
     //this.authservice.logout();
     this.localStorage.remove('LoggedInUser')
     localStorage.removeItem("GoogleUser")
+
+    this.authService.signOut()
+
     this.router.navigate(['/'])
+
   }
 
 

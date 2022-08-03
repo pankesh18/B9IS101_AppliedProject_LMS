@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
 
   logout() {
     //this.authservice.logout();
-    this.localStorage.remove('LoggedInUser')
-    this.router.navigate(['/'])
+    this.auth.logout()
   }
 }

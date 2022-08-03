@@ -35,6 +35,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     InputTextModule,
     ToggleButtonModule,
     PickListModule,
+ 
     DialogModule,
     TableModule,
     ButtonModule,

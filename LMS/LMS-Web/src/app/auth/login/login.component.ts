@@ -16,13 +16,19 @@ export class LoginComponent implements OnInit {
   UserPassword: string;
   LMSUser: LMSUser;
   GoogleUser: SocialUser;
+  isGoogleLogin: boolean;
   constructor(private loginService: LoginService, private localStorage: LocalStorageService, private router: Router, private authService: SocialAuthService ) { }
 
   ngOnInit(): void {
     this.authService.authState.subscribe(user => {
       if (user) {
         this.GoogleUser = user
-        this.loginUser(user.email, user.id)
+        this.isGoogleLogin = true;
+        this.UserEmail = this.GoogleUser.email
+
+      }
+      else {
+        this.isGoogleLogin = false;
       }
     })
   }

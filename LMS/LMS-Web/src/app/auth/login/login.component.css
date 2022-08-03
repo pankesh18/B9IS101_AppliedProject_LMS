@@ -18,4 +18,12 @@
 
 
 .card-box {
+    border: ridge 15px;
+    border-color: mediumpurple;
+
+}
+
+
+input:disabled {
+  background: #ccc;
 }

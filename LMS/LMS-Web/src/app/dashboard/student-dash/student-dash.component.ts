@@ -39,9 +39,13 @@ export class StudentDashComponent implements OnInit {
   }
 
   GetGroupMeetings(UserId: number) {
+    this.GroupMeetings = [];
     this.objCourseService.GetGroupMeetings(0, UserId)
       .subscribe((response) => {
-        this.GroupMeetings = response;
+        if (response != null) {
+          this.GroupMeetings = response;
+
+        }
 
       }, function (rejection) {
 

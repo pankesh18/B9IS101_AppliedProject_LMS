@@ -8,11 +8,11 @@
 
 <div class="container">
 
-  <div class="row ">
+  <div class="row my-5">
     <p-carousel [value]="StudentBatches" [numVisible]="3" [numScroll]="3" [circular]="false">
-      <ng-template pTemplate="header">
+      <!--<ng-template pTemplate="header">
         <h5>All Batches</h5>
-      </ng-template>
+      </ng-template>-->
       <ng-template let-batch pTemplate="item">
 
         <!--<div>
@@ -41,7 +41,7 @@
 
   <div class="row">
 
-    <div class="col">
+    <div class="col" *ngIf="GroupMeetings.length>0">
       <div class="card meetings-box" style="min-height: 250px; overflow-y: scroll; max-height: 450px;">
         <div *ngFor="let meeting of GroupMeetings">
           <li class="listing">

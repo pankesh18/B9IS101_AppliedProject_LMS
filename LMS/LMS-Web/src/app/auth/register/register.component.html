@@ -4,27 +4,42 @@
 <p-toast></p-toast>
 <div class="main-container container-fluid">
 
-  <div class="card secondary-container" *ngIf="isLoginInRegister">
+  <div class="card secondary-container">
     <div class="card-body p-5" id="reg-page1">
       <!--<div class="card-header h4"> Register form    </div>-->
-      <div class="row row-space">
-        <div class="col-6 p-field">
-          <span class="p-float-label">
-            <input id="float-input" type="text" [(ngModel)]="lmsUser.FirstName" pInputText style="width:100%" ng-pattern="([a-zA-Z]{3,30}\s*)+" [required]="true">
-            <label for="float-input">First Name</label>
-          </span>
+
+
+      <div class="row">
+        <div class="col-8">
+
+          <div class="row row-space">
+            <div class="col-12 p-field  my-2">
+              <span class="p-float-label">
+                <input id="float-input" type="text" [disabled]="!isLoginInRegister" [(ngModel)]="lmsUser.FirstName" pInputText style="width:100%" ng-pattern="([a-zA-Z]{3,30}\s*)+" [required]="true">
+                <label for="float-input">First Name</label>
+              </span>
+            </div>
+            <div class="col-12 p-field my-2">
+              <span class="p-float-label">
+                <input id="float-input" type="text" [disabled]="!isLoginInRegister"  [(ngModel)]="lmsUser.LastName" pInputText style="width:100%" ng-pattern="([a-zA-Z]{3,30}\s*)+" [required]="true">
+                <label for="float-input">Last Name</label>
+              </span>
+            </div>
+          </div>
+
         </div>
-        <div class="col-6 p-field">
-          <span class="p-float-label">
-            <input id="float-input" type="text" [(ngModel)]="lmsUser.LastName" pInputText style="width:100%" ng-pattern="([a-zA-Z]{3,30}\s*)+" [required]="true">
-            <label for="float-input">Last Name</label>
-          </span>
+        <div class="col-4 text-center">
+          <img src="{{lmsUser.ProfilePic}}" *ngIf="isLoginInRegister" style="width:150px; height:150px" />
+          <img src="../../../assets/ProfilePic.jpg" *ngIf="!isLoginInRegister" style="width:150px; height:150px" />
         </div>
+
       </div>
-      <div class="row row-space my-5">
+
+
+     <div class="row row-space my-3">
         <div class="col-12 p-field">
           <span class="p-float-label">
-            <input id="float-input" type="text" [(ngModel)]="lmsUser.Email" readonly pInputText style="width:100%">
+            <input id="float-input" type="text" disabled [(ngModel)]="lmsUser.Email" readonly pInputText style="width:100%">
             <label for="float-input">Email</label>
           </span>
         </div>
@@ -44,9 +59,13 @@
           </span>
         </div>
       </div>
-      <div class="row row-space text-center" style="margin-top:5%">
-        <div class="col p-field">
-          <p-button label="Register" (click)="register()"></p-button>
+      <div class="row row-space my-3">
+        <div class="col-8">
+          <asl-google-signin-button type='standard' size='large'></asl-google-signin-button>
+        </div>
+
+        <div class="col-4" style="text-align:center">
+          <p-button label="Register" [disabled]="!isLoginInRegister" class="p-button-sm" (click)="register()"></p-button>
         </div>
       </div>
 
@@ -62,12 +81,12 @@
 
 
 
-  <div style="text-align:center; top:55%; right:46% ;position:absolute" *ngIf="!isLoginInRegister">
+  <!--<div style="text-align:center; top:55%; right:46% ;position:absolute" *ngIf="!isLoginInRegister">
     <button>
       <asl-google-signin-button type='standard' size='large'></asl-google-signin-button>
 
     </button>
-  </div>
+  </div>-->
 
 
 </div>

@@ -30,7 +30,7 @@ export class IntermediateComponent implements OnInit {
     }
     else {
       console.log('trying to login from intermediate!')
-      this.router.navigate(['/login'])
+      window.location.href ='http://localhost:4200/login'
     }
 
 

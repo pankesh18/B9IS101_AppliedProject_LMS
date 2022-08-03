@@ -1,4 +1,4 @@
-import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, DoCheck, OnInit } from '@angular/core';
 import { LMSUser } from '../auth.models';
 import { AuthService } from '../auth.service';
@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit, DoCheck {
   genderOptions: any[];
 
   UserTypeOptions: any[];
-
+  GoogleUser: SocialUser;
   isLoginInRegister: boolean = false;
 
   constructor(private objRegisterService: RegisterService, private authService: SocialAuthService, private messageService: MessageService, private router: Router) {
@@ -51,6 +51,11 @@ export class RegisterComponent implements OnInit, DoCheck {
         this.lmsUser.LastName = user.lastName;
         this.lmsUser.GoogleUserId = user.id;
         this.lmsUser.ProfilePic = user.photoUrl;
+        this.GoogleUser = user;
+        this.lmsUser.GoogleUser = user;
+      }
+      else {
+        this.isLoginInRegister = false;
       }
     })
 

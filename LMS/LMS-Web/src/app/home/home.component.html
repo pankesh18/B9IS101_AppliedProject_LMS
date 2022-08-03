@@ -35,14 +35,14 @@
             </a>
           </li>
 
-          <li (click)="goToBatches()">
+          <li (click)="goToBatches()"  *ngIf="LoggedInUser.UserType==1">
             <a class="nav-link text-white">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Batch
             </a>
           </li>
 
-          <li (click)="goToNotes()">
+          <li (click)="goToNotes()"  *ngIf="LoggedInUser.UserType==2">
             <a class="nav-link text-white">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Notes

@@ -21,7 +21,7 @@
             </div>
             <div class="col-12 p-field my-2">
               <span class="p-float-label">
-                <input id="float-input" type="text" [disabled]="!isLoginInRegister"  [(ngModel)]="lmsUser.LastName" pInputText style="width:100%" ng-pattern="([a-zA-Z]{3,30}\s*)+" [required]="true">
+                <input id="float-input" type="text" [disabled]="!isLoginInRegister" [(ngModel)]="lmsUser.LastName" pInputText style="width:100%" ng-pattern="([a-zA-Z]{3,30}\s*)+" [required]="true">
                 <label for="float-input">Last Name</label>
               </span>
             </div>
@@ -36,7 +36,7 @@
       </div>
 
 
-     <div class="row row-space my-3">
+      <div class="row row-space my-3">
         <div class="col-12 p-field">
           <span class="p-float-label">
             <input id="float-input" type="text" disabled [(ngModel)]="lmsUser.Email" readonly pInputText style="width:100%">
@@ -50,12 +50,12 @@
         <div class="col p-field">
           <span class="p-float-label">
 
-            <p-dropdown [options]="genderOptions"  [(ngModel)]="lmsUser.Gender" optionLabel="label" optionValue="value" placeholder="Select Gender" [required]="true"></p-dropdown>
+            <p-dropdown [options]="genderOptions" [(ngModel)]="lmsUser.Gender" optionLabel="label" optionValue="value" placeholder="Select Gender" [required]="true"></p-dropdown>
           </span>
         </div>
         <div class="col p-field">
           <span class="p-float-label">
-            <p-dropdown [options]="UserTypeOptions"  [(ngModel)]="lmsUser.UserType" optionLabel="label" optionValue="value" placeholder="Select User Type" [required]="true"></p-dropdown>
+            <p-dropdown [options]="UserTypeOptions" [(ngModel)]="lmsUser.UserType" optionLabel="label" optionValue="value" placeholder="Select User Type" [required]="true"></p-dropdown>
           </span>
         </div>
       </div>
@@ -66,12 +66,18 @@
 
         <div class="col-4" style="text-align:center">
           <p-button label="Register" [disabled]="!isLoginInRegister" class="p-button-sm" (click)="register()"></p-button>
+          <div>
+            Have an account? <a href="/login">Login</a>
+          </div>
         </div>
       </div>
 
+
     </div>
 
+    <!--<div class="card-footer">
 
+    </div>-->
 
 
 

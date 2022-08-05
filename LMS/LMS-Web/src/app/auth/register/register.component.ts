@@ -62,6 +62,11 @@ export class RegisterComponent implements OnInit, DoCheck {
   }
 
 
+  gotoLogin() {
+    this.router.navigate(['login'])
+  }
+
+
 
   register() {
 

@@ -21,7 +21,7 @@ INNER JOIN LMSUser ON GroupMeetingStudent.UserId=LMSUser.UserId
 where GroupMeetingId=@GroupMeetingId
 	
 
-	select * from LMSUser
+
 
 GO
 

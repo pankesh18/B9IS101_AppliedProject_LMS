@@ -69,6 +69,11 @@ export class ForumComponent implements OnInit {
   }
 
 
+
+
+
+
+
   GetAllDiscussionForum(BatchId: number) {
     if (BatchId == null || BatchId == undefined) {
       BatchId = 0;

@@ -4,7 +4,7 @@
   <div class="row my-2">
 
     <div class="col mx-5 px-5 py-2">
-      <p-dropdown [options]="BatchOptions" [(ngModel)]="BatchId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Batch"></p-dropdown>
+      <p-dropdown [options]="BatchOptions" (onChange)="GetAllDiscussionForum(BatchId)" [(ngModel)]="BatchId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Batch"></p-dropdown>
 
     </div>
 

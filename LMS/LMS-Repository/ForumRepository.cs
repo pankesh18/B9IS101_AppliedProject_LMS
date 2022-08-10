@@ -131,7 +131,7 @@ namespace LMS_Repository
 
         }
 
-        public static List<ForumQuestion> GetAllDiscussionForum(DatabaseService objdatabaseService, int BatchId)
+        public static List<ForumQuestion> GetAllDiscussionForum(DatabaseService objdatabaseService, int BatchId,int  UserId)
         {
 
             try
@@ -142,6 +142,7 @@ namespace LMS_Repository
                 objdatabaseService.ClearParameter();
 
                 objdatabaseService.AddParameter("BatchId", BatchId);
+                objdatabaseService.AddParameter("UserId", UserId);
 
 
                 SqlCommand command = objdatabaseService.GetSQLCommand();

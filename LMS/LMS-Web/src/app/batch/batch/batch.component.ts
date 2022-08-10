@@ -49,10 +49,11 @@ export class BatchComponent implements OnInit {
 
     this.objBatchService.GetAllBatches(UserId)
       .subscribe((response) => {
-        this.Batches = response;
-        this.Batches.forEach(item => item.BatchYear = new Date(item.BatchYear))
+        if (response != null) {
+          this.Batches = response;
+          this.Batches.forEach(item => item.BatchYear = new Date(item.BatchYear))
+        }
 
-        console.log(this.Batches)
 
       }, function (rejection) {
 

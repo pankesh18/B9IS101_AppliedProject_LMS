@@ -27,6 +27,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { LoginComponent } from './auth/login/login.component';
 import { ForumModule } from './forum/forum.module';
+import { MessagesModule } from 'primeng/messages';
 
 
 
@@ -48,6 +49,7 @@ import { ForumModule } from './forum/forum.module';
     AuthModule,
     SocialLoginModule,
     DashboardModule,
+    MessagesModule,
     CoursedetailModule,
     InputTextModule,
     DropdownModule,

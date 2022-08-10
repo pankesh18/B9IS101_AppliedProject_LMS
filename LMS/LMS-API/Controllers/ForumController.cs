@@ -98,14 +98,14 @@ namespace LMS_API.Controllers
 
         [HttpGet]
         [ActionName("GetAllDiscussionForum")]
-        public HttpResponseMessage GetAllDiscussionForum(int BatchId)
+        public HttpResponseMessage GetAllDiscussionForum(int BatchId, int UserId)
         {
             try
             {
 
                 ForumService objForumService = new ForumService();
 
-                List<ForumQuestion> forumQuestions = objForumService.GetAllDiscussionForum(BatchId);
+                List<ForumQuestion> forumQuestions = objForumService.GetAllDiscussionForum(BatchId, UserId);
 
                 return Request.CreateResponse(HttpStatusCode.OK, forumQuestions);
             }

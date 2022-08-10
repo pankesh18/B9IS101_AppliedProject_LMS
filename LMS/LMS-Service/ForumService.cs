@@ -97,7 +97,7 @@ namespace LMS_Service
         }
 
 
-        public List<ForumQuestion> GetAllDiscussionForum(int BatchId)
+        public List<ForumQuestion> GetAllDiscussionForum(int BatchId,int UserId)
         {
 
             try
@@ -109,7 +109,7 @@ namespace LMS_Service
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
 
-                    forumQuestions=ForumRepository.GetAllDiscussionForum(objdatabaseService, BatchId);
+                    forumQuestions=ForumRepository.GetAllDiscussionForum(objdatabaseService, BatchId, UserId);
 
 
                     if (forumQuestions.Count > 0)

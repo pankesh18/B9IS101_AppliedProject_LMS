@@ -50,13 +50,15 @@ export class ForumComponent implements OnInit {
     this.BatchOptions = [];
     this.objForumService.GetAllStudentBatches(UserId)
       .subscribe((response) => {
+        if (response != null) {
+          this.StudentBatches = response;
+          this.StudentBatches.forEach(item => {
+            let batch = { name: item.BatchName.concat('-', new Date(item.BatchYear).getFullYear().toString()), value: item.BatchId }
+            this.BatchOptions.push(batch);
+          })
+          console.log(response)
 
-        this.StudentBatches = response;
-        this.StudentBatches.forEach(item => {
-          let batch = { name: item.BatchName.concat('-', new Date(item.BatchYear).getFullYear().toString()), value: item.BatchId }
-          this.BatchOptions.push(batch);
-        })
-        console.log(response)
+        }
 
 
       }, function (rejection) {
@@ -78,8 +80,8 @@ export class ForumComponent implements OnInit {
     if (BatchId == null || BatchId == undefined) {
       BatchId = 0;
     }
-   
-    this.objForumService.GetAllDiscussionForum(BatchId )
+
+    this.objForumService.GetAllDiscussionForum(BatchId, this.LoggedInUser.UserId)
       .subscribe((response) => {
 
         if (response.length > 0) {

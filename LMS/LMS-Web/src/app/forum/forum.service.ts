@@ -54,9 +54,9 @@ export class ForumService {
     );
   }
 
-  public GetAllDiscussionForum(BatchId: number) {
+  public GetAllDiscussionForum(BatchId: number, UserId: number) {
     let httpOptions = { headers: this.httpheaders }
-    return this.http.get<any>(this.APIURL + "Forum/GetAllDiscussionForum", { params: { BatchId: BatchId } }).pipe(
+    return this.http.get<any>(this.APIURL + "Forum/GetAllDiscussionForum", { params: { BatchId: BatchId, UserId: UserId } }).pipe(
       tap(res => res)
     );
   }

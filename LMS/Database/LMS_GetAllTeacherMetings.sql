@@ -1,6 +1,6 @@
 /*
 
-exec LMS_GetAllTeacherMetings 4
+exec LMS_GetAllTeacherMetings 2
 
 */
 IF OBJECT_ID ( 'LMS_GetAllTeacherMetings', 'P' ) IS NOT NULL

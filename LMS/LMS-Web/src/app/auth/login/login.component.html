@@ -1,15 +1,21 @@
 
 
+<p-toast></p-toast>
 
 
 <div class="main-container container-fluid">
 
   <div class="card secondary-container">
     <!--<div class="card-header h4"> Login </div>-->
+
+
+
+
+
     <div class="card-body px-5 py-4 card-box" id="reg-page1">
       <div class="row row-space my-2 text-center">
         <div class="col p-field">
-          <img src="{{GoogleUser.photoUrl}}" *ngIf="isGoogleLogin" style="width:150px; height:150px"/>
+          <img src="{{GoogleUser.photoUrl}}" *ngIf="isGoogleLogin" style="width:150px; height:150px" />
           <img src="../../../assets/ProfilePic.jpg" *ngIf="!isGoogleLogin" style="width:150px; height:150px" />
         </div>
       </div>
@@ -36,6 +42,9 @@
         </div>
       </div>
 
+      <div class="text-center">
+        Don't have a account? <a href="/register">Register</a>
+      </div>
 
     </div>
 
@@ -50,6 +59,6 @@
 
       </asl-google-signin-button>
 
-   
+
   </div>-->
 </div>

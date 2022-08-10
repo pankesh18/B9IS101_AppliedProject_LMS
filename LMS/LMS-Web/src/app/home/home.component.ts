@@ -46,6 +46,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/dash'])
   }
 
+  goToForum() {
+    this.router.navigate(['/forum'])
+  }
+
   logout() {
     //this.authservice.logout();
     this.auth.logout()

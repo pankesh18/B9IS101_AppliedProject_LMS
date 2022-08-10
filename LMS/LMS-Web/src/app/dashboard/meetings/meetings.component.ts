@@ -40,10 +40,15 @@ export class MeetingsComponent implements OnInit {
 
 
   GetAllStudentMetings(UserId: number) {
+    this.StudentMeetings = [];
+    this.ojStudentMeetings = []
     this.objDashboardService.GetAllStudentMetings(UserId)
       .subscribe((response) => {
-        this.StudentMeetings = response;
-        this.ojStudentMeetings = this.StudentMeetings
+        if (response != null) {
+          this.StudentMeetings = response;
+          this.ojStudentMeetings = this.StudentMeetings
+        }
+
       }, function (rejection) {
 
       })
@@ -51,10 +56,15 @@ export class MeetingsComponent implements OnInit {
 
 
   GetAllTeacherMetings(UserId: number) {
+    this.StudentMeetings = [];
+    this.ojStudentMeetings = [];
     this.objDashboardService.GetAllTeacherMetings(UserId)
       .subscribe((response) => {
-        this.StudentMeetings = response;
-        this.ojStudentMeetings = this.StudentMeetings
+        if (response != null) {
+          this.StudentMeetings = response;
+          this.ojStudentMeetings = this.StudentMeetings
+        }
+
       }, function (rejection) {
 
       })

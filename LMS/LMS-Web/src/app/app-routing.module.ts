@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: '', component: IntermediateComponent },
   { path: 'intermediate', component: IntermediateComponent },
   //{ path: 'zoom/:meetingNumber/:role/:passWord', component: ZoomComponent },
-  //{ path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

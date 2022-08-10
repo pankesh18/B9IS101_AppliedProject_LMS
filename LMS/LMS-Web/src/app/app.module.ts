@@ -26,6 +26,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { LoginComponent } from './auth/login/login.component';
+import { ForumModule } from './forum/forum.module';
 
 
 
@@ -54,6 +55,7 @@ import { LoginComponent } from './auth/login/login.component';
     NotesModule,
     SidebarModule,
     ButtonModule,
+    ForumModule,
     CommonModule,
     FormsModule,
     ToastModule,

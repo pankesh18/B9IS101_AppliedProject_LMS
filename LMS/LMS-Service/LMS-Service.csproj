@@ -171,6 +171,7 @@
   <ItemGroup>
     <Compile Include="BatchService.cs" />
     <Compile Include="CloudStorageService.cs" />
+    <Compile Include="ForumService.cs" />
     <Compile Include="LMSService.cs" />
     <Compile Include="LMSUserService.cs" />
     <Compile Include="NoteService.cs" />

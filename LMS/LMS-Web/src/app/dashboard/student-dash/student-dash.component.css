@@ -37,3 +37,25 @@
   border-bottom-left-radius: 5px;
   padding-left:5%
 }
+
+
+.batch-card {
+  margin: 1%;
+  border: groove 2px;
+  border-radius: 5px;
+  border-color: rebeccapurple;
+/*  background-color: cornflowerblue;*/
+/*  padding: 5%;*/
+  text-align: center;
+}
+.batch-card-body {
+  border: groove 2px;
+  border-radius: 5px;
+  border-color: rebeccapurple;
+  background-color:whitesmoke;
+  margin-top:3%;
+  margin-block:3%;
+  margin-left:5%;
+  margin-right:5%;
+
+}

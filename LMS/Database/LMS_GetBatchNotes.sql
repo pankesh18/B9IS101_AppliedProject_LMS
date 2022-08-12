@@ -38,8 +38,8 @@ BatchNote
 inner join LMSUser on BatchNote.CreatedBy=LMSUser.UserId
 left join BatchMeeting on BatchNote.BatchMeetingId=BatchMeeting.BatchMeetingId
 left join BatchFile on BatchNote.BatchFileId=BatchFile.BatchFileId
-where BatchNote.BatchId=@BatchId and BatchNote.CreatedBy=@UserId 
-and (BatchNote.BatchFileId=@FileId or (@FileId=0 AND @MeetingId<>0)) and (BatchNote.BatchMeetingId=@MeetingId or (@MeetingId=0 AND @FileId<>0)) OR (@MeetingId=0 AND @FileId=0) 
+where (BatchNote.BatchId=@BatchId or @BatchId=0) and BatchNote.CreatedBy=@UserId 
+and ((BatchNote.BatchFileId=@FileId or (@FileId=0 AND @MeetingId<>0)) and (BatchNote.BatchMeetingId=@MeetingId or (@MeetingId=0 AND @FileId<>0)) OR (@MeetingId=0 AND @FileId=0) )
 
 union
 

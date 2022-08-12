@@ -8,12 +8,12 @@
       <p-dropdown [options]="BatchOptions" (onChange)="onBatchChange(BatchId)" [(ngModel)]="BatchId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Batch"></p-dropdown>
 
     </div>
-    <div class="col" *ngIf="IsFile">
-      <p-dropdown [options]="FileOptions" (onChange)="GetBatchNotes(BatchId,BatchFileId, 0)" [(ngModel)]="BatchFileId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select File"></p-dropdown>
+    <div class="col" >
+      <p-dropdown [options]="FileOptions" [disabled]="BatchId==0 || BatchId==undefined || BatchId==null" (onChange)="GetBatchNotes(BatchId,BatchFileId, 0)" [(ngModel)]="BatchFileId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select File"></p-dropdown>
 
     </div>
-    <div class="col" *ngIf="IsMeeting">
-      <p-dropdown [options]="MeetingOptions" (onChange)="GetBatchNotes(BatchId,BatchFileId,BatchMeetingId)" [(ngModel)]="BatchMeetingId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Meeting"></p-dropdown>
+    <div class="col">
+      <p-dropdown [options]="MeetingOptions" [disabled]="BatchId==0|| BatchId==undefined || BatchId==null" (onChange)="GetBatchNotes(BatchId,BatchFileId,BatchMeetingId)" [(ngModel)]="BatchMeetingId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Meeting"></p-dropdown>
 
 
     </div>

@@ -206,4 +206,14 @@ export class CommonSpaceService {
     );
   }
 
+  public ShareBatchNote(users: LMSUser[], BatchId: number, BatchNoteId: number) {
+    let httpOptions = {
+      headers: this.httpheaders,
+      params: { BatchId: BatchId, BatchNoteId: BatchNoteId }
+    }
+    return this.http.post<any>(this.APIURL + "Note/ShareBatchNote", users, httpOptions).pipe(
+      tap(res => res)
+    );
+  }
+
 }

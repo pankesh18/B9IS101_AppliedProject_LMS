@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { LMSUser } from '../../auth/auth.models';
 import { AuthService } from '../../auth/auth.service';
@@ -47,7 +47,7 @@ export class CommonSpaceComponent implements OnInit {
     { field: 'student', header: 'No. Of Students'}
   ];
 
-  constructor(private auth: AuthService, private messageService: MessageService, private objCommonSpaceService: CommonSpaceService, private route: ActivatedRoute) { }
+  constructor(private auth: AuthService, private messageService: MessageService, private objCommonSpaceService: CommonSpaceService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.loggedInUser = this.auth.getLoggedInUser()
@@ -261,7 +261,13 @@ export class CommonSpaceComponent implements OnInit {
 
     this.objCommonSpaceService.AddCommonSpaceNote(objFile)
       .subscribe((response) => {
+        this.objCommonSpaceService.ShareBatchNote(group.CommonSpaceGroupStudent, group.BatchId, note.BatchNoteId)
+          .subscribe((response) => {
 
+
+          }, function (rejection) {
+
+          })
 
       }, function (rejection) {
 
@@ -278,6 +284,12 @@ export class CommonSpaceComponent implements OnInit {
       this.Viewnote.BatchNoteId = file.NoteId
       this.Viewnote.NoteBody = file.NoteBody
     }
+  }
+
+
+
+  goToFileNote(BatchId: number, BatchFileId: number, BatchNoteId: number) {
+    this.router.navigate(['/coursedetail', BatchId, { BatchFileId: BatchFileId, BatchNoteId: BatchNoteId }])
   }
 
 }

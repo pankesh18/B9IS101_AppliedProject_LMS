@@ -36,6 +36,6 @@ import { ListboxModule } from 'primeng/listbox';
     NotesRoutingModule
 
   ],
-  exports: [CreateNotesComponent, NotesListComponent]
+  exports: [CreateNotesComponent, NotesListComponent, ViewnoteComponent]
 })
 export class NotesModule { }

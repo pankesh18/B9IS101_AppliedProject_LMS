@@ -25,7 +25,12 @@
             <div class="card-body batch-card-body">
               <h5 class="card-title">{{batch.BatchName}} - {{batch.BatchYear | date:'yyyy'}}</h5>
               <p class="card-text">{{batch.CourseName}}</p>
-              <a (click)="goToCourseDetail(batch.BatchId)" class="btn btn-primary">View</a>
+              <!--<a (click)="goToCourseDetail(batch.BatchId)" class="btn btn-primary">View</a>-->
+              <!--<p-button icon="pi pi-cloud" class="p-button-rounded p-button-text p-button-plain"></p-button>-->
+              <button pButton pRipple type="button" icon="pi pi-eye" class="p-button-rounded p-button-outlined p-button-primary m-2" (click)="goToCourseDetail(batch.BatchId)" ></button>
+
+              <button pButton pRipple type="button" icon="pi pi-cloud-upload" class="p-button-rounded  p-button-outlined p-button-primary m-2" (click)="goToCommonSpace(batch.BatchId)"></button>
+
             </div>
           </div>
           <div class="card-footer text-muted" >

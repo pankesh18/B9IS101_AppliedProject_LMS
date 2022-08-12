@@ -6,3 +6,11 @@
   background-color: var(--primary-color);
   color: var(--primary-color-text);
 }
+.pointer {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  /*background: #fafafa;*/
+  background: #E5E4E2
+}

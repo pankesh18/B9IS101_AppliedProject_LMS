@@ -7,6 +7,7 @@ import { CommonSpaceService } from '../common-space.service';
 import * as $ from 'jquery';
 import { TreeNode } from 'primeng/api';
 import { CommonSpaceFile, CommonSpaceGroup } from '../common-space.models';
+import { BatchNote } from '../../notes/note.models';
 
 
 
@@ -29,12 +30,14 @@ export class CommonSpaceComponent implements OnInit {
   ListGroups: CommonSpaceGroup[] = [];
   SpaceNodes: TreeNode<CommonSpaceGroup>[] = []
   displayFileUpload: boolean = false;
-
+  displayAddNote: boolean = false;
   displayFileViewer: boolean = false;
   FileName: string
   FileCommonSpaceGroup: CommonSpaceGroup = new CommonSpaceGroup()
   FileView: CommonSpaceFile
   Files: any[] = [];
+  BatchNoteList: BatchNote[] = [];
+  Viewnote: BatchNote;
   ImageExtension: any[] = ['.jpeg', '.jpg', '.png', '.gif', '.tiff', '.raw', '.bmp']
 
   cols:any[] = [
@@ -114,6 +117,22 @@ export class CommonSpaceComponent implements OnInit {
 
 
 
+
+  GetBatchNotes(BatchId: number, UserId: number) {
+
+    this.objCommonSpaceService.GetBatchNotes(BatchId, UserId, 0,0)
+      .subscribe((response) => {
+
+        if (response != null) {
+          this.BatchNoteList = response;
+        }
+
+
+      }, function (rejection) {
+
+      })
+
+  }
 
 
 
@@ -223,10 +242,42 @@ export class CommonSpaceComponent implements OnInit {
 
 
 
+  AddNote(group: CommonSpaceGroup, note: BatchNote) {
+
+    let objFile = new CommonSpaceFile()
+
+    objFile.FileName = note.NoteTile
+    objFile.ContentType = 2
+    objFile.BatchId = this.BatchId
+    objFile.CommonSpaceGroupId = group.CommonSpaceGroupId
+    objFile.NoteId = note.BatchNoteId
+    objFile.FileExtension = ""
+    objFile.FolderName = ""
+    objFile.FileSize = 0
+    objFile.FileURL = ""
+    objFile.ContainerName = ""
+    
+    objFile.CreatedBy = this.loggedInUser.UserId
+
+    this.objCommonSpaceService.AddCommonSpaceNote(objFile)
+      .subscribe((response) => {
+
+
+      }, function (rejection) {
+
+      })
+  }
 
 
 
-
-
+  ViewFile(file: CommonSpaceFile) {
+    if (file.ContentType == 2) {
+      this.Viewnote = new BatchNote()
+      this.Viewnote.BatchFileId = file.BatchFileId
+      this.Viewnote.BatchId = file.BatchId
+      this.Viewnote.BatchNoteId = file.NoteId
+      this.Viewnote.NoteBody = file.NoteBody
+    }
+  }
 
 }

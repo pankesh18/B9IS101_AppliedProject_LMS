@@ -13,6 +13,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { NgxDocViewerModule } from 'ngx-doc-viewer2';
+import { NotesModule } from '../notes/notes.module';
 
 
 
@@ -28,6 +29,7 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer2';
     OverlayPanelModule,
     DialogModule,
     FileUploadModule,
+    NotesModule,
     ButtonModule,
     NgxDocViewerModule,
     BrowserAnimationsModule,

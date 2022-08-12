@@ -2,8 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import { TreeNode } from 'primeng/api';
-import { CommonSpaceGroup } from './common-space.models';
+import { CommonSpaceFile, CommonSpaceGroup } from './common-space.models';
 import { param } from 'jquery';
+import { LMSUser } from '../auth/auth.models';
 
 @Injectable({
   providedIn: 'root'
@@ -180,11 +181,29 @@ export class CommonSpaceService {
       headers: this.httpheaders,
       params: { BatchId: BatchId }
     }
-    return this.http.get<any>(this.APIURL + "CommonSpace/AddCommonSpaceFile",   httpOptions).pipe(
+    return this.http.get<any>(this.APIURL + "CommonSpace/GetCommonSpaceGroup",   httpOptions).pipe(
       tap(res => res)
     );
   }
 
+  public GetBatchNotes(BatchId: number, UserId: number, FileId: number, MeetingId: number) {
+    let httpOptions = {
+      headers: this.httpheaders,
+      params: { BatchId: BatchId, UserId: UserId, FileId: FileId, MeetingId: MeetingId }
+    }
+    return this.http.get<any>(this.APIURL + "Note/GetBatchNotes", httpOptions).pipe(
+      tap(res => res)
+    );
+  }
 
+  public AddCommonSpaceNote(objCommonSpaceFile: CommonSpaceFile) {
+    let httpOptions = {
+      headers: this.httpheaders,
+
+    }
+    return this.http.post<any>(this.APIURL + "CommonSpace/AddCommonSpaceNote", objCommonSpaceFile, httpOptions).pipe(
+      tap(res => res)
+    );
+  }
 
 }

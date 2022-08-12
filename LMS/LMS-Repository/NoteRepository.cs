@@ -94,6 +94,7 @@ namespace LMS_Repository
                             obj.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
                             obj.OwnerName = reader["OwnerName"].ToString();
                             obj.OwnerEmail = reader["OwnerEmail"].ToString();
+                            obj.IsShared = Convert.ToBoolean(reader["IsShared"]);
 
 
                             objBatchNotes.Add(obj);

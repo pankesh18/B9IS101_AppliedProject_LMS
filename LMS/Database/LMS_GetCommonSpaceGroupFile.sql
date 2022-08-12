@@ -20,7 +20,9 @@ CF.CommonSpaceFileId
 ,CF.[ContentType]		
 ,CF.BatchId			
 ,CF.CommonSpaceGroupId
-,CF.NoteId			
+,CF.NoteId
+,BN.NoteBody
+,BN.BatchFileId
 ,CF.FileURL			
 ,CF.FileExtension		
 ,CF.ContainerName		
@@ -30,6 +32,7 @@ CF.CommonSpaceFileId
 ,CF.CreatedDate		
 
 from CommonSpaceFile CF
+Left Join BatchNote BN ON CF.NoteId=BN.BatchNoteId
 where CF.BatchId=@BatchId	AND CF.CommonSpaceGroupId=@CommonSpaceGroupId
 
 GO

@@ -12,4 +12,5 @@ export class BatchNote {
   CreatedBy: number
   OwnerName: string
   OwnerEmail: string
+  IsShared: boolean
 }

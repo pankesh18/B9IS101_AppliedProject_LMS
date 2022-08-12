@@ -68,5 +68,7 @@ export class StudentDashComponent implements OnInit {
     this.router.navigate(['/coursedetail', BatchId])
   }
 
-
+  goToCommonSpace(BatchId: number) {
+    this.router.navigate(['/commonspace', BatchId])
+  }
 }

@@ -150,7 +150,9 @@
 
           </td>
           <td>
-            <button pButton pRipple type="button" icon="pi pi-plus" (click)="FileCommonSpaceGroup=group; displayFileUpload=true" class="p-button-rounded p-button-text p-button-success"></button>
+
+            <button pButton pRipple type="button" icon="pi pi-cloud-upload" (click)="FileCommonSpaceGroup=group; displayFileUpload=true" class="p-button-rounded p-button-text p-button-success"></button>
+            <button pButton pRipple type="button" icon="pi pi-book" (click)="FileCommonSpaceGroup=group; displayAddNote=true; GetBatchNotes(BatchId, loggedInUser.UserId)" class="p-button-rounded p-button-text p-button-success"></button>
             <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain"></button>
           </td>
         </tr>
@@ -175,6 +177,27 @@
           </div>
         </p-dialog>
 
+        <p-dialog header="Add Notes" [(visible)]="group.CommonSpaceGroupId==FileCommonSpaceGroup.CommonSpaceGroupId && displayAddNote" [style]="{width: '50vw', height: '50vh'}">
+          <div class="container-fluid list-group">
+            <a *ngFor="let note of BatchNoteList" class="list-group-item clickable-row" (click)="AddNote(group,note)">
+              <div class="row">
+                <div class="col-8">
+                  <div class="list-group-item-heading h5">{{note.NoteTile}}</div>
+
+                  <div class="text-muted">{{note.FileName}}</div>
+                </div>
+                <div class="col-4" style="text-align:right">
+                  <div class="text-muted"><strong>Created By: {{note.OwnerName}}</strong> </div>
+                  <div class="text-muted">{{note.OwnerEmail}}</div>
+                </div>
+              </div>
+      
+            </a>
+
+          </div>
+
+        </p-dialog>
+
 
       </ng-template>
       <ng-template pTemplate="rowexpansion" let-group>
@@ -185,7 +208,7 @@
               <p-table [value]="group.CommonSpaceGroupFiles" dataKey="CommonSpaceFileId">
                 <ng-template pTemplate="header">
                   <tr>
-                    <th pSortableColumn="FileName">FileName <p-sortIcon field="FileName"></p-sortIcon></th>
+                    <th pSortableColumn="FileName">Name <p-sortIcon field="FileName"></p-sortIcon></th>
                     <th pSortableColumn="ContentType">ContentType <p-sortIcon field="ContentType"></p-sortIcon></th>
                     <th pSortableColumn="FileSize">FileSize <p-sortIcon field="FileSize"></p-sortIcon></th>
                     <th> Actions </th>
@@ -194,15 +217,20 @@
                 <ng-template pTemplate="body" let-file>
                   <tr>
                     <td>{{file.FileName}}</td>
-                    <td>{{file.ContentType}}</td>
-                    <td>{{file.FileSize | number }} MB</td>
-                    <td> <button pButton pRipple type="button" (click)="displayFileViewer=true;FileView=file;" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-plain"></button> </td>
+                    <td>{{file.ContentType==1? 'File': 'Note'}}</td>
+                    <td>
+                      <span *ngIf="file.ContentType==1">{{file.FileSize | number  }} MB</span>
+                    </td>
+                    <td> <button pButton pRipple type="button" (click)="displayFileViewer=true;FileView=file; ViewFile(file)" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-plain"></button> </td>
                   </tr>
 
-                  <p-dialog header="File Viewer" *ngIf="displayFileViewer && FileView.CommonSpaceFileId==file.CommonSpaceFileId" [(visible)]="FileView.CommonSpaceFileId==file.CommonSpaceFileId && displayFileViewer" [style]="{width: '80vw', height: '90vh'}">
-                    <div class="container-fluid">
+                  <p-dialog header="{{file.FileName}}" *ngIf="displayFileViewer && FileView.CommonSpaceFileId==file.CommonSpaceFileId" [(visible)]="FileView.CommonSpaceFileId==file.CommonSpaceFileId && displayFileViewer" [style]="{width: '80vw', height: '90vh'}">
+                    <div class="container-fluid" *ngIf="file.ContentType==1">
                       <img [src]="FileView.FileURL" *ngIf="isImage(FileView.FileExtension)"  style="width:100%;height:75vh;"/>
                       <ngx-doc-viewer [url]="FileView.FileURL" *ngIf="!isImage(FileView.FileExtension)" viewer="google" style="width:100%;height:75vh;"></ngx-doc-viewer>
+                    </div>
+                    <div *ngIf="file.ContentType==2">
+                      <app-viewnote  [note]="Viewnote"></app-viewnote>
                     </div>
                   </p-dialog>
 

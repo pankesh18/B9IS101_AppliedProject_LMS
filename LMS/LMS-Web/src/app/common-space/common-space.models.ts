@@ -17,6 +17,8 @@ export class CommonSpaceFile {
   BatchName: string
   CommonSpaceGroupId: number
   NoteId: number
+  NoteBody: string
+  BatchFileId: number
   FileURL: string
   FileExtension: string
   ContainerName: string

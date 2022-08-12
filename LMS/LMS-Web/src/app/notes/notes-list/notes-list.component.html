@@ -9,7 +9,7 @@
 
     </div>
     <div class="col" *ngIf="IsFile">
-      <p-dropdown [options]="FileOptions" (onChange)="GetBatchNotes(BatchId,BatchFileId, BatchMeetingId)" [(ngModel)]="BatchFileId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select File"></p-dropdown>
+      <p-dropdown [options]="FileOptions" (onChange)="GetBatchNotes(BatchId,BatchFileId, 0)" [(ngModel)]="BatchFileId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select File"></p-dropdown>
 
     </div>
     <div class="col" *ngIf="IsMeeting">
@@ -120,10 +120,12 @@
     <div>
       <div class="row">
         <div style="text-align:justify">
+
           <p-button icon="pi pi-arrow-left" styleClass="p-button-outlined p-button-success" (click)="IsNoteView=false;IsNoteUpdate=false;" *ngIf="IsNoteView || IsNoteUpdate"></p-button>
           <div style="float:right">
-            <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-primary mx-2" (click)="IsNoteUpdate=true;IsNoteView=false;" *ngIf="IsNoteView && selectednote.OwnerName==null"></p-button>
-            <p-button icon="pi pi-share-alt" styleClass="p-button-rounded p-button-primary mx-2" (click)="GetAllStudentsInBatch(BatchId);op.toggle($event)" *ngIf="IsNoteView && selectednote.OwnerName==null"></p-button>
+            <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-primary mx-2" (click)="IsNoteUpdate=true;IsNoteView=false;" *ngIf="IsNoteView && selectednote.CreatedBy==LoggedInUser.UserId"></p-button>
+      
+            <p-button icon="pi pi-share-alt" styleClass="p-button-rounded p-button-primary mx-2" (click)="GetAllStudentsInBatch(BatchId);op.toggle($event)" *ngIf="IsNoteView && selectednote.CreatedBy==LoggedInUser.UserId"></p-button>
             <p-overlayPanel #op>
               <ng-template pTemplate>
                 <p-listbox [options]="StudentsInBatch" [(ngModel)]="selectedStudents" [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true" optionLabel="name" [listStyle]="{'max-height':'450px'}" [style]="{'width':'15rem'}">
@@ -132,7 +134,7 @@
                       <div>{{student.FirstName}} {{student.LastName}}</div>
                     </div>
                   </ng-template>
-                  <ng-template pTemplate="footer" >
+                  <ng-template pTemplate="footer">
                     <div style="text-align:right" *ngIf="selectedStudents.length>0">
                       <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-outlined" (click)="ShareBatchNote(selectedStudents, BatchId, selectednote.BatchNoteId)"></button>
 
@@ -146,6 +148,9 @@
             </p-overlayPanel>
           </div>
         </div>
+
+      </div>
+      <div>
 
       </div>
       <div class="row">

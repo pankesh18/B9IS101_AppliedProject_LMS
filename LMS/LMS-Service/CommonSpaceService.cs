@@ -74,7 +74,26 @@ namespace LMS_Service
         }
 
 
+        public CommonSpaceFile AddCommonSpaceNote(CommonSpaceFile objCommonSpaceFile)
+        {
 
+            try
+            {
+                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    objCommonSpaceFile = CommonSpaceRepository.AddCommonSpaceFile(objdatabaseService, objCommonSpaceFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+            return objCommonSpaceFile;
+        }
 
         public List<CommonSpaceGroup> GetCommonSpaceGroup(int BatchId)
         {

@@ -180,6 +180,7 @@ export class NotesListComponent implements OnInit {
   viewNote(note: BatchNote) {
     this.selectednote = note;
     this.IsNoteView = true;
+    console.log(this.selectednote)
 /*    this.objNotesService.Note.next(note);*/
   }
 

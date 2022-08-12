@@ -209,7 +209,18 @@ namespace LMS_Repository
                             objCommonSpaceFile.ContentType = Convert.ToInt32(reader["ContentType"]);
                             objCommonSpaceFile.BatchId = Convert.ToInt32(reader["BatchId"]);
                             objCommonSpaceFile.CommonSpaceGroupId = Convert.ToInt32(reader["CommonSpaceGroupId"]);
-                            objCommonSpaceFile.NoteId = Convert.ToInt32(reader["NoteId"]);
+                            objCommonSpaceFile.NoteId = Convert.ToInt32(reader["NoteId"]==null? 0: reader["NoteId"]);
+
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("NoteBody")))
+                            {
+                                objCommonSpaceFile.NoteBody = Convert.ToString(reader["NoteBody"]);
+                            }
+                            if (!reader.IsDBNull(reader.GetOrdinal("BatchFileId")))
+                            {
+                                objCommonSpaceFile.BatchFileId = Convert.ToInt32(reader["BatchFileId"]);
+                            }
+
                             objCommonSpaceFile.FileURL = Convert.ToString(reader["FileURL"]);
                             objCommonSpaceFile.FileExtension = Convert.ToString(reader["FileExtension"]);
                             objCommonSpaceFile.ContainerName = Convert.ToString(reader["ContainerName"]);

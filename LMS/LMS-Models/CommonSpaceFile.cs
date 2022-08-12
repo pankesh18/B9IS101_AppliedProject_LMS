@@ -14,6 +14,8 @@ namespace LMS_Models
         public int BatchId { get; set; }
         public int CommonSpaceGroupId { get; set; }
         public int NoteId { get; set; }
+        public string NoteBody { get; set; }
+        public int BatchFileId { get; set; }
         public string FileURL { get; set; }
         public string FileExtension { get; set; }
         public string ContainerName { get; set; }

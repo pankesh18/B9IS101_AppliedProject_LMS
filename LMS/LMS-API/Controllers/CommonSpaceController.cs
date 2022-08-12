@@ -53,8 +53,30 @@ namespace LMS_API.Controllers
             }
         }
 
+
+        [HttpPost]
+        [ActionName("AddCommonSpaceNote")]
+        public HttpResponseMessage AddCommonSpaceNote(CommonSpaceFile objCommonSpaceFile)
+        {
+            try
+            {
+
+                CommonSpaceService objCommonSpaceService = new CommonSpaceService();
+
+                objCommonSpaceFile = objCommonSpaceService.AddCommonSpaceNote(objCommonSpaceFile);
+
+                return Request.CreateResponse(HttpStatusCode.OK, objCommonSpaceFile);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
+
+
         [HttpGet]
-        [ActionName("AddCommonSpaceFile")]
+        [ActionName("GetCommonSpaceGroup")]
         public HttpResponseMessage GetCommonSpaceGroup(int BatchId)
         {
             try

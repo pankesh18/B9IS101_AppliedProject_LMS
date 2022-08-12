@@ -255,6 +255,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BatchController.cs" />
+    <Compile Include="Controllers\CommonSpaceController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\LMSUserController.cs" />
     <Compile Include="Controllers\NoteController.cs" />

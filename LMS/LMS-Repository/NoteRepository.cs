@@ -173,6 +173,7 @@ namespace LMS_Repository
                             objLMSUser.Email = reader["Useremail"].ToString();
                             objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
                             objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
+                            objLMSUser.ProfilePic = Convert.ToString(reader["ProfilePic"]);
                             objStudents.Add(objLMSUser);
                         }
                     }

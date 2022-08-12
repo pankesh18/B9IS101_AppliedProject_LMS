@@ -21,8 +21,9 @@ namespace LMS_Service
             CloudStorageAccount objCloudStorageAccount = CloudStorageAccount.Parse(connectionString);
             CloudBlobClient objCloudBlobClient = objCloudStorageAccount.CreateCloudBlobClient();
             this.objCloudBlobContainer= objCloudBlobClient.GetContainerReference(containerName);
-            this.objCloudBlobContainer.CreateIfNotExists();
-            this.objCloudBlobContainer.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+            //this.objCloudBlobContainer.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+
+            //this.objCloudBlobContainer.CreateIfNotExists();
 
         }
 

@@ -28,6 +28,8 @@ import { ToastModule } from 'primeng/toast';
 import { LoginComponent } from './auth/login/login.component';
 import { ForumModule } from './forum/forum.module';
 import { MessagesModule } from 'primeng/messages';
+import { GroupModule } from './group/group.module';
+import { CommonSpaceModule } from './common-space/common-space.module';
 
 
 
@@ -51,6 +53,7 @@ import { MessagesModule } from 'primeng/messages';
     DashboardModule,
     MessagesModule,
     CoursedetailModule,
+    GroupModule,
     InputTextModule,
     DropdownModule,
     BatchModule,
@@ -60,6 +63,7 @@ import { MessagesModule } from 'primeng/messages';
     ForumModule,
     CommonModule,
     FormsModule,
+    CommonSpaceModule,
     ToastModule,
     AppRoutingModule
   ],

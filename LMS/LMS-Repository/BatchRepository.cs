@@ -87,6 +87,7 @@ namespace LMS_Repository
                             objLMSUser.Email = reader["Useremail"].ToString();
                             objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
                             objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
+                            objLMSUser.ProfilePic = Convert.ToString(reader["ProfilePic"]);
                             objStudents.Add(objLMSUser);
                         }
                     }
@@ -306,7 +307,7 @@ namespace LMS_Repository
                 SqlCommand command = objdatabaseService.GetSQLCommand();
 
                 command.CommandText = @"LMS_GetAllTeacherMetings";
-                command.CommandType = CommandType.StoredProcedure;
+                command.CommandType = CommandType.StoredProcedure;  
                 using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
                 {
                     if (reader.HasRows)
@@ -652,6 +653,7 @@ namespace LMS_Repository
                             objLMSUser.Email = reader["Useremail"].ToString();
                             objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
                             objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
+                            objLMSUser.ProfilePic = Convert.ToString(reader["ProfilePic"]);
                             objStudents.Add(objLMSUser);
                         }
                     }
@@ -805,6 +807,7 @@ namespace LMS_Repository
                             objLMSUser.Email = reader["Useremail"].ToString();
                             objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
                             objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
+                            objLMSUser.ProfilePic = Convert.ToString(reader["ProfilePic"]);
                             objStudents.Add(objLMSUser);
                         }
                     }

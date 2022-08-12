@@ -101,6 +101,8 @@
     <Compile Include="BatchFiles.cs" />
     <Compile Include="BatchMeeting.cs" />
     <Compile Include="BatchNote.cs" />
+    <Compile Include="CommonSpaceFile.cs" />
+    <Compile Include="CommonSpaceGroup.cs" />
     <Compile Include="ForumComment.cs" />
     <Compile Include="ForumQuestion.cs" />
     <Compile Include="GroupMeeting.cs" />

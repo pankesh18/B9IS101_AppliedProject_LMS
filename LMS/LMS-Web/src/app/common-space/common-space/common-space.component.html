@@ -1,0 +1,231 @@
+<div class="container-fluid p-5">
+  <div class="row">
+    <div class="col-12">
+      <p-multiSelect [options]="Students" [(ngModel)]="selectedStudents" (onChange)="selectStudent()" defaultLabel="Select students" optionLabel="name" style="width:100%" [selectionLimit]="selectionLimit" [selectedItemsLabel]="'{0} items selected'">
+        <ng-template let-value pTemplate="selectedItems">
+          <div class="item-value" *ngFor="let student of selectedStudents">
+            <div>
+              <img src="{{student.pic}}" style="border-radius:50%; height:30px; width:30px " />
+              {{student.name}}
+            </div>
+
+          </div>
+          <div *ngIf="!selectedStudents || selectedStudents.length === 0">
+            Select students
+          </div>
+        </ng-template>
+        <ng-template let-student pTemplate="item">
+          <div class="row">
+            <div class="col-4">
+              <img style="border-radius:50%; height:40px; width:40px " src="{{student.pic}}" />
+            </div>
+            <div class="col-8 py-2">
+              {{student.name}}
+            </div>
+          </div>
+        </ng-template>
+      </p-multiSelect>
+    </div>
+  </div>
+
+  <div class="row my-2">
+    <div class="col-12">
+      <div>
+        <span class="p-float-label" style="width:100%">
+          <input id="GroupName" type="text" [(ngModel)]="objCommonSpaceGroup.GroupName" class="p-3" pInputText style="width:100%">
+          <label for="GroupName">Group Name</label>
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row m-3 text-center">
+    <div class="col">
+      <button class="btn btn-primary" (click)="CreateCommonSpace(objCommonSpaceGroup)"> Add </button>
+    </div>
+  </div>
+
+  <div class="row card">
+    hi
+  </div>
+
+
+  <div class="row card">
+
+
+    <p-treeTable [value]="SpaceNodes" *ngIf="false">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Students</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-ri="rowIndex" let-i="rowIndex">
+        <tr [ttRow]="rowNode">
+          <td>
+            <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+            {{rowData.GroupName}}
+          </td>
+          <td>
+            {{rowData.ContentType}}
+            <span *ngIf="rowData.ContentType==0">Group</span>
+            <span *ngIf="rowData.ContentType==1">File</span>
+            <span *ngIf="rowData.ContentType==2">Note</span>
+
+          </td>
+          <td>
+            <div *ngIf="rowData.CommonSpaceGroupStudent">
+              <button pButton pRipple icon="pi pi-eye" [label]="'View Students'" class="p-button p-button-outlined p-button-rounded" (click)="op.toggle($event)"></button>
+
+
+              <p-overlayPanel #op>
+                <ng-template pTemplate>
+                  <div *ngFor="let stud of rowData.CommonSpaceGroupStudent">
+                    <div class="p-2">
+                      {{stud.FirstName}}
+                    </div>
+
+                  </div>
+                </ng-template>
+              </p-overlayPanel>
+
+            </div>
+
+          </td>
+          <td>
+            <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text p-button-success"></button>
+            <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain"></button>
+
+          </td>
+        </tr>
+      </ng-template>
+    </p-treeTable>
+
+
+
+
+
+
+
+    <p-table [value]="ListGroups" dataKey="GroupName">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem"></th>
+          <th pSortableColumn="GroupName">GroupName <p-sortIcon field="GroupName"></p-sortIcon></th>
+
+          <th>Members</th>
+          <th>Action</th>
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-group let-expanded="expanded" let-ri="rowIndex">
+        <tr>
+          <td>
+            <button type="button" pButton pRipple [pRowToggler]="group" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+          </td>
+          <td>{{group.GroupName}}</td>
+          <td>
+
+            <div *ngIf="group.CommonSpaceGroupStudent">
+              <button pButton pRipple icon="pi pi-eye" [label]="'View Students'" class="p-button p-button-outlined p-button-rounded" (click)="op.toggle($event)"></button>
+
+
+              <p-overlayPanel #op>
+                <ng-template pTemplate>
+                  <div *ngFor="let stud of group.CommonSpaceGroupStudent">
+                    <div class="p-2">
+                      {{stud.FirstName}}
+                    </div>
+
+                  </div>
+                </ng-template>
+              </p-overlayPanel>
+
+            </div>
+
+
+          </td>
+          <td>
+            <button pButton pRipple type="button" icon="pi pi-plus" (click)="FileCommonSpaceGroup=group; displayFileUpload=true" class="p-button-rounded p-button-text p-button-success"></button>
+            <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain"></button>
+          </td>
+        </tr>
+
+        <p-dialog header="Upload File" [(visible)]="group.CommonSpaceGroupId==FileCommonSpaceGroup.CommonSpaceGroupId && displayFileUpload" style="width:100%; height:100%">
+          <div class="container-fluid">
+            <div class="col my-2" style="text-align:center">
+              <span class="p-float-label" style="width:100%">
+                <input id="file-name" type="text" [(ngModel)]="FileName" pInputText style="width:100%">
+                <label for="file-name">File Name</label>
+              </span>
+            </div>
+
+            <div class="col my-2" style="text-align:center">
+              <p-fileUpload [auto]="true" title="Choose File" (onSelect)="AddFiles($event)" (onRemove)="Files=[]" name="image"></p-fileUpload>
+
+            </div>
+            <div class="col my-2" style="text-align:center">
+              <p-button label="Upload File" (click)="AddCommonSpaceFile(group)"></p-button>
+            </div>
+
+          </div>
+        </p-dialog>
+
+
+      </ng-template>
+      <ng-template pTemplate="rowexpansion" let-group>
+        <tr>
+          <td colspan="7">
+            <div class="p-p-3">
+
+              <p-table [value]="group.CommonSpaceGroupFiles" dataKey="CommonSpaceFileId">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th pSortableColumn="FileName">FileName <p-sortIcon field="FileName"></p-sortIcon></th>
+                    <th pSortableColumn="ContentType">ContentType <p-sortIcon field="ContentType"></p-sortIcon></th>
+                    <th pSortableColumn="FileSize">FileSize <p-sortIcon field="FileSize"></p-sortIcon></th>
+                    <th> Actions </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-file>
+                  <tr>
+                    <td>{{file.FileName}}</td>
+                    <td>{{file.ContentType}}</td>
+                    <td>{{file.FileSize | number }} MB</td>
+                    <td> <button pButton pRipple type="button" (click)="displayFileViewer=true;FileView=file;" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-plain"></button> </td>
+                  </tr>
+
+                  <p-dialog header="File Viewer" *ngIf="displayFileViewer && FileView.CommonSpaceFileId==file.CommonSpaceFileId" [(visible)]="FileView.CommonSpaceFileId==file.CommonSpaceFileId && displayFileViewer" [style]="{width: '80vw', height: '90vh'}">
+                    <div class="container-fluid">
+                      <img [src]="FileView.FileURL" *ngIf="isImage(FileView.FileExtension)"  style="width:100%;height:75vh;"/>
+                      <ngx-doc-viewer [url]="FileView.FileURL" *ngIf="!isImage(FileView.FileExtension)" viewer="google" style="width:100%;height:75vh;"></ngx-doc-viewer>
+                    </div>
+                  </p-dialog>
+
+
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                  <tr>
+                    <td colspan="6">There are no files for this group yet.</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+
+
+
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+
+
+
+
+</div>

@@ -16,6 +16,7 @@ LMSUser.UserId
 ,LMSUser.LastName
 ,LMSUser.Gender
 ,LMSUser.UserType
+,LMSUser.ProfilePic
 from GroupMeetingStudent 
 INNER JOIN LMSUser ON GroupMeetingStudent.UserId=LMSUser.UserId
 where GroupMeetingId=@GroupMeetingId

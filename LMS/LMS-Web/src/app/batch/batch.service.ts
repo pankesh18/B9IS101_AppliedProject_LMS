@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { param } from 'jquery';
 import { Observable, tap } from 'rxjs';
+import { APIURL } from '../appsetting';
 import { Batch, BatchFiles, StudentMeeting } from './batch.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BatchService {
-  APIURL: string = "https://localhost:44301/api/"
+  APIURL: string = APIURL
 
   httpheaders: HttpHeaders 
 

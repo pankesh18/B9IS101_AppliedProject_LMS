@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LMSUser, UserProfile } from './auth.models'
 import { LocalStorageService } from 'ngx-localstorage';
 import { Router } from '@angular/router';
+import { APIURL } from '../appsetting';
 
 const oAuthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
@@ -27,7 +28,7 @@ export class AuthService {
 
   userProfile: UserProfile = new UserProfile;
 
-  APIURL: string ="https://localhost:44301/api/"
+  APIURL: string = APIURL
 
   public isLogin = new BehaviorSubject<boolean>(false);
 

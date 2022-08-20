@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
+import { APIURL } from '../appsetting';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-  APIURL: string = "https://localhost:44301/api/"
+  APIURL: string = APIURL
 
   httpheaders: HttpHeaders 
 

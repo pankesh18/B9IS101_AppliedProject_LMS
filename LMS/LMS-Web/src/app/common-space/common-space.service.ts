@@ -5,12 +5,13 @@ import { TreeNode } from 'primeng/api';
 import { CommonSpaceFile, CommonSpaceGroup } from './common-space.models';
 import { param } from 'jquery';
 import { LMSUser } from '../auth/auth.models';
+import { APIURL } from '../appsetting';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonSpaceService {
-  APIURL: string = "https://localhost:44301/api/"
+  APIURL: string = APIURL
   httpheaders: HttpHeaders
 
 

@@ -12,13 +12,29 @@ namespace LMS_Service
 {
     public class BatchService
     {
+        enum env :int
+        {
+            dev = 0,
+            prod = 1
+        }
+
+        static string[] DBStrings = {
+                @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin",
+                @"Server=tcp:dbs-lms-db.database.windows.net,1433;Initial Catalog=db-lms;Persist Security Info=False;User ID=pankesh;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        };
+
+        string DBConnectionString= DBStrings[Convert.ToInt32(env.prod)];
+
         public int CreateBatch(Batch objBatch)
         {
-            int BatchId;
+
+ 
+
+        int BatchId;
             try
             {
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -39,8 +55,8 @@ namespace LMS_Service
             try
             {
                 List<LMSUser> objStudents=null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -61,8 +77,8 @@ namespace LMS_Service
             try
             {
                 List<Batch> objBatches = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -83,8 +99,8 @@ namespace LMS_Service
             try
             {
                 List<Batch> objBatches = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -106,7 +122,8 @@ namespace LMS_Service
             BatchMeeting objBatchMeeting;
             try
             {
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
                 ZoomService objZoomService = new ZoomService();
 
                 string ZoomMeetingUrl= "https://api.zoom.us/v2/users/{userId}/meetings";
@@ -142,8 +159,8 @@ namespace LMS_Service
             try
             {
                 List<StudentMeeting> objStudentMeeting = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -163,8 +180,8 @@ namespace LMS_Service
             try
             {
                 List<StudentMeeting> objStudentMeeting = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -185,7 +202,9 @@ namespace LMS_Service
             BatchFiles objBatchFiles= new BatchFiles();
             try
             {
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
+
                 string ContainerName = "lmsbatchcontainer";
 
                 objBatchFiles.FileName = objhttpcontext.Request.Form["FileName"].ToString();
@@ -248,8 +267,8 @@ namespace LMS_Service
             try
             {
                 List<StudentMeeting> objStudentMeeting = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -269,8 +288,8 @@ namespace LMS_Service
             try
             {
                 List<BatchFiles> objBatchFiles = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -292,8 +311,8 @@ namespace LMS_Service
             try
             {
                 StudentMeeting objStudentMeeting = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -313,8 +332,8 @@ namespace LMS_Service
 
             try
             {
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -334,8 +353,8 @@ namespace LMS_Service
             try
             {
                 Batch objBatches = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -359,7 +378,9 @@ namespace LMS_Service
 
             try
             {
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
+
                 ZoomService objZoomService = new ZoomService();
 
                 string ZoomMeetingUrl = "https://api.zoom.us/v2/users/{userId}/meetings";
@@ -405,8 +426,8 @@ namespace LMS_Service
             try
             {
                 List<GroupMeeting> objGroupMeeting = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
@@ -441,8 +462,8 @@ namespace LMS_Service
             try
             {
                 GroupMeeting objGroupMeeting = null;
-                string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
-
+                //string connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+                string connectionString = DBConnectionString;
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {

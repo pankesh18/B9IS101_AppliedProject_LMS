@@ -15,7 +15,6 @@ AS
 select 
 UserId
 ,Useremail
-,Userpassword
 ,FirstName
 ,LastName
 ,Gender

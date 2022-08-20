@@ -26,6 +26,7 @@ BatchMeetingId
 ,StartTime
 ,Duration
 ,[Password]
+, CreatedBy
 from
 BatchMeeting
 where   BatchMeetingId= @BatchMeetingId

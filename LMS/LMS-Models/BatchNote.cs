@@ -21,10 +21,9 @@ namespace LMS_Models
         public int CreatedBy { get; set; }
         public string OwnerName { get; set; }
         public string OwnerEmail { get; set; }
-        				
-    	
-        			
-        			
-        
+        public bool IsShared { get; set; }
+
+
+
     }
 }

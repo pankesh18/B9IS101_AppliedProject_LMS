@@ -17,6 +17,7 @@ CREATE PROCEDURE LMS_AddBatchMeeting
 ,@StartTime				Datetime
 ,@Duration				INT
 ,@Password				NVARCHAR(MAX)
+,@CreatedBy INT
 )
 AS
 
@@ -34,6 +35,7 @@ BatchId
 ,StartTime				
 ,Duration				
 ,[Password]
+,CreatedBy
 )
 values
 (
@@ -49,6 +51,7 @@ values
 ,@StartTime				
 ,@Duration				
 ,@Password
+,@CreatedBy
 )
 
 	

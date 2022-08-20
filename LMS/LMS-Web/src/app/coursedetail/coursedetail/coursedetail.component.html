@@ -25,7 +25,7 @@
 
 
     <p-tabView [scrollable]="true" [(activeIndex)]="tabIndex">
-      <p-tabPanel header="Meetings">
+      <p-tabPanel header="Batch Meetings">
 
         <p-virtualScroller [value]="MeetingList" scrollHeight="500px" [itemSize]="150">
 
@@ -82,95 +82,155 @@
 
         <div class="container mx-0" style="text-align:center; width:100%">
 
-          
-
-            <p-carousel [value]="FileList" [page]="fileIndex">
-
-              <ng-template let-item pTemplate="item">
-                <div class="row">
-                  <div [ngClass]="item.IsNotes ? 'col-8 mx-0' : 'col mx-0'">
-
-                    <div *ngIf="item.isURL">
 
 
-                      <youtube-player videoId="{{getYoutubeVideoId(item.FileURL)}}"
-                                      suggestedQuality="highres"
-                                      [width]="720"
-                                      [height]="576"
-                                      [startSeconds]="4"
-                                      [endSeconds]="8">
-                      </youtube-player>
+          <p-carousel [value]="FileList" [page]="fileIndex">
+
+            <ng-template let-item pTemplate="item">
+              <div class="row">
+                <div [ngClass]="item.IsNotes ? 'col-8 mx-0' : 'col mx-0'">
+
+                  <div *ngIf="item.isURL">
 
 
+                    <youtube-player videoId="{{getYoutubeVideoId(item.FileURL)}}"
+                                    suggestedQuality="highres"
+                                    [width]="720"
+                                    [height]="576"
+                                    [startSeconds]="4"
+                                    [endSeconds]="8">
+                    </youtube-player>
+
+
+
+
+                  </div>
+                  <div *ngIf="!item.isURL">
+
+                    <div *ngIf="item.FileType=='image'">
+
+                      <img src="{{item.FileURL}}" width="720" height="576" />
 
 
                     </div>
-                    <div *ngIf="!item.isURL">
-
-                      <div *ngIf="item.FileType=='image'">
-
-                        <img src="{{item.FileURL}}" width="720" height="576" />
+                    <div *ngIf="item.FileType=='document'">
 
 
-                      </div>
-                      <div *ngIf="item.FileType=='document'">
-
-
-                        <ngx-doc-viewer [url]="item.FileURL" viewer="google" style="width:100%;height:60vh;"></ngx-doc-viewer>
-
-                      </div>
-
-
-
-
-
+                      <ngx-doc-viewer [url]="item.FileURL" viewer="google" style="width:100%;height:60vh;"></ngx-doc-viewer>
 
                     </div>
 
-                  </div>
-                  <div class="col-4" [hidden]="!item.IsNotes">
-                    <app-create-notes [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-create-notes>
+
+
+
+
 
                   </div>
-                  <div class="col-4" [hidden]="!item.IsNoteList">
-                    <app-notes-list [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false" ></app-notes-list>
-                  </div>
-                  
 
+                </div>
+                <div class="col-4" [hidden]="!item.IsNotes">
+                  <app-create-notes [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-create-notes>
+
+                </div>
+                <div class="col-4" [hidden]="!item.IsNoteList">
+                  <app-notes-list [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-notes-list>
                 </div>
 
 
-                <p-toolbar>
-                  <div class="p-toolbar-group-left">
+              </div>
 
-                    <i class="pi pi-bars" [hidden]="true"></i>
+
+              <p-toolbar>
+                <div class="p-toolbar-group-left">
+
+                  <i class="pi pi-bars" [hidden]="true"></i>
+
+                </div>
+
+                <div class="p-toolbar-group-right">
+                  <p-button icon="pi pi-plus" class="m-2" (click)="item.IsNotes=!item.IsNotes;item.IsNoteList=false;"></p-button>
+                  <p-button icon="pi pi-list" class="m-2" (click)="item.IsNoteList=!item.IsNoteList;item.IsNotes=false;" styleClass="p-button-success"></p-button>
+                </div>
+              </p-toolbar>
+
+
+            </ng-template>
+
+          </p-carousel>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+      </p-tabPanel>
+      <p-tabPanel [header]="item.header" *ngFor="let item of Tabs; let i = index">
+
+        <div class="container">
+          <div class="row">
+            <div class="col">
+
+              <div class="col container-fluid" style="text-align:center;">
+
+                <div class="col my-2">
+                  <span class="p-float-label" style="width:100%">
+                    <input id="MeetingTopic" type="text" [(ngModel)]="meetingTopic" pInputText style="width:100%">
+                    <label for="MeetingTopic">Meeting Topic</label>
+                  </span>
+                </div>
+                <div class="col my-2">
+                  <p-pickList [source]="objBatch.BatchStudents" [target]="selectedStudent" sourceHeader="Available All Students" targetHeader="Selected Students for Batch"
+                              [responsive]="true" [sourceStyle]="{'height':'200px'}" [targetStyle]="{'height':'200px'}" filterBy="name"
+                              sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name">
+                    <ng-template let-stud pTemplate="item">
+                      <div>
+
+
+                        <div style="font-size:15px;float:right;margin:10px 5px 0 0"><i class="pi pi-user m-2"></i> {{stud.FirstName}} {{stud.LastName}} - {{stud.Email}}</div>
+
+                      </div>
+                    </ng-template>
+                  </p-pickList>
+                </div>
+
+                <div class="row">
+                  <div class="col text-center">
+                    <p-button label="Start Meeting" (click)="StartGroupMeeting()"></p-button>
 
                   </div>
 
-                  <div class="p-toolbar-group-right">
-                    <p-button icon="pi pi-plus" class="m-2" (click)="item.IsNotes=!item.IsNotes;item.IsNoteList=false;"></p-button>
-                    <p-button icon="pi pi-list" class="m-2" (click)="item.IsNoteList=!item.IsNoteList;item.IsNotes=false;" styleClass="p-button-success"></p-button>
+                </div>
+              </div>
+            </div>
+            <div class="col-4" *ngFor="let meeting of GroupMeetingList">
+              <div style="overflow-y:scroll; height:200px" >
+                <div class="listing">
+                  <div class="col-6">
+                    <div class="col-12 h4">{{meeting.Topic}}</div>
+                    <div class="col-12 text-muted small"> <span>{{meeting.StudentListString}}</span> </div>
                   </div>
-                </p-toolbar>
+                  <div class="col-6">
+                    <div class="col-12 h6" style="font-size: 0.95em;">{{meeting.StartTime | date:'mediumDate'}} {{meeting.StartTime | date:'shortTime'}}</div>
+                    <div class="col-12 col-12 text-muted text-right small">{{meeting.Duration}} mins</div>
 
+                  </div>
 
-              </ng-template>
+                </div>
+              </div>
+            </div>
 
-            </p-carousel>
-          
-
-
+            </div>
           </div>
 
+      </p-tabPanel>
 
-
-
-
-
-
-
-
-</p-tabPanel>
     </p-tabView>
 
 

@@ -5,11 +5,19 @@
 
     <div class="d-flex flex-nowrap sidebar">
       <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 100%;">
+        <div class="text-center">
+          <h1>
+            <img style="border-radius:50%" height="150px" src="{{LoggedInUser.GoogleUser.photoUrl}}" />
+          </h1>
+        </div>
+ 
+
 
 
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap" /></svg>
-          <span class="fs-4">Welcome {{userProfile?.userinfo?.name}}</span>
+          <span *ngIf="LoggedInUser.UserType==1" class="fs-4">Welcome, {{LoggedInUser.FirstName}} {{LoggedInUser.LastName}}</span>
+          <span *ngIf="LoggedInUser.UserType==2" class="fs-4">Welcome, {{LoggedInUser.FirstName}} {{LoggedInUser.LastName}}</span>
         </a>
         <hr>
 
@@ -17,26 +25,35 @@
         <ul class="nav nav-pills flex-column mb-auto">
 
           <li class="nav-item" (click)="goToDash()">
-            <a class="nav-link active" aria-current="page">
+            <a class="nav-link active" *ngIf="LoggedInUser.UserType==1" aria-current="page">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
-              Home
+              Teacher Dashboard
+            </a>
+            <a class="nav-link active" *ngIf="LoggedInUser.UserType==2" aria-current="page">
+              <svg class="bi pe-none me-2" width="16" height="16"></svg>
+              Student Dashboard
             </a>
           </li>
 
-          <li (click)="goToBatches()">
+          <li (click)="goToBatches()" *ngIf="LoggedInUser.UserType==1">
             <a class="nav-link text-white">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Batch
             </a>
           </li>
 
-          <li (click)="goToNotes()">
+          <li (click)="goToNotes()" *ngIf="LoggedInUser.UserType==2">
             <a class="nav-link text-white">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Notes
             </a>
           </li>
-
+          <li (click)="goToForum()">
+            <a class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"></svg>
+              Forum
+            </a>
+          </li>
 
 
           <li (click)="logout()">

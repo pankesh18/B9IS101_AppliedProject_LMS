@@ -1,6 +1,6 @@
-<p>dashboard works!</p>
-
-
-<button (click)="zoom()">zoom test</button>
-
-<app-student-dash></app-student-dash>
+<div class="container" *ngIf="LoggedInUser.UserType==2">
+  <app-student-dash></app-student-dash>
+</div>
+<div class="container" *ngIf="LoggedInUser.UserType==1">
+  <app-teacher-dash></app-teacher-dash>
+</div>

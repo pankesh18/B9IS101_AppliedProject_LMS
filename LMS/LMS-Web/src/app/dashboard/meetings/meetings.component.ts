@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
 import { StudentMeeting } from '../../batch/batch.models';
 import { DashboardService } from '../dashboard.service';
@@ -12,8 +13,8 @@ import { DashboardService } from '../dashboard.service';
 })
 export class MeetingsComponent implements OnInit {
 
-  constructor(private objLoginService: LoginService, private objDashboardService: DashboardService, private router: Router) {
-    this.LoggedInUser = this.objLoginService.getLoggedInUser();
+  constructor(private objLoginService: LoginService, private objDashboardService: DashboardService, private router: Router, private auth: AuthService) {
+    this.LoggedInUser = this.auth.getLoggedInUser();
 
   }
   StudentMeetings: StudentMeeting[] = [];
@@ -28,19 +29,48 @@ export class MeetingsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.GetAllStudentMetings(this.LoggedInUser.UserId);
+    if (this.LoggedInUser.UserType == 1) {
+      this.GetAllTeacherMetings(this.LoggedInUser.UserId);
+    }
+    else {
+      this.GetAllStudentMetings(this.LoggedInUser.UserId);
+
+    }
   }
 
 
   GetAllStudentMetings(UserId: number) {
+    this.StudentMeetings = [];
+    this.ojStudentMeetings = []
     this.objDashboardService.GetAllStudentMetings(UserId)
       .subscribe((response) => {
-        this.StudentMeetings = response;
-        this.ojStudentMeetings = this.StudentMeetings
+        if (response != null) {
+          this.StudentMeetings = response;
+          this.ojStudentMeetings = this.StudentMeetings
+        }
+
       }, function (rejection) {
 
       })
   }
+
+
+  GetAllTeacherMetings(UserId: number) {
+    this.StudentMeetings = [];
+    this.ojStudentMeetings = [];
+    this.objDashboardService.GetAllTeacherMetings(UserId)
+      .subscribe((response) => {
+        if (response != null) {
+          this.StudentMeetings = response;
+          this.ojStudentMeetings = this.StudentMeetings
+        }
+
+      }, function (rejection) {
+
+      })
+  }
+
+
 
   searchByMeetingTopic() {
 
@@ -139,8 +169,10 @@ export class MeetingsComponent implements OnInit {
   }
 
 
-  startZoom(MeetingId: number) {
-    var url = 'http://localhost:4201/zoom?' + 'MeetingId=' + MeetingId + '&Role=1' + '&UserId=' + this.LoggedInUser.UserId
+  startZoom(Meeting: any) {
+
+    let role = Meeting.CreatedBy == this.LoggedInUser.UserId ? 1 : 0;
+    var url = 'http://localhost:4201/zoom?' + 'MeetingId=' + Meeting.BatchMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId + '&IsGroupMeeting=false'
     window.open(url, '_blank');
 
   }

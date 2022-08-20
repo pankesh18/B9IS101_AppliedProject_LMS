@@ -35,7 +35,7 @@ namespace LMS_Service
             BatchMeeting zoomMeeting = new BatchMeeting();
 
             var generatedToken = ZoomToken("sVUDXtIBRa-AoUnoUgo5ww", "kuwZys1lCL94hprzSvSGFSrz4X9Dc6BeFte6");
-
+          
 
             try
             {
@@ -85,6 +85,102 @@ namespace LMS_Service
             return zoomMeeting;
         }
 
+
+        public async Task<bool> CheckUserExistsAsync(string UserEmail, string token)
+        {
+            HttpResponseMessage response = null;
+            string ResponseMessage = string.Empty;
+            bool IsExists=false;
+            try
+            {
+                Dictionary<string, object> MeetingParameters = new Dictionary<string, object>();
+
+                MeetingParameters.Add("email", UserEmail);
+
+                string URL = "https://api.zoom.us/v2/users/email?email=" + UserEmail;
+                using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, URL))
+                {
+                    HttpClient httpClient = new HttpClient();
+
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                    response = await httpClient.SendAsync(request);
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new WebException("Error in Check user with statusCode:" + response.StatusCode);
+                    }
+
+                    ResponseMessage = await response.Content.ReadAsStringAsync();
+
+                    var ZoomObject = JObject.Parse(ResponseMessage);
+                    IsExists = Convert.ToBoolean(ZoomObject["existed_email"]);
+
+                }
+            }
+            catch (Exception objException)
+            {
+                throw objException;
+            }
+            return IsExists;
+        }
+
+        public async Task CreateZoomUser(string token, string email, string FirstName, string LastName, string Password)
+        {
+            HttpResponseMessage response = null;
+            string ResponseMessage = string.Empty;
+
+            Dictionary<string, object> MeetingParameters = new Dictionary<string, object>();
+            Dictionary<string, object> user_info = new Dictionary<string, object>();
+
+            string ZoomUrl = "https://api.zoom.us/v2/users";
+
+            user_info.Add("email", email);
+            user_info.Add("first_name", FirstName);
+            user_info.Add("last_name", LastName);
+            user_info.Add("password", Password);
+            user_info.Add("type", 1);
+
+
+            MeetingParameters.Add("user_info", user_info);
+            MeetingParameters.Add("action", "custCreate");
+   
+
+            try
+            {
+                using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, ZoomUrl))
+                {
+                    request.Content = new StringContent(JsonConvert.SerializeObject(MeetingParameters), Encoding.UTF8, "application/json");
+
+                    HttpClient httpClient = new HttpClient();
+
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                    response = await httpClient.SendAsync(request);
+                    ResponseMessage = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new WebException("Error in User Creation with statusCode:" + response.StatusCode);
+                    }
+
+                    
+
+
+
+                    var ZoomObject = JObject.Parse(ResponseMessage);
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            
+        }
 
         public string GenerateJWToken(string APIKey, string SecretKey)
         {

@@ -4,7 +4,7 @@
 
 
 /*
-exec LMS_GetBatchNotes 1,1,5,0
+exec LMS_GetAllStudentsInBatch 1
 */
 IF OBJECT_ID ( 'LMS_GetAllStudentsInBatch', 'P' ) IS NOT NULL
     DROP PROCEDURE LMS_GetAllStudentsInBatch;
@@ -22,7 +22,6 @@ AS
 select 
 LMSUser.UserId
 ,Useremail
-,Userpassword
 ,FirstName
 ,LastName
 ,Gender	

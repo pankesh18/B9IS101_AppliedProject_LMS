@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BatchFiles, StudentMeeting } from '../../batch/batch.models';
+import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
+import { LoginService } from '../../auth/login/login.service';
+import { Batch, BatchFiles, GroupMeeting, StudentMeeting } from '../../batch/batch.models';
+import { BatchService } from '../../batch/batch.service';
+import { DashboardService } from '../../dashboard/dashboard.service';
 import { CoursedetailService } from '../coursedetail.service';
 
 @Component({
@@ -21,17 +26,30 @@ export class CoursedetailComponent implements OnInit {
   BatchFileId: number;
   isFileNotesView: boolean = false;
   tabIndex: number;
-  fileIndex: number=0;
-  ImageExtension: any[] = ['.jpeg', '.jpg', '.png', '.gif', '.tiff', '.raw','.bmp']
+  fileIndex: number = 0;
+  objBatch: Batch;
+  selectedStudent: LMSUser[] = [];
+  LoggedInUser: LMSUser;
+  ImageExtension: any[] = ['.jpeg', '.jpg', '.png', '.gif', '.tiff', '.raw', '.bmp']
+  meetingTopic: string;
+  Tabs: any[] = []
+  GroupMeetingList: GroupMeeting[] = [];
 
-  constructor(private objCoursedetailService: CoursedetailService, private router: Router, private route: ActivatedRoute) { }
+
+
+  constructor(private objCoursedetailService: CoursedetailService, private router: Router, private route: ActivatedRoute, private objBatchService: BatchService
+    , private objLoginService: LoginService, private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.LoggedInUser = this.auth.getLoggedInUser();
+
     this.route.params.subscribe(params => {
       this.BatchId = params['BatchId']
       this.BatchFileId = params['BatchFileId']
+      this.GetBatchDetails(this.BatchId)
       this.GetAllMeetingsByBatchId(this.BatchId)
       this.GetAllFilesByBatchId(this.BatchId)
+      this.GetGroupMeetings(this.BatchId, this.LoggedInUser.UserId);
     });
 
     if (this.BatchFileId != undefined) {
@@ -52,6 +70,26 @@ export class CoursedetailComponent implements OnInit {
       })
 
   }
+
+
+  GetBatchDetails(BatchId: number) {
+    this.objCoursedetailService.GetBatchDetails(BatchId)
+      .subscribe((response) => {
+        this.objBatch = response
+        if (this.objBatch.IsGroupMeetingAllowed) {
+          this.Tabs.push({ header: 'Group Meetings' })
+        }
+        let i = this.objBatch.BatchStudents.findIndex(item => item.UserId == this.LoggedInUser.UserId)
+        this.objBatch.BatchStudents.splice(i, 1)
+
+      }, function (rejection) {
+
+      })
+
+  }
+
+
+
 
   GetAllFilesByBatchId(BatchId: number) {
     this.objCoursedetailService.GetAllFilesByBatchId(BatchId)
@@ -180,4 +218,74 @@ export class CoursedetailComponent implements OnInit {
 
     }
   }
+
+
+
+  StartGroupMeeting() {
+    let studentMeeting = new GroupMeeting()
+    studentMeeting.BatchId = this.BatchId;
+    studentMeeting.HostEmail = this.LoggedInUser.Email
+    studentMeeting.Topic = this.meetingTopic
+    studentMeeting.GroupMeetingStudents = this.selectedStudent
+    studentMeeting.GroupMeetingStudents.push(this.LoggedInUser)
+    studentMeeting.CreatedBy = this.LoggedInUser.UserId;
+    this.objCoursedetailService.StartGroupMeeting(studentMeeting)
+      .subscribe((response) => {
+
+        this.startZoom(response)
+        
+        this.GetGroupMeetings(this.BatchId, this.LoggedInUser.UserId);
+
+      }, function (rejection) {
+
+      })
+
+  }
+
+
+
+  GetGroupMeetings(BatchId: number, UserId: number) {
+    this.objCoursedetailService.GetGroupMeetings(BatchId, UserId)
+      .subscribe((response) => {
+        this.GroupMeetingList = response
+        this.GroupMeetingList.forEach(meet => {
+          meet.StudentListString = this.getStudentListString(meet.GroupMeetingStudents)
+        })
+      }, function (rejection) {
+
+      })
+
+  }
+
+
+  getStudentListString(Students: LMSUser[]) {
+    let value = "";
+
+    Students.forEach((stud, i) => {
+      if (i < Students.length-1) {
+        value = value + stud.FirstName + ", "
+      }
+      else if (i == Students.length-1) {
+        value = value + stud.FirstName
+      }
+
+    })
+
+    if (value.length > 20) {
+      value = value.substring(0,5) + "..."
+    }
+
+
+    return value;
+  }
+
+
+
+  startZoom(Meeting: any) {
+    let role = Meeting.CreatedBy == this.LoggedInUser.UserId ? 1 : 0;
+    var url = 'http://localhost:4201/zoom?' + 'MeetingId=' + Meeting.GroupMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId + '&IsGroupMeeting=true'
+    window.open(url, '_blank');
+
+  }
+
 }

@@ -1,0 +1,151 @@
+<p-toast></p-toast>
+<div class="container px-5 py-3">
+
+  <div class="row my-2">
+
+    <div class="col mx-5 px-5 py-2">
+      <p-dropdown [options]="BatchOptions" (onChange)="GetAllDiscussionForum(BatchId)" [(ngModel)]="BatchId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Batch"></p-dropdown>
+
+    </div>
+
+  </div>
+
+  <div class="row text-center my-2 mx-3" style="border-bottom:groove 5px; border-color:lightcyan;">
+    <div>
+      <div id="CreateQuestion">
+        <p-editor [(ngModel)]="QuestionBody" [style]="{'height':'100%', 'width':'100%'}"></p-editor>
+      </div>
+      <button (click)="PostForumQuestion()" class="btn btn-primary m-3">Post</button>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="row my-2">
+
+
+
+
+
+    <div *ngFor="let question of objForumQuestion; let i = index;">
+      <div class="row my-2 mx-5">
+
+
+        <div class="card m-0 p-0">
+          <div class="card-header row m-0">
+            <div class="col-6 text-left h5">
+              {{question.CreatedBy.FirstName}} {{question.CreatedBy.LastName}}
+
+            </div>
+            <div class="col-6" style="text-align:right">
+              <i class="pi pi-trash mx-2" style="font-size: 2rem" (click)="DeleteForumQuestion(question)" *ngIf="question.CreatedBy.UserId==LoggedInUser.UserId"></i>
+
+            </div>
+          </div>
+
+          <div class="card-body row p-0">
+            <div class="col-2 text-center">
+              <div class="p-2">
+                <img src="{{question.CreatedBy.ProfilePic}}" style="width:50%; height: 50%; border-radius:50%" />
+              </div>
+            </div>
+            <div class="col-10 b-2">
+              <span [innerHTML]="sanitizeHTML(question.QuestionBody)"></span>
+
+
+            </div>
+
+          </div>
+          <div class="card-footer row p-2 m-0">
+            <div class="col-6 " style="text-align:left">
+              Published on: {{question.CreatedDate | date: 'mediumDate'}}
+            </div>
+            <div class="col-6" style="text-align:right">
+              <a class="mx-2" style="color:black" data-bs-toggle="collapse" href="#reply{{i}}" role="button" aria-expanded="false"> <i class="pi pi-reply" style="font-size: 2rem"></i></a>
+              <a class="mx-2" *ngIf="question.forumComments.length>0" style="color:black" data-bs-toggle="collapse" href="#comments{{i}}" role="button" aria-expanded="false"><i class="pi pi-eye" style="font-size: 2rem"></i></a>
+
+            </div>
+          </div>
+
+
+
+        </div>
+        <div id="comments{{i}}" class="collapse">
+          <div *ngFor="let comment of question.forumComments">
+            <div class="row my-2" style="margin-left:10%; ">
+
+
+              <div class="card m-0 p-0">
+                <div class="card-header row m-0">
+                  <div class="col-6" style="text-align:left">
+                    {{comment.CreatedBy.FirstName}} {{comment.CreatedBy.LastName}}
+                  </div>
+                  <div class="col-6" style="text-align:right">
+                    <i class="pi pi-trash mx-2" style="font-size: 2rem" (click)="DeleteForumComment(comment)" *ngIf="comment.CreatedBy.UserId==LoggedInUser.UserId"></i>
+
+                  </div>
+                </div>
+                <div class="card-body row p-0">
+                  <div class="col-2 text-center">
+                    <div class="p-2">
+                      <img src="{{comment.CreatedBy.ProfilePic}}" style="width:50%; height: 50%; border-radius:50%" />
+                    </div>
+                  </div>
+                  <div class="col-10 b-2">
+                    <span [innerHTML]="sanitizeHTML(comment.CommentBody)"></span>
+
+                  </div>
+
+                </div>
+                <div class="card-footer">
+                  <div style="text-align:right">
+                    Published on: {{comment.CreatedDate | date: 'mediumDate'}}
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="my-2 mx-5" style="text-align:right">
+
+        <div id="reply{{i}}" class="collapse my-3">
+          <p-editor [(ngModel)]="question.NewReply" [style]="{'height':'100%', 'width':'100%'}"></p-editor>
+          <button class="btn btn-primary m-3" (click)="PostForumComment(question.NewReply, question.ForumQuestionId, question.BatchId)">Comment</button>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="row my-2" *ngIf="objForumQuestion.length==0">
+
+    <div class="card cardbox">
+      <span> Discussion not yet started...</span>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+

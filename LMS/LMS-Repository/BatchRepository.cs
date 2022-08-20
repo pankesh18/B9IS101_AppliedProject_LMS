@@ -36,6 +36,8 @@ namespace LMS_Repository
                 objdatabaseService.AddParameter("BatchYear", objBatch.BatchYear);
                 objdatabaseService.AddParameter("CourseName", objBatch.CourseName);
                 objdatabaseService.AddParameter("StudentId", studentIdlist.AsDataTable<IdList>());
+                objdatabaseService.AddParameter("IsGroupMeetingAllowed", objBatch.IsGroupMeetingAllowed);
+                objdatabaseService.AddParameter("CreatedBy", objBatch.CreatedBy);
 
 
 
@@ -85,6 +87,7 @@ namespace LMS_Repository
                             objLMSUser.Email = reader["Useremail"].ToString();
                             objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
                             objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
+                            objLMSUser.ProfilePic = Convert.ToString(reader["ProfilePic"]);
                             objStudents.Add(objLMSUser);
                         }
                     }
@@ -101,14 +104,14 @@ namespace LMS_Repository
         }
 
 
-        public static List<Batch> GetAllBatches(DatabaseService objdatabaseService)
+        public static List<Batch> GetAllBatches(DatabaseService objdatabaseService, int UserId)
         {
             try
             {
                 List<Batch> objBatches = null;
                 Batch objBatch = null;
                 objdatabaseService.ClearParameter();
-
+                objdatabaseService.AddParameter("UserId", UserId);
 
                 SqlCommand command = objdatabaseService.GetSQLCommand();
 
@@ -127,6 +130,9 @@ namespace LMS_Repository
                             objBatch.BatchName = reader["BatchName"].ToString();
                             objBatch.BatchYear = reader["BatchYear"].ToString();
                             objBatch.CourseName = reader["CourseName"].ToString();
+                            objBatch.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
+                            objBatch.IsGroupMeetingAllowed = Convert.ToBoolean(reader["IsGroupMeetingAllowed"]);
+
                             objBatches.Add(objBatch);
                         }
                     }
@@ -171,6 +177,8 @@ namespace LMS_Repository
                             objBatch.BatchName = reader["BatchName"].ToString();
                             objBatch.BatchYear = reader["BatchYear"].ToString();
                             objBatch.CourseName = reader["CourseName"].ToString();
+                            objBatch.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
+                            objBatch.IsGroupMeetingAllowed = Convert.ToBoolean(reader["IsGroupMeetingAllowed"]);
                             objBatches.Add(objBatch);
                         }
                     }
@@ -207,6 +215,7 @@ namespace LMS_Repository
                 objdatabaseService.AddParameter("StartTime", objBatchMeeting.StartTime);
                 objdatabaseService.AddParameter("Duration", objBatchMeeting.Duration);
                 objdatabaseService.AddParameter("Password", objBatchMeeting.Password);
+                objdatabaseService.AddParameter("CreatedBy", objBatchMeeting.CreatedBy);
                
 
 
@@ -268,6 +277,7 @@ namespace LMS_Repository
                             obj.StartTime = Convert.ToDateTime(reader["StartTime"]);
                             obj.Duration = Convert.ToInt32(reader["Duration"]);
                             obj.Password = Convert.ToString(reader["Password"]);
+                            obj.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
 
                             objMeetings.Add(obj);
                         }
@@ -285,6 +295,60 @@ namespace LMS_Repository
         }
 
 
+        public static List<StudentMeeting> GetAllTeacherMetings(DatabaseService objdatabaseService, int UserId)
+        {
+            try
+            {
+                List<StudentMeeting> objMeetings = null;
+                StudentMeeting obj = null;
+                objdatabaseService.ClearParameter();
+                objdatabaseService.AddParameter("UserId", UserId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetAllTeacherMetings";
+                command.CommandType = CommandType.StoredProcedure;  
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    if (reader.HasRows)
+                    {
+                        objMeetings = new List<StudentMeeting>();
+
+                        while (reader.Read())
+                        {
+                            obj = new StudentMeeting();
+                            obj.BatchId = Convert.ToInt32(reader["BatchId"]);
+                            obj.BatchName = reader["BatchName"].ToString();
+                            obj.BatchYear = reader["BatchYear"].ToString();
+                            obj.CourseName = reader["CourseName"].ToString();
+                            obj.BatchMeetingId = Convert.ToInt32(reader["BatchMeetingId"]);
+                            obj.ZoomMeetingId = reader["ZoomMeetingId"].ToString();
+                            obj.StartUrl = reader["StartUrl"].ToString();
+                            obj.JoinUrl = reader["JoinUrl"].ToString();
+                            obj.UUID = reader["UUID"].ToString();
+                            obj.HostId = reader["HostId"].ToString();
+                            obj.HostEmail = reader["HostEmail"].ToString();
+                            obj.Topic = reader["Topic"].ToString();
+                            obj.Status = reader["Status"].ToString();
+                            obj.StartTime = Convert.ToDateTime(reader["StartTime"]);
+                            obj.Duration = Convert.ToInt32(reader["Duration"]);
+                            obj.Password = Convert.ToString(reader["Password"]);
+                            obj.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
+
+                            objMeetings.Add(obj);
+                        }
+                    }
+                }
+
+                return objMeetings;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
 
 
 
@@ -304,6 +368,7 @@ namespace LMS_Repository
                 objdatabaseService.AddParameter("isURL", objBatchFiles.isURL);
                 objdatabaseService.AddParameter("FileSize", objBatchFiles.FileSize);
                 objdatabaseService.AddParameter("Caption", objBatchFiles.Caption);
+                objdatabaseService.AddParameter("CreatedBy", objBatchFiles.CreatedBy);
 
 
                 SqlCommand command = objdatabaseService.GetSQLCommand();
@@ -358,6 +423,7 @@ namespace LMS_Repository
                             obj.StartTime = Convert.ToDateTime(reader["StartTime"]);
                             obj.Duration = Convert.ToInt32(reader["Duration"]);
                             obj.Password = reader["Password"].ToString();
+                            obj.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
 
                             objMeetings.Add(obj);
                         }
@@ -407,6 +473,7 @@ namespace LMS_Repository
                             obj.isURL = Convert.ToBoolean( reader["isURL"]);
                             obj.FileSize = reader["FileSize"].ToString();
                             obj.Caption = reader["Caption"].ToString();
+                            obj.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
 
 
                             objBatchFiles.Add(obj);
@@ -459,8 +526,340 @@ namespace LMS_Repository
                             objMeeting.StartTime = Convert.ToDateTime(reader["StartTime"]);
                             objMeeting.Duration = Convert.ToInt32(reader["Duration"]);
                             objMeeting.Password = reader["Password"].ToString();
+                            objMeeting.CreatedBy = Convert.ToInt32(reader["CreatedBy"]); 
                         }
                 
+                    }
+                }
+
+                return objMeeting;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
+
+
+
+        public static void UpdateBatch(DatabaseService objdatabaseService, Batch objBatch)
+        {
+          
+            try
+            {
+
+
+
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("BatchName", objBatch.BatchName);
+                objdatabaseService.AddParameter("BatchYear", objBatch.BatchYear);
+                objdatabaseService.AddParameter("CourseName", objBatch.CourseName);
+                objdatabaseService.AddParameter("IsGroupMeetingAllowed", objBatch.IsGroupMeetingAllowed);
+                objdatabaseService.AddParameter("BatchId", objBatch.BatchId);
+
+
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_UpdateBatch";
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+     
+        }
+
+
+
+        public static Batch GetBatchDetails(DatabaseService objdatabaseService, int BatchId)
+        {
+            try
+            {
+
+                Batch objBatch = null;
+                objdatabaseService.ClearParameter();
+                objdatabaseService.AddParameter("BatchId", BatchId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetBatchDetails";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.Default))
+                {
+                    if (reader.HasRows)
+                    {
+
+
+                        while (reader.Read())
+                        {
+                            objBatch = new Batch();
+                            objBatch.BatchId = Convert.ToInt32(reader["BatchId"]);
+                            objBatch.BatchName = reader["BatchName"].ToString();
+                            objBatch.BatchYear = reader["BatchYear"].ToString();
+                            objBatch.CourseName = reader["CourseName"].ToString();
+                            objBatch.IsGroupMeetingAllowed = Convert.ToBoolean(reader["IsGroupMeetingAllowed"]);
+                            objBatch.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
+
+                        }
+                    }
+                }
+
+                return objBatch;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
+
+
+        public static List<LMSUser> GetAllStudentsByBatchId(DatabaseService objdatabaseService, int BatchId)
+        {
+            try
+            {
+                List<LMSUser> objStudents = null;
+                LMSUser objLMSUser = null;
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("BatchId", BatchId);
+
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetAllStudentsInBatch";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    if (reader.HasRows)
+                    {
+                        objStudents = new List<LMSUser>();
+
+                        while (reader.Read())
+                        {
+                            objLMSUser = new LMSUser();
+                            objLMSUser.UserId = Convert.ToInt32(reader["UserId"]);
+                            objLMSUser.FirstName = reader["FirstName"].ToString();
+                            objLMSUser.LastName = reader["LastName"].ToString();
+                            objLMSUser.Email = reader["Useremail"].ToString();
+                            objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
+                            objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
+                            objLMSUser.ProfilePic = Convert.ToString(reader["ProfilePic"]);
+                            objStudents.Add(objLMSUser);
+                        }
+                    }
+                }
+
+                return objStudents;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
+
+
+        public static GroupMeeting AddGroupMeeting(DatabaseService objdatabaseService, GroupMeeting objGroupMeeting)
+        {
+             
+            try
+            {
+
+                List<IdList> studentIdlist = new List<IdList>();
+                foreach (var student in objGroupMeeting.GroupMeetingStudents)
+                {
+                    IdList idList = new IdList();
+                    idList.Id = student.UserId;
+                    studentIdlist.Add(idList);
+                }
+
+
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("BatchId", objGroupMeeting.BatchId);
+                objdatabaseService.AddParameter("ZoomMeetingId", objGroupMeeting.ZoomMeetingId);
+                objdatabaseService.AddParameter("StartUrl", objGroupMeeting.StartUrl);
+                objdatabaseService.AddParameter("JoinUrl", objGroupMeeting.JoinUrl);
+                objdatabaseService.AddParameter("UUID", objGroupMeeting.UUID);
+                objdatabaseService.AddParameter("HostId", objGroupMeeting.HostId);
+                objdatabaseService.AddParameter("HostEmail", objGroupMeeting.HostEmail);
+                objdatabaseService.AddParameter("Topic", objGroupMeeting.Topic);
+                objdatabaseService.AddParameter("Status", objGroupMeeting.Status);
+                objdatabaseService.AddParameter("StartTime", objGroupMeeting.StartTime);
+                objdatabaseService.AddParameter("Duration", objGroupMeeting.Duration);
+                objdatabaseService.AddParameter("Password", objGroupMeeting.Password);
+                objdatabaseService.AddParameter("CreatedBy", objGroupMeeting.CreatedBy);
+                objdatabaseService.AddParameter("StudentList", studentIdlist.AsDataTable<IdList>());
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_AddGroupMeeting";
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                objGroupMeeting.GroupMeetingId =Convert.ToInt32(command.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+            return objGroupMeeting;
+
+        }
+
+
+
+        public static List<GroupMeeting> GetGroupMeetings(DatabaseService objdatabaseService, int BatchId, int UserId)
+        {
+            try
+            {
+                GroupMeeting objMeeting = null;
+                List<GroupMeeting> objGroupList = null;
+                objdatabaseService.ClearParameter();
+                objdatabaseService.AddParameter("BatchId", BatchId);
+                objdatabaseService.AddParameter("UserId", UserId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetGroupMeetings";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    if (reader.HasRows)
+                    {
+                        objGroupList = new List<GroupMeeting>();
+                        while (reader.Read())
+                        {
+                            objMeeting = new GroupMeeting();
+                            objMeeting.GroupMeetingId = Convert.ToInt32(reader["GroupMeetingId"]);
+                            objMeeting.BatchId = Convert.ToInt32(reader["BatchId"]);
+                            objMeeting.ZoomMeetingId = reader["ZoomMeetingId"].ToString();
+                            objMeeting.StartUrl = reader["StartUrl"].ToString();
+                            objMeeting.JoinUrl = reader["JoinUrl"].ToString();
+                            objMeeting.UUID = reader["UUID"].ToString();
+                            objMeeting.HostId = reader["HostId"].ToString();
+                            objMeeting.HostEmail = reader["HostEmail"].ToString();
+                            objMeeting.Topic = reader["Topic"].ToString();
+                            objMeeting.Status = reader["Status"].ToString();
+                            objMeeting.StartTime = Convert.ToDateTime(reader["StartTime"]);
+                            objMeeting.Duration = Convert.ToInt32(reader["Duration"]);
+                            objMeeting.Password = reader["Password"].ToString();
+                            objMeeting.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
+
+                            objMeeting.BatchName = Convert.ToString(reader["BatchName"]);
+                            objMeeting.BatchYear = Convert.ToString(reader["BatchYear"]);
+                            objMeeting.CourseName = Convert.ToString(reader["CourseName"]);
+
+                            objGroupList.Add(objMeeting);
+                        }
+
+                    }
+                }
+
+                return objGroupList;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
+
+        public static List<LMSUser> GetGroupMeetingStudents(DatabaseService objdatabaseService, int GroupMeetingId)
+        {
+            try
+            {
+                List<LMSUser> objStudents = null;
+                LMSUser objLMSUser = null;
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("GroupMeetingId", GroupMeetingId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetGroupMeetingStudents";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.Default))
+                {
+                    if (reader.HasRows)
+                    {
+                        objStudents = new List<LMSUser>();
+
+                        while (reader.Read())
+                        {
+                            objLMSUser = new LMSUser();
+                            objLMSUser.UserId = Convert.ToInt32(reader["UserId"]);
+                            objLMSUser.FirstName = reader["FirstName"].ToString();
+                            objLMSUser.LastName = reader["LastName"].ToString();
+                            objLMSUser.Email = reader["Useremail"].ToString();
+                            objLMSUser.Gender = Convert.ToInt32(reader["Gender"]);
+                            objLMSUser.UserType = Convert.ToInt32(reader["UserType"]);
+                            objLMSUser.ProfilePic = Convert.ToString(reader["ProfilePic"]);
+                            objStudents.Add(objLMSUser);
+                        }
+                    }
+                }
+
+                return objStudents;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
+
+
+        public static GroupMeeting GetGroupMeetingDetails(DatabaseService objdatabaseService, int GroupMeetingId)
+        {
+            try
+            {
+                GroupMeeting objMeeting = null;
+
+                objdatabaseService.ClearParameter();
+                objdatabaseService.AddParameter("GroupMeetingId", GroupMeetingId);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_GetGroupMeetingDetails";
+                command.CommandType = CommandType.StoredProcedure;
+                using (DbDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            objMeeting = new GroupMeeting();
+                            objMeeting.GroupMeetingId = Convert.ToInt32(reader["GroupMeetingId"]);
+                            objMeeting.BatchId = Convert.ToInt32(reader["BatchId"]);
+                            objMeeting.ZoomMeetingId = reader["ZoomMeetingId"].ToString();
+                            objMeeting.StartUrl = reader["StartUrl"].ToString();
+                            objMeeting.JoinUrl = reader["JoinUrl"].ToString();
+                            objMeeting.UUID = reader["UUID"].ToString();
+                            objMeeting.HostId = reader["HostId"].ToString();
+                            objMeeting.HostEmail = reader["HostEmail"].ToString();
+                            objMeeting.Topic = reader["Topic"].ToString();
+                            objMeeting.Status = reader["Status"].ToString();
+                            objMeeting.StartTime = Convert.ToDateTime(reader["StartTime"]);
+                            objMeeting.Duration = Convert.ToInt32(reader["Duration"]);
+                            objMeeting.Password = reader["Password"].ToString();
+                            objMeeting.CreatedBy = Convert.ToInt32(reader["CreatedBy"]);
+                        }
+
                     }
                 }
 

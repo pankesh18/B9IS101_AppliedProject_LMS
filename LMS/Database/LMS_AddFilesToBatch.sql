@@ -19,6 +19,7 @@ CREATE PROCEDURE LMS_AddFilesToBatch
 ,@isURL	BIT
 ,@FileSize	NVARCHAR(MAX)
 ,@Caption	NVARCHAR(MAX)
+,@CreatedBy INT
 )
 AS
 
@@ -32,6 +33,7 @@ BatchId
 ,isURL
 ,FileSize
 ,Caption
+,CreatedBy
 )
 values
 (
@@ -43,6 +45,7 @@ values
 ,@isURL
 ,@FileSize
 ,@Caption
+,@CreatedBy
 )
 
 GO

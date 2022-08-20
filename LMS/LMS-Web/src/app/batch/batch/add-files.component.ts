@@ -8,6 +8,7 @@ import { BatchService } from '../batch.service';
 import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import * as $ from 'jquery';
 import { LoginService } from '../../auth/login/login.service';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -26,9 +27,9 @@ export class AddFilesComponent implements OnInit {
   FileCaption: string;
   isURL: boolean = false;
   URL: string;
-  constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig) {
+  constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig, private auth: AuthService) {
 
-    this.LoggedInUser = loginService.getLoggedInUser();
+    this.LoggedInUser = auth.getLoggedInUser();
 
   }
   ngAfterViewInit(): void {
@@ -53,7 +54,8 @@ export class AddFilesComponent implements OnInit {
     formData.append("BatchId", JSON.stringify(this.BatchId))
     formData.append("FileName", this.FileName)
     formData.append("Caption", this.FileCaption)
-    formData.append("isURL", JSON.stringify(this.isURL) )
+    formData.append("isURL", JSON.stringify(this.isURL))
+    formData.append("CreatedBy", JSON.stringify(this.LoggedInUser.UserId))
     if (this.isURL) {
       formData.append("URL", this.URL)
 

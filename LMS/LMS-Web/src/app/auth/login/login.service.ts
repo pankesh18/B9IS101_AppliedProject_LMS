@@ -12,55 +12,55 @@ export class LoginService {
   APIURL: string = "https://localhost:44301/api/"
   constructor(private http: HttpClient, private localStorage: LocalStorageService, private router: Router) {
 
-    if (!this.isLogin()) {
-      this.router.navigate(['/login'])
-    }
+    //if (!this.isLogin()) {
+    //  this.router.navigate(['/login'])
+    //}
 
   }
 
-  public isLogin() {
-    var item = localStorage.getItem('LoggedInUser');
-    if (item != null && item != undefined) {
-      return true
-    } else {
-      return false
-    }
-  }
+  //public isLogin() {
+  //  var item = localStorage.getItem('LoggedInUser');
+  //  if (item != null && item != undefined) {
+  //    return true
+  //  } else {
+  //    return false
+  //  }
+  //}
 
-  public getLoggedInUser() {
-    var item = localStorage.getItem('LoggedInUser');
+  //public getLoggedInUser() {
+  //  var item = localStorage.getItem('LoggedInUser');
 
-    if (item === null || item === "null" || item === undefined) {
-      this.logout()
-      return new LMSUser;
+  //  if (item === null || item === "null" || item === undefined) {
+  //    this.logout()
+  //    return new LMSUser;
 
 
-    } else {
+  //  } else {
 
-      return JSON.parse(item) as LMSUser;;
-    }
+  //    return JSON.parse(item) as LMSUser;;
+  //  }
       
-  }
+  //}
 
 
-  logout() {
-    //this.authservice.logout();
-    this.localStorage.remove('LoggedInUser')
-    this.router.navigate(['/'])
-  }
+  //logout() {
+  //  //this.authservice.logout();
+  //  this.localStorage.remove('LoggedInUser')
+  //  this.router.navigate(['/'])
+  //}
 
 
 
 
 
-  public loginUser(UserEmail: string, UserPassword:string) {
+  public loginUser(UserEmail: string, GoogleUserId:string) {
     let httpheaders = new HttpHeaders()
     httpheaders.append('content-type', 'application/json')
     httpheaders.append('Access-Control-Allow-Origin', '*')
     httpheaders.append('Accept', 'application/json')
     let httpOptions = { headers: httpheaders }
 
-    return this.http.get<any>(this.APIURL + "LMSUser/LoginUser", { params: { UserEmail: UserEmail, UserPassword: UserPassword } }).pipe(
+    return this.http.get<any>(this.APIURL + "LMSUser/LoginUser", { params: { UserEmail: UserEmail, GoogleUserId: GoogleUserId } }).pipe(
       tap(res => res)    
     );
   }

@@ -15,17 +15,14 @@ export class IntermediateComponent implements OnInit {
   islogin: boolean = false;
   userProfile: UserProfile | undefined;
 
-  constructor(private authservice: AuthService, private router: Router, private loginService: LoginService) {
+  constructor(private authservice: AuthService, private router: Router, private auth: AuthService) {
 
   }
 
   ngOnInit(): void {
-    //this.islogin = this.authservice.isLogin()
-    //if (this.islogin) {
-    //  //this.userProfile = this.authservice.getUserProfile()
-    //}
 
-    this.islogin = this.loginService.isLogin()
+
+    this.auth.isLogin.subscribe(value => this.islogin = value)
 
     if (this.islogin) {
       console.log('logged in... redirecting to dash')
@@ -33,7 +30,7 @@ export class IntermediateComponent implements OnInit {
     }
     else {
       console.log('trying to login from intermediate!')
-      this.router.navigate(['/login'])
+      window.location.href ='http://localhost:4200/login'
     }
 
 

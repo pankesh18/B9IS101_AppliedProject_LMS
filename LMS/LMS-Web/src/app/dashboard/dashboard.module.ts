@@ -12,6 +12,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { InputTextModule } from 'primeng/inputtext';
 import { ZoomModule } from '../zoom/zoom.module';
+import { TeacherDashComponent } from './teacher-dash/teacher-dash.component';
 
 
 
@@ -20,6 +21,7 @@ import { ZoomModule } from '../zoom/zoom.module';
     DashboardComponent,
     StudentDashComponent,
     MeetingsComponent,
+    TeacherDashComponent,
     
   ],
   imports: [

@@ -43,6 +43,12 @@ export class DashboardService {
     );
   }
 
+  public GetAllTeacherMetings(UserId: number) {
+    let httpOptions = { headers: this.httpheaders }
+    return this.http.get<any>(this.APIURL + "Batch/GetAllTeacherMetings", { params: { UserId: UserId } }).pipe(
+      tap(res => res)
+    );
+  }
 
   //public ZoomTest(StudentUserId: number) {
   //  return this.http.get<any>(this.APIURL + "Zoom/ZoomTest").pipe(

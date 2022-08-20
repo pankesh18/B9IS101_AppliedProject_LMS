@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
+import { LoginService } from '../../auth/login/login.service';
 import { DashboardService } from '../dashboard.service';
 
 @Component({
@@ -8,9 +11,13 @@ import { DashboardService } from '../dashboard.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private objDashboardService: DashboardService) { }
+  LoggedInUser: LMSUser
+
+  constructor(private objDashboardService: DashboardService, private objLoginService: LoginService, private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.LoggedInUser = this.auth.getLoggedInUser()
+
   }
   zoom() {
     this.objDashboardService.ZoomTest()

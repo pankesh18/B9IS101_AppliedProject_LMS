@@ -30,14 +30,16 @@ BatchNoteId
 ,BatchMeeting.Topic
 ,BatchMeeting.StartTime
 ,NoteBody,BatchNote.CreatedBy
-,null as OwnerName
-,null as OwnerEmail
+,(Concat(LMSUser.FirstName,' ', LMSUser.LastName))as OwnerName
+,LMSUser.Useremail as OwnerEmail
+, Cast(0 as Bit) as IsShared
 from
 BatchNote
+inner join LMSUser on BatchNote.CreatedBy=LMSUser.UserId
 left join BatchMeeting on BatchNote.BatchMeetingId=BatchMeeting.BatchMeetingId
 left join BatchFile on BatchNote.BatchFileId=BatchFile.BatchFileId
-where BatchNote.BatchId=@BatchId and CreatedBy=@UserId 
-and (BatchNote.BatchFileId=@FileId or (@FileId=0 AND @MeetingId<>0)) and (BatchNote.BatchMeetingId=@MeetingId or (@MeetingId=0 AND @FileId<>0))
+where (BatchNote.BatchId=@BatchId or @BatchId=0) and BatchNote.CreatedBy=@UserId 
+and ((BatchNote.BatchFileId=@FileId or (@FileId=0 AND @MeetingId<>0)) and (BatchNote.BatchMeetingId=@MeetingId or (@MeetingId=0 AND @FileId<>0)) OR (@MeetingId=0 AND @FileId=0) )
 
 union
 
@@ -51,9 +53,11 @@ BatchNote.BatchNoteId
 ,BatchNote.BatchMeetingId
 ,BatchMeeting.Topic
 ,BatchMeeting.StartTime
-,NoteBody,BatchNote.CreatedBy
-,(Concat(LMSUser.FirstName,' ', LMSUser.LastName))as SharedBy
+,NoteBody
+,BatchNote.CreatedBy
+,(Concat(LMSUser.FirstName,' ', LMSUser.LastName))as OwnerName
 ,LMSUser.Useremail as OwnerEmail
+, Cast(1 as Bit) as IsShared
 from 
 BatchNote
 inner join SharedNote on BatchNote.BatchId=SharedNote.BatchId and BatchNote.BatchNoteId =SharedNote.BatchNoteId 
@@ -61,7 +65,7 @@ inner join LMSUser on BatchNote.CreatedBy=LMSUser.UserId
 left join BatchMeeting on BatchNote.BatchMeetingId=BatchMeeting.BatchMeetingId
 left join BatchFile on BatchNote.BatchFileId=BatchFile.BatchFileId
 where SharedNote.BatchId=@BatchId and SharedNote.UserId=@UserId
-and (BatchNote.BatchFileId=@FileId or (@FileId=0 AND @MeetingId<>0)) and (BatchNote.BatchMeetingId=@MeetingId or (@MeetingId=0 AND @FileId<>0))
+and (BatchNote.BatchFileId=@FileId or (@FileId=0 AND @MeetingId<>0)) and (BatchNote.BatchMeetingId=@MeetingId or (@MeetingId=0 AND @FileId<>0)) 
 
 GO
 

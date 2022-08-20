@@ -7,7 +7,7 @@ CREATE PROCEDURE LMS_GetAllStudents
 
 AS
 
-select UserId,	Useremail,	Userpassword,	FirstName,	LastName	,Gender	,	UserType
+select UserId,	Useremail,		FirstName,	LastName	,Gender	,	UserType , ProfilePic
 from LMSUser where UserType=2
   
 

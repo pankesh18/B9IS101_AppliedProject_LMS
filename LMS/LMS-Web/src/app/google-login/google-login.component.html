@@ -1,0 +1,33 @@
+<div class="container-fluid">
+
+  <div class="custom-card">
+
+    <div class="form-group">
+      <input type="email"
+             placeholder="Enter email address" [(ngModel)]="UserName"
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <input type="password" [(ngModel)]="Password"
+             placeholder="Enter password"
+             class="form-control" />
+    </div>
+
+    <button class="btn btn-block btn-primary" (click)="signInHandler()">Login</button>
+
+    <p class="horizontal-line-text">
+      <span>or</span>
+    </p>
+
+    <button class="btn btn-block google-sign-in" (click)="signInHandler()">
+      <img [src]="'assets/images/google.svg'" alt="google" />
+      <span>Continue with Google</span>
+    </button>
+
+
+    <asl-google-signin-button type='standard' size='large'></asl-google-signin-button>
+
+  </div>
+
+</div>

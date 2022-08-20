@@ -1,0 +1,12 @@
+
+.cardbox {
+  border: groove 2px;
+  border-color: #3B428C;
+  border-radius: 5px;
+  padding: 5%;
+  margin-top: 5%;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 5%;
+  text-align: center;
+}

@@ -1,11 +1,11 @@
 
 .meetings-box {
   border: 2px groove;
-  border-color: black;
-  padding-top: 4%;
+  border-color: rebeccapurple;
   padding-bottom: 4%;
-  padding-right:5%;
-  padding-top:2%
+  padding-right: 4%;
+  padding-left: 4%;
+  padding-top: 2%
 }
 
 
@@ -15,7 +15,10 @@
   align-items: center;
   box-sizing: border-box;
   border-bottom: 2px groove;
-  border-left:0.5px solid;
-  border-bottom-color:dimgray;
-  border-bottom-left-radius: 5px
+  border-left: 0.5px solid;
+  border-bottom-color: dimgray;
+  border-bottom-left-radius: 20px;
+  padding: 2%;
+/*  background-color: #E3E4FA;*/
+  
 }

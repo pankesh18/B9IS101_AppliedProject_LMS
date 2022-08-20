@@ -115,5 +115,7 @@
       }
     }
   },
-  "defaultProject": "LMS-Web"
+  "cli": {
+    "analytics": "0c5b9a89-16dd-4bf8-bc92-ac9fb8883dab"
+  }
 }

@@ -22,17 +22,21 @@ CREATE PROCEDURE LMS_CreateBatch
 	@BatchName NVARCHAR(MAX),
 	@BatchYear NVARCHAR(MAX),
 	@CourseName NVARCHAR(MAX),
+	@CreatedBy INT,
+	@IsGroupMeetingAllowed bit,
 	@StudentId IdList readonly
 )
 AS
 Declare @v_BatchId int;
 
-	insert into Batch(	BatchName,	BatchYear,	CourseName)
+	insert into Batch(	BatchName,	BatchYear,	CourseName, CreatedBy, IsGroupMeetingAllowed)
 	values
 	(
 	@BatchName
 	,@BatchYear
 	,@CourseName
+	,@CreatedBy
+	,@IsGroupMeetingAllowed
 	)
 
 

@@ -9,7 +9,7 @@ CREATE PROCEDURE LMS_GetAllStudentBatches
 )
 AS
 
-select B.BatchId,	B.BatchName,	B.BatchYear,	B.CourseName
+select B.BatchId,	B.BatchName,	B.BatchYear,	B.CourseName, B.CreatedBy, IsGroupMeetingAllowed
 from Batch B
 inner join BatchStudent BS ON B.BatchId=BS.BatchId
 where BS.UserId=@StudentUserId

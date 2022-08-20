@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LMSUser } from '../../auth/auth.models';
+import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
 import { Batch, BatchFiles, StudentMeeting } from '../../batch/batch.models';
 import { BatchNote } from '../note.models';
@@ -33,16 +34,18 @@ export class NotesListComponent implements OnInit {
   selectednote: BatchNote;
   IsNoteUpdate: boolean;
   StudentsInBatch: LMSUser[] = [];
-  selectedStudents: LMSUser[]=[];
-  constructor(private objNotesService: NotesService, private objLoginService: LoginService, private router: Router, private route: ActivatedRoute) { }
+  selectedStudents: LMSUser[] = [];
+  constructor(private objNotesService: NotesService, private objLoginService: LoginService, private router: Router, private route: ActivatedRoute, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.LoggedInUser = this.objLoginService.getLoggedInUser();
+    this.LoggedInUser = this.auth.getLoggedInUser();
     this.route.params.subscribe(params => {
       this.selectedBatchNoteId = params['BatchNoteId']
     })
     if (!this.IsFromBatch) {
       this.GetAllBatches(this.LoggedInUser.UserId);
+      this.GetBatchNotes(0, 0, 0)
+
     }
     else {
       if (this.IsFromFile) {
@@ -61,15 +64,20 @@ export class NotesListComponent implements OnInit {
 
 
   GetAllBatches(UserId: number) {
-    this.BatchOptions = [];
+    this.BatchOptions = [{ name: 'All Batches', value: 0 }];
+    this.BatchId=0
+    this.StudentBatches = [];
     this.objNotesService.GetAllStudentBatches(UserId)
       .subscribe((response) => {
-        this.StudentBatches = response;
-        this.StudentBatches.forEach(item => {
-          let batch = { name: item.BatchName.concat('-', new Date(item.BatchYear).getFullYear().toString()), value: item.BatchId }
-          this.BatchOptions.push(batch);
-        })
-        console.log(response)
+        if (response != null) {
+          this.StudentBatches = response;
+          this.StudentBatches.forEach(item => {
+            let batch = { name: item.BatchName.concat('-', new Date(item.BatchYear).getFullYear().toString()), value: item.BatchId }
+            this.BatchOptions.push(batch);
+          })
+          console.log(response)
+        }
+
 
 
       }, function (rejection) {
@@ -81,6 +89,7 @@ export class NotesListComponent implements OnInit {
   onBatchChange(BatchId: number) {
     this.GetAllFilesByBatchId(BatchId)
     this.GetAllMeetingsByBatchId(BatchId)
+    this.GetBatchNotes(BatchId,0, 0)
   }
 
 
@@ -88,6 +97,7 @@ export class NotesListComponent implements OnInit {
 
   GetAllFilesByBatchId(BatchId: number) {
     this.FileOptions = [];
+    this.IsFile = false;
     this.objNotesService.GetAllFilesByBatchId(BatchId)
       .subscribe((response) => {
         if (response != null && response != undefined) {
@@ -111,6 +121,7 @@ export class NotesListComponent implements OnInit {
 
   GetAllMeetingsByBatchId(BatchId: number) {
     this.MeetingOptions = [];
+    this.IsMeeting = false;
     this.objNotesService.GetAllMeetingsByBatchId(BatchId)
       .subscribe((response) => {
         if (response != null && response != undefined) {
@@ -149,11 +160,12 @@ export class NotesListComponent implements OnInit {
   GetBatchNotes(BatchId: number, FileId: number=0, MeetingId: number=0) {
 
 
-
+    this.BatchNoteList = [];
     this.objNotesService.GetBatchNotes(BatchId, this.LoggedInUser.UserId, FileId, MeetingId)
       .subscribe((response) => {
-        this.BatchNoteList = response;
-        if (this.BatchNoteList != null) {
+        
+        if (response != null) {
+          this.BatchNoteList = response;
           if (this.selectedBatchNoteId != null && this.selectedBatchNoteId != undefined) {
             let note = this.BatchNoteList.find(item => { return item.BatchNoteId == this.selectedBatchNoteId })
             if (note != undefined) {
@@ -179,6 +191,7 @@ export class NotesListComponent implements OnInit {
   viewNote(note: BatchNote) {
     this.selectednote = note;
     this.IsNoteView = true;
+    console.log(this.selectednote)
 /*    this.objNotesService.Note.next(note);*/
   }
 

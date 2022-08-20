@@ -1,41 +1,64 @@
 
 
+<p-toast></p-toast>
 
 
 <div class="main-container container-fluid">
 
   <div class="card secondary-container">
-    <div class="card-header h4"> Login </div>
-    <div class="card-body p-5" id="reg-page1">
+    <!--<div class="card-header h4"> Login </div>-->
 
-      <div class="row row-space my-5">
-        <div class="col-2 p-field">
+
+
+
+
+    <div class="card-body px-5 py-4 card-box" id="reg-page1">
+      <div class="row row-space my-2 text-center">
+        <div class="col p-field">
+          <img src="{{GoogleUser.photoUrl}}" *ngIf="isGoogleLogin" style="width:150px; height:150px" />
+          <img src="../../../assets/ProfilePic.jpg" *ngIf="!isGoogleLogin" style="width:150px; height:150px" />
+        </div>
+      </div>
+      <div class="row row-space my-4">
+        <div class="col p-field">
           <span class="p-float-label">
-            <input id="float-input" type="text" [(ngModel)]="UserEmail" pInputText>
+            <input id="float-input" style="width:100%" type="text" [(ngModel)]="UserEmail" disabled pInputText>
             <label for="float-input">Email</label>
           </span>
         </div>
       </div>
 
 
-      <div class="row row-space my-5">
-        <div class="col-2 p-field">
-          <span class="p-float-label">
-            <input id="float-input" type="password" [(ngModel)]="UserPassword" pInputText>
-            <label for="float-input">Password</label>
-          </span>
+
+
+
+      <div class="row my-0">
+
+        <div class="col-10 text-center">
+          <asl-google-signin-button type='standard' size='large'>   </asl-google-signin-button>
+        </div>
+        <div class="col p-field pull-right">
+          <p-button label="Login" [disabled]="!isGoogleLogin" (click)="loginUser(GoogleUser.email,GoogleUser.id)"></p-button>
         </div>
       </div>
 
-
-      <div class="row row-space my-5">
-        <div class="col-2 p-field">
-          <p-button label="Login" (click)="loginUser(UserEmail,UserPassword)"></p-button>
-        </div>
+      <div class="text-center">
+        Don't have a account? <a href="/register">Register</a>
       </div>
 
     </div>
 
 
   </div>
+
+
+
+  <!--<div style="text-align:center; top:55%; right:46% ;position:absolute">
+
+      <asl-google-signin-button type='standard' size='large'>
+
+      </asl-google-signin-button>
+
+
+  </div>-->
 </div>

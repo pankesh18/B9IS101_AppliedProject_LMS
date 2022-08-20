@@ -16,6 +16,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { AccordionModule } from 'primeng/accordion';
 import { SplitterModule } from 'primeng/splitter';
 import { ToolbarModule } from 'primeng/toolbar';
+import { PickListModule } from 'primeng/picklist';
 
 
 
@@ -36,6 +37,7 @@ import { ToolbarModule } from 'primeng/toolbar';
     ToolbarModule,
     ButtonModule,
     OverlayPanelModule,
+    PickListModule,
     FormsModule,
     VirtualScrollerModule,
     NotesModule,

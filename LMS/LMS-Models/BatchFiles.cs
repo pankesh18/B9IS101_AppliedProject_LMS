@@ -18,6 +18,7 @@ namespace LMS_Models
         public bool isURL { get; set; }
         public string FileSize { get; set; }
         public string Caption { get; set; }
-        
+        public int CreatedBy { get; set; }
+
     }
 }

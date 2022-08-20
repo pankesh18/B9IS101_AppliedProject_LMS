@@ -16,7 +16,20 @@ import { BatchModule } from './batch/batch.module';
 import { CoursedetailModule } from './coursedetail/coursedetail.module';
 import { NotesModule } from './notes/notes.module';
 import { ZoomModule } from './zoom/zoom.module';
-
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { GoogleLoginComponent } from './google-login/google-login.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './auth/register/register.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { ToastModule } from 'primeng/toast';
+import { LoginComponent } from './auth/login/login.component';
+import { ForumModule } from './forum/forum.module';
+import { MessagesModule } from 'primeng/messages';
+import { GroupModule } from './group/group.module';
+import { CommonSpaceModule } from './common-space/common-space.module';
 
 
 
@@ -24,7 +37,10 @@ import { ZoomModule } from './zoom/zoom.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    GoogleLoginComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,16 +49,44 @@ import { ZoomModule } from './zoom/zoom.module';
     OAuthModule.forRoot(),
     NgxLocalStorageModule.forRoot(),
     AuthModule,
+    SocialLoginModule,
     DashboardModule,
+    MessagesModule,
     CoursedetailModule,
+    GroupModule,
+    InputTextModule,
+    DropdownModule,
     BatchModule,
     NotesModule,
     SidebarModule,
     ButtonModule,
+    ForumModule,
+    CommonModule,
+    FormsModule,
+    CommonSpaceModule,
+    ToastModule,
     AppRoutingModule
   ],
   providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+/*              '936277757414-hmmhl3rn4falcjefkn0jeu5dec35otur.apps.googleusercontent.com'*/
+              '621686135789-hk19l687pm2u9sum04h341pik5lvbsv6.apps.googleusercontent.com'
 
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })

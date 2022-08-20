@@ -13,7 +13,7 @@ namespace LMS_Service
         public Object TestMethod()
         {
 
-            String connectionString = @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin";
+            String connectionString = @"Server=tcp:dbs-lms-db.database.windows.net,1433;Initial Catalog=db-lms;Persist Security Info=False;User ID=pankesh;Password=p@s$1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             Object obj=null;
             // Assumes connectionString is a valid connection string.  
             using (SqlConnection connection = new SqlConnection(connectionString))

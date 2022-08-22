@@ -1,3 +1,5 @@
+
+<p-toast></p-toast>
 <div class="container">
   <div class="row">
     <div class="col container-fluid" >
@@ -63,6 +65,12 @@
               <td>{{file.Caption }}</td>
             </tr>
           </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="3" style="text-align:center">There are no files for this batch yet.</td>
+            </tr>
+          </ng-template>
+
         </p-table>
 
 

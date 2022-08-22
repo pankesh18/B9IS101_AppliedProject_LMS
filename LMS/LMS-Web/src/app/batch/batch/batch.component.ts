@@ -8,11 +8,13 @@ import { Batch } from '../batch.models';
 import { BatchService } from '../batch.service';
 import { AddMeetingComponent } from './add-meeting.component';
 import { CreateBatchComponent } from './create-batch.component';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-batch',
   templateUrl: './batch.component.html',
-  styleUrls: ['./batch.component.css']
+  styleUrls: ['./batch.component.css'],
+  providers: [MessageService]
 })
 export class BatchComponent implements OnInit {
   ref: DynamicDialogRef
@@ -22,7 +24,7 @@ export class BatchComponent implements OnInit {
   isMeetingShow: boolean;
   isFileShow: boolean;
   LoggedInUser: LMSUser;
-  constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService, private auth: AuthService) { }
+  constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService, private auth: AuthService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.LoggedInUser = this.auth.getLoggedInUser()
@@ -75,6 +77,7 @@ export class BatchComponent implements OnInit {
     this.objBatchService.UpdateBatch(objBatch)
       .subscribe((response) => {
 
+        this.messageService.add({ severity: 'success', summary: 'Success', detail:  " Batch Updated successfully" });
 
         console.log(this.Batches)
 

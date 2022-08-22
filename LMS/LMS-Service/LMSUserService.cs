@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace LMS_Service
                 @"Data Source=LAPTOP-N8VFBQPV\MSSQLSERVER01;Initial Catalog=B9IS101_LMS; User ID=sqladmin;Password=sqladmin",
                 @"Server=tcp:dbs-lms-db.database.windows.net,1433;Initial Catalog=db-lms;Persist Security Info=False;User ID=pankesh;Password=p@s$1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
         };
-        string DBConnectionString = DBStrings[Convert.ToInt32(env.prod)];
+        string DBConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
 
         public void Register(LMSUser objLMSUser)
         {
@@ -32,8 +33,15 @@ namespace LMS_Service
 
                 using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
                 {
+                    if(LMSUserRepository.CheckUserExists(objdatabaseService, objLMSUser.Email))
+                    {
+                        throw new ServiceLayerException("User Already Exists!");
+                    }
+                    else
+                    {
+                        LMSUserRepository.Register(objdatabaseService, objLMSUser);
 
-                    LMSUserRepository.Register(objdatabaseService, objLMSUser);
+                    }
                 }
             }
             catch (Exception ex)

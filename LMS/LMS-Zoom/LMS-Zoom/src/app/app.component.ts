@@ -38,8 +38,8 @@ export class AppComponent implements OnInit {
   MeetingId: number
   UserId: number
   LoggedInUser: LMSUser
-  StudentMeeting: StudentMeeting
-  GroupMeeting: GroupMeeting
+  StudentMeeting: StudentMeeting = new StudentMeeting();
+  GroupMeeting: GroupMeeting = new GroupMeeting();
   IsGroupMeeting: boolean = false;
 
   constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document, private route: ActivatedRoute, private objAppService: AppService) {

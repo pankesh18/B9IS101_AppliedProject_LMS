@@ -20,6 +20,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
 
 import { CheckboxModule } from 'primeng/checkbox';
+import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -35,10 +37,11 @@ import { CheckboxModule } from 'primeng/checkbox';
     InputTextModule,
     ToggleButtonModule,
     PickListModule,
- 
+    MessagesModule,
     DialogModule,
     TableModule,
     ButtonModule,
+    ToastModule,
     FormsModule,
     CheckboxModule,
     StepsModule,

@@ -12,11 +12,11 @@
       <p-dropdown [options]="FileOptions" [disabled]="BatchId==0 || BatchId==undefined || BatchId==null" (onChange)="GetBatchNotes(BatchId,BatchFileId, 0)" [(ngModel)]="BatchFileId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select File"></p-dropdown>
 
     </div>
-    <div class="col">
+    <!--<div class="col">
       <p-dropdown [options]="MeetingOptions" [disabled]="BatchId==0|| BatchId==undefined || BatchId==null" (onChange)="GetBatchNotes(BatchId,BatchFileId,BatchMeetingId)" [(ngModel)]="BatchMeetingId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Meeting"></p-dropdown>
 
 
-    </div>
+    </div>-->
     <div class="col text-center">
 
       <!--<p-button class="p-button-lg" label="Save"></p-button>-->

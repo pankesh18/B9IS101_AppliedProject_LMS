@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { ZoomURL } from '../../appsetting';
 import { LMSUser } from '../../auth/auth.models';
 import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
@@ -29,6 +30,11 @@ export class MeetingsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.GetMeetings();
+  }
+
+
+  GetMeetings() {
     if (this.LoggedInUser.UserType == 1) {
       this.GetAllTeacherMetings(this.LoggedInUser.UserId);
     }
@@ -37,6 +43,7 @@ export class MeetingsComponent implements OnInit {
 
     }
   }
+
 
 
   GetAllStudentMetings(UserId: number) {
@@ -172,7 +179,7 @@ export class MeetingsComponent implements OnInit {
   startZoom(Meeting: any) {
 
     let role = Meeting.CreatedBy == this.LoggedInUser.UserId ? 1 : 0;
-    var url = 'http://localhost:4201/zoom?' + 'MeetingId=' + Meeting.BatchMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId + '&IsGroupMeeting=false'
+    var url = ZoomURL+'zoom?' + 'MeetingId=' + Meeting.BatchMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId + '&IsGroupMeeting=false'
     window.open(url, '_blank');
 
   }

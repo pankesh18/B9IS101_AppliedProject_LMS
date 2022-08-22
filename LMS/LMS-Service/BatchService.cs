@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Configuration;
+
 
 namespace LMS_Service
 {
@@ -23,7 +25,7 @@ namespace LMS_Service
                 @"Server=tcp:dbs-lms-db.database.windows.net,1433;Initial Catalog=db-lms;Persist Security Info=False;User ID=pankesh;Password=p@s$1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
         };
 
-        string DBConnectionString= DBStrings[Convert.ToInt32(env.prod)];
+        string DBConnectionString= ConfigurationManager.AppSettings["ConnectionString"];
 
         public int CreateBatch(Batch objBatch)
         {

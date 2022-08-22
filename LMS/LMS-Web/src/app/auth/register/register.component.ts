@@ -4,8 +4,8 @@ import { LMSUser } from '../auth.models';
 import { AuthService } from '../auth.service';
 import { RegisterService } from './register.service';
 import * as $ from 'jquery';
-import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
@@ -75,9 +75,12 @@ export class RegisterComponent implements OnInit, DoCheck {
       this.objRegisterService.registerUser(this.lmsUser)
         .subscribe( (response) => {
           console.log("user created!")
-          this.router.navigate(['login'])
+          this.messageService.add({ severity: 'success', summary: 'Success', detail:"User Created Successfully" });
 
-        }, function (rejection) {
+          //this.router.navigate(['login'])
+
+        },  (rejection) => {
+          this.messageService.add({ severity: 'error', summary: 'Invalid', detail: rejection.error.InnerException.ExceptionMessage });
 
         })
     }

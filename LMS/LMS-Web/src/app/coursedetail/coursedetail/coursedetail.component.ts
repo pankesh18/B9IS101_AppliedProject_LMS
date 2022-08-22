@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ZoomURL } from '../../appsetting';
 import { LMSUser } from '../../auth/auth.models';
 import { AuthService } from '../../auth/auth.service';
 import { LoginService } from '../../auth/login/login.service';
@@ -232,7 +233,7 @@ export class CoursedetailComponent implements OnInit {
     this.objCoursedetailService.StartGroupMeeting(studentMeeting)
       .subscribe((response) => {
 
-        this.startZoom(response)
+        this.startZoom(response, true)
         
         this.GetGroupMeetings(this.BatchId, this.LoggedInUser.UserId);
 
@@ -281,10 +282,18 @@ export class CoursedetailComponent implements OnInit {
 
 
 
-  startZoom(Meeting: any) {
+  startZoom(Meeting: any, isGroupMeeting: boolean = false) {
     let role = Meeting.CreatedBy == this.LoggedInUser.UserId ? 1 : 0;
-    var url = 'http://localhost:4201/zoom?' + 'MeetingId=' + Meeting.GroupMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId + '&IsGroupMeeting=true'
-    window.open(url, '_blank');
+
+    if (isGroupMeeting) {
+      let url = ZoomURL+'zoom?' + 'MeetingId=' + Meeting.GroupMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId + '&IsGroupMeeting=true'
+      window.open(url, '_blank');
+    }
+    else {
+      let url = ZoomURL+'zoom?' + 'MeetingId=' + Meeting.BatchMeetingId + '&Role=' + role + '&UserId=' + this.LoggedInUser.UserId + '&IsGroupMeeting=false'
+      window.open(url, '_blank');
+    }
+    
 
   }
 

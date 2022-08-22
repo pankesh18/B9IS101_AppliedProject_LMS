@@ -13,6 +13,34 @@ namespace LMS_Repository
 {
     public static class LMSUserRepository
     {
+        public static bool CheckUserExists(DatabaseService objdatabaseService, string UserEmail)
+        {
+            try
+            {
+                bool IsExists = false;
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("Email", UserEmail);
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_CheckUserExists";
+                command.CommandType = CommandType.StoredProcedure;
+
+                IsExists= Convert.ToBoolean(command.ExecuteScalar());
+
+                return IsExists;
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+
+        }
+
+
+
         public static void Register(DatabaseService objdatabaseService, LMSUser objLMSUser)
         {
             try

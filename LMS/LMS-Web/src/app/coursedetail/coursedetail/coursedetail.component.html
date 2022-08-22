@@ -38,7 +38,7 @@
                 </span>
               </div>
 
-              <div class="col-6 my-2">
+              <div class="col-4 my-2">
                 <span class="p-float-label" style="width: 100%">
 
                   <p-calendar id="meeting-starttime" [(ngModel)]="searchrangeDates" (onSelect)="searchByDateRange()" selectionMode="range" [showButtonBar]="true" [showClear]="true" style="width:100%" [inputStyle]="{'width': '100%'}"></p-calendar>
@@ -47,6 +47,15 @@
                 </span>
 
               </div>
+
+              <div class="col-2 my-2">
+                <span class="p-float-label" style="width:100%">
+                  <button pButton label="Clear" pRipple type="button" icon="pi pi-times" class="p-button-rounded  p-button-text" (click)="GetAllMeetingsByBatchId(BatchId)"></button>
+
+                </span>
+              </div>
+
+
             </div>
 
 
@@ -60,7 +69,7 @@
                 {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
               </span>
               <span>
-                <a class="btn btn-primary" href="{{meeting.JoinUrl}}">
+                <a class="btn btn-primary" (click)="startZoom(meeting)">
                   Join
                 </a>
               </span>

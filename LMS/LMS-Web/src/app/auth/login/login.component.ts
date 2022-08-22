@@ -27,9 +27,10 @@ export class LoginComponent implements OnInit {
     this.authService.authState.subscribe(user => {
       if (user) {
         this.GoogleUser = user
-        this.isGoogleLogin = true;
+   
         this.UserEmail = this.GoogleUser.email
-
+        this.testImg(this.GoogleUser.photoUrl);
+        this.isGoogleLogin = true;
       }
       else {
         this.isGoogleLogin = false;
@@ -61,5 +62,31 @@ export class LoginComponent implements OnInit {
       }, function (rejection) {
 
       })
+  }
+
+
+
+  testImg(url:any) {
+    var testImg = new Image();
+    var _me = this;
+    testImg.addEventListener('load', () => {
+      console.log("Image load successfully")
+      _me.GoogleUser.photoUrl = url;
+    });
+    testImg.addEventListener('error', () => {
+      console.log("Error in image")
+      _me.GoogleUser.photoUrl = "../../../assets/ProfilePic.jpg";
+    });
+
+    testImg.src = url;
+  }
+
+  displayProfileImage(url: any) {
+    console.log("Image load successfully")
+    this.GoogleUser.photoUrl = url;
+  }
+  displayDefaultProfile() {
+    console.log("Error in image")
+    this.GoogleUser.photoUrl = "../../../assets/ProfilePic.jpg";
   }
 }

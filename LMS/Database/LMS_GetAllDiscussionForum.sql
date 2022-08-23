@@ -1,7 +1,7 @@
 
 
 /*
-exec LMS_GetAllDiscussionForum 0, 1
+exec LMS_GetAllDiscussionForum 0, 2
 */
 IF OBJECT_ID ( 'LMS_GetAllDiscussionForum', 'P' ) IS NOT NULL
     DROP PROCEDURE LMS_GetAllDiscussionForum;

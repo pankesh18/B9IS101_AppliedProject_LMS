@@ -255,10 +255,15 @@ export class CoursedetailComponent implements OnInit {
   GetGroupMeetings(BatchId: number, UserId: number) {
     this.objCoursedetailService.GetGroupMeetings(BatchId, UserId)
       .subscribe((response) => {
-        this.GroupMeetingList = response
-        this.GroupMeetingList.forEach(meet => {
-          meet.StudentListString = this.getStudentListString(meet.GroupMeetingStudents)
-        })
+
+        if (response != null) {
+          this.GroupMeetingList = response
+          this.GroupMeetingList.forEach(meet => {
+            meet.StudentListString = this.getStudentListString(meet.GroupMeetingStudents)
+          })
+        }
+
+
       }, function (rejection) {
 
       })

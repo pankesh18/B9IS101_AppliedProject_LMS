@@ -144,11 +144,14 @@
 
                 </div>
                 <div class="col-4" [hidden]="!item.IsNotes">
-                  <app-create-notes [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-create-notes>
-
+                  <div *ngIf="item.IsNotes">
+                    <app-create-notes [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-create-notes>
+                  </div>
                 </div>
                 <div class="col-4" [hidden]="!item.IsNoteList">
-                  <app-notes-list [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-notes-list>
+                  <div *ngIf="item.IsNoteList">
+                    <app-notes-list [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-notes-list>
+                  </div>
                 </div>
 
 

@@ -4,7 +4,7 @@
   <div class="row my-2">
 
     <div class="col mx-5 px-5 py-2">
-      <p-dropdown [options]="BatchOptions" (onChange)="GetAllDiscussionForum(BatchId)" [(ngModel)]="BatchId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Batch"></p-dropdown>
+      <p-dropdown [options]="BatchOptions"  [(ngModel)]="BatchId" optionLabel="name" optionValue="value" [style]="{'width':'100%'}" placeholder="Select Batch"></p-dropdown>
 
     </div>
 
@@ -13,7 +13,7 @@
   <div class="row text-center my-2 mx-3" style="border-bottom:groove 5px; border-color:lightcyan;">
     <div>
       <div id="CreateQuestion">
-        <p-editor [(ngModel)]="QuestionBody" [style]="{'height':'100%', 'width':'100%'}"></p-editor>
+        <p-editor [(ngModel)]="QuestionBody" [style]="{'height':'200px'}"></p-editor>
       </div>
       <button (click)="PostForumQuestion()" class="btn btn-primary m-3">Post</button>
     </div>
@@ -26,7 +26,11 @@
   <div class="row my-2">
 
 
+    <div class="row mx-5" style="text-align:right; padding-right:8%">
 
+        <p-dropdown [options]="FilterBatchOptions" (onChange)="GetAllDiscussionForum(FilterBatchId)" [(ngModel)]="FilterBatchId" optionLabel="name" optionValue="value" placeholder="Select Batch" [style]="{'width':'200px'}"></p-dropdown>
+
+    </div>
 
 
     <div *ngFor="let question of objForumQuestion; let i = index;">
@@ -120,7 +124,7 @@
       <div class="my-2 mx-5" style="text-align:right">
 
         <div id="reply{{i}}" class="collapse my-3">
-          <p-editor [(ngModel)]="question.NewReply" [style]="{'height':'100%', 'width':'100%'}"></p-editor>
+          <p-editor [(ngModel)]="question.NewReply" [style]="{'height':'200px'}"></p-editor>
           <button class="btn btn-primary m-3" (click)="PostForumComment(question.NewReply, question.ForumQuestionId, question.BatchId)">Comment</button>
         </div>
       </div>

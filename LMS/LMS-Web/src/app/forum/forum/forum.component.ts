@@ -18,8 +18,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ForumComponent implements OnInit {
 
   StudentBatches: Batch[];
-  BatchOptions: any[];
+  BatchOptions: any[]=[];
+  FilterBatchOptions: any[]=[];
   BatchId: number = 0;
+  FilterBatchId: number = 0;
   QuestionBody: any;
   objForumQuestion: ForumQuestion[] = [];
   LoggedInUser: LMSUser
@@ -48,6 +50,7 @@ export class ForumComponent implements OnInit {
 
   GetAllBatches(UserId: number) {
     this.BatchOptions = [];
+    this.FilterBatchOptions = [{ name : 'All Batches', value:0}];
     this.objForumService.GetAllStudentBatches(UserId)
       .subscribe((response) => {
         if (response != null) {
@@ -55,6 +58,7 @@ export class ForumComponent implements OnInit {
           this.StudentBatches.forEach(item => {
             let batch = { name: item.BatchName.concat('-', new Date(item.BatchYear).getFullYear().toString()), value: item.BatchId }
             this.BatchOptions.push(batch);
+            this.FilterBatchOptions.push(batch);
           })
           console.log(response)
 
@@ -86,20 +90,23 @@ export class ForumComponent implements OnInit {
 
         if (response.length > 0) {
           this.objForumQuestion = response;
-          //this.objForumQuestion.forEach(question => {
-          //  question.sanitizedBody = this.sanitizeHTML(question.QuestionBody)
+          this.objForumQuestion.forEach((question, index) => {
 
-          //  if (question.forumComments.length > 0) {
-          //    question.forumComments.forEach(comment => {
+            var testImg = new Image();
+            var _me = this;
+            testImg.addEventListener('error', () => {
+              console.log("Error in image")
+              question.CreatedBy.ProfilePic = "../../../assets/ProfilePic.jpg";
+            });
 
-          //    })
-          //  }
+            testImg.src = question.CreatedBy.ProfilePic;
+          })
 
 
-          //})
-
-
+        } else {
+          this.objForumQuestion = [];
         }
+
 
      
 
@@ -187,6 +194,19 @@ export class ForumComponent implements OnInit {
   }
 
 
+  testImg(url: any, index:any) {
+    var testImg = new Image();
+    var _me = this;
+    testImg.addEventListener('load', () => {
+      console.log("Image load successfully")
+      return url;
+    });
+    testImg.addEventListener('error', () => {
+      console.log("Error in image")
+      return "../../../assets/ProfilePic.jpg";
+    });
 
+    testImg.src = url;
+  }
 
 }

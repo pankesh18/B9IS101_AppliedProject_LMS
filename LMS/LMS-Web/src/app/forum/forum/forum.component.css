@@ -10,3 +10,14 @@
   margin-bottom: 5%;
   text-align: center;
 }
+
+
+.batchListing {
+  counter-increment: index;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 2px groove;
+  border-bottom-color: dimgray;
+  padding: 2%;
+}

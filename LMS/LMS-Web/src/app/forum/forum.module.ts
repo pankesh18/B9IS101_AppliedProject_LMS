@@ -10,6 +10,7 @@ import { ToastModule } from 'primeng/toast';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginatorModule } from 'primeng/paginator';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 
 
@@ -25,6 +26,7 @@ import { PaginatorModule } from 'primeng/paginator';
     FormsModule,
     EditorModule,
     PaginatorModule,
+    OverlayPanelModule,
     ToastModule,
     DropdownModule,
     ForumRoutingModule

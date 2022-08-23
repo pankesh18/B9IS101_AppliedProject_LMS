@@ -6,11 +6,13 @@ import { LoginService } from '../../auth/login/login.service';
 import { Batch, BatchFiles, StudentMeeting } from '../../batch/batch.models';
 import { BatchNote } from '../note.models';
 import { NotesService } from '../notes.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-notes-list',
   templateUrl: './notes-list.component.html',
-  styleUrls: ['./notes-list.component.css']
+  styleUrls: ['./notes-list.component.css'],
+  providers: [MessageService]
 })
 export class NotesListComponent implements OnInit {
   StudentBatches: Batch[];
@@ -35,7 +37,7 @@ export class NotesListComponent implements OnInit {
   IsNoteUpdate: boolean;
   StudentsInBatch: LMSUser[] = [];
   selectedStudents: LMSUser[] = [];
-  constructor(private objNotesService: NotesService, private objLoginService: LoginService, private router: Router, private route: ActivatedRoute, private auth: AuthService) { }
+  constructor(private objNotesService: NotesService, private objLoginService: LoginService, private router: Router, private route: ActivatedRoute, private auth: AuthService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.LoggedInUser = this.auth.getLoggedInUser();
@@ -207,6 +209,7 @@ export class NotesListComponent implements OnInit {
 
     this.objNotesService.ShareBatchNote(users, BatchId, BatchNoteId)
       .subscribe((response) => {
+        this.messageService.add({ severity: 'info', summary: 'Done!', detail: 'Note shared Sucessfully!' })
 
 
       }, function (rejection) {

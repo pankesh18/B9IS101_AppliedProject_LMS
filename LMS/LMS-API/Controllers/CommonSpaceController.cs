@@ -94,5 +94,26 @@ namespace LMS_API.Controllers
             }
         }
 
+
+        [HttpPost]
+        [ActionName("DeleteCommonSpaceFile")]
+        public HttpResponseMessage DeleteCommonSpaceFile(CommonSpaceFile objCommonSpaceFile)
+        {
+            try
+            {
+
+                CommonSpaceService objCommonSpaceService = new CommonSpaceService();
+
+                objCommonSpaceService.DeleteCommonSpaceFile(objCommonSpaceFile);
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+
+            }
+        }
+
     }
 }

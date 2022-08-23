@@ -1,4 +1,11 @@
+<p-toast></p-toast>
 <div class="container-fluid p-5">
+  <div class="row">
+    <div class="text-center h1">
+      Student's Space
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-12">
       <p-multiSelect [options]="Students" [(ngModel)]="selectedStudents" (onChange)="selectStudent()" defaultLabel="Select students" optionLabel="name" style="width:100%" [selectionLimit]="selectionLimit" [selectedItemsLabel]="'{0} items selected'">
@@ -175,7 +182,11 @@
                     <td>
                       <span *ngIf="file.ContentType==1">{{file.FileSize | number  }} MB</span>
                     </td>
-                    <td> <button pButton pRipple type="button" (click)="displayFileViewer=true;FileView=file; ViewFile(file)" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-plain"></button> </td>
+                    <td>
+                    <button pButton pRipple type="button" (click)="displayFileViewer=true;FileView=file; ViewFile(file)" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-plain"></button>
+                    <button pButton pRipple type="button" (click)="DeleteCommonSpaceFile(file)" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain"></button>
+                    
+                    </td>
                   </tr>
 
                   <p-dialog header="{{file.FileName}}" *ngIf="displayFileViewer && FileView.CommonSpaceFileId==file.CommonSpaceFileId" [(visible)]="FileView.CommonSpaceFileId==file.CommonSpaceFileId && displayFileViewer" [style]="{width: '80vw', height: '90vh'}">

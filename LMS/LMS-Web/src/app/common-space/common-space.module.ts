@@ -14,6 +14,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { NgxDocViewerModule } from 'ngx-doc-viewer2';
 import { NotesModule } from '../notes/notes.module';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -30,6 +31,7 @@ import { NotesModule } from '../notes/notes.module';
     DialogModule,
     FileUploadModule,
     NotesModule,
+    ToastModule,
     ButtonModule,
     NgxDocViewerModule,
     BrowserAnimationsModule,

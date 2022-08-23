@@ -173,7 +173,14 @@ export class CommonSpaceService {
     );
   }
 
-
+  public DeleteCommonSpaceFile(objCommonSpaceFile: CommonSpaceFile) {
+    let httpOptions = {
+      headers: this.httpheaders
+    }
+    return this.http.post<any>(this.APIURL + "CommonSpace/DeleteCommonSpaceFile", objCommonSpaceFile, httpOptions).pipe(
+      tap(res => res)
+    );
+  }
 
 
 

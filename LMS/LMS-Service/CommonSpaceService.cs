@@ -134,5 +134,28 @@ namespace LMS_Service
             }
             return objCommonSpaceGroupList;
         }
+
+
+
+        public void DeleteCommonSpaceFile(CommonSpaceFile objCommonSpaceFile)
+        {
+            
+            try
+            {
+                string connectionString = DBConnectionString;
+
+                using (DatabaseService objdatabaseService = new DatabaseService(connectionString))
+                {
+
+                    CommonSpaceRepository.DeleteCommonSpaceFile(objdatabaseService, objCommonSpaceFile);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceLayerException(ex, "Service Layer Exception : " + ex.Message);
+            }
+
+        }
     }
 }

@@ -95,17 +95,24 @@ export class CoursedetailComponent implements OnInit {
   GetAllFilesByBatchId(BatchId: number) {
     this.objCoursedetailService.GetAllFilesByBatchId(BatchId)
       .subscribe((response) => {
-        this.FileList = response;
-        this.FileList.forEach(item => { item.FileType= this.ImageExtension.includes(item.FileExtension) ? 'image':'document'  })
 
-        if (this.isFileNotesView) {
-          this.fileIndex = this.FileList.findIndex(item => item.BatchFileId == this.BatchFileId)
-          this.FileList.forEach(item => {
-            if (item.BatchFileId == this.BatchFileId) {
-              item.IsNoteList = true;
-            }
+        if (response != null) {
+          this.FileList = response;
+          this.FileList.forEach(item => { item.FileType = this.ImageExtension.includes(item.FileExtension) ? 'image' : 'document' })
+
+          if (this.isFileNotesView) {
+            this.fileIndex = this.FileList.findIndex(item => item.BatchFileId == this.BatchFileId)
+            this.FileList.forEach(item => {
+              if (item.BatchFileId == this.BatchFileId) {
+                item.IsNoteList = true;
+              }
             })
+          }
+
         }
+
+
+
 
 
       }, function (rejection) {

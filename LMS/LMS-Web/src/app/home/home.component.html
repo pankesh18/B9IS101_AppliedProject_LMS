@@ -24,39 +24,41 @@
 
         <ul class="nav nav-pills flex-column mb-auto">
 
-          <li class="nav-item" (click)="goToDash()">
-            <a class="nav-link active" *ngIf="LoggedInUser.UserType==1" aria-current="page">
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/dash" *ngIf="LoggedInUser.UserType==1" routerLinkActive="active" id="techerDashNav">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Teacher Dashboard
             </a>
-            <a class="nav-link active" *ngIf="LoggedInUser.UserType==2" aria-current="page">
+            <a class="nav-link text-white" routerLink="/dash" *ngIf="LoggedInUser.UserType==2" routerLinkActive="active" id="StudentDashNav">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Student Dashboard
             </a>
           </li>
 
-          <li (click)="goToBatches()" *ngIf="LoggedInUser.UserType==1">
-            <a class="nav-link text-white">
+          <li class="nav-item" *ngIf="LoggedInUser.UserType==1">
+            <a class="nav-link text-white" routerLink="/batch/list" routerLinkActive="active" id="BatchNav">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Batch
             </a>
           </li>
 
-          <li (click)="goToNotes()" *ngIf="LoggedInUser.UserType==2">
-            <a class="nav-link text-white">
+          <li class="nav-item" *ngIf="LoggedInUser.UserType==2">
+            <a class="nav-link text-white" id="NotesNav" routerLinkActive="active" routerLink="/note/list">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Notes
             </a>
           </li>
-          <li (click)="goToForum()">
-            <a class="nav-link text-white">
+
+
+          <li class="nav-item">
+            <a class="nav-link text-white" id="ForumNav" routerLinkActive="active" routerLink="/forum">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Forum
             </a>
           </li>
 
 
-          <li (click)="logout()">
+          <li class="nav-item" (click)="logout()">
             <a class="nav-link text-white">
               <svg class="bi pe-none me-2" width="16" height="16"></svg>
               Logout

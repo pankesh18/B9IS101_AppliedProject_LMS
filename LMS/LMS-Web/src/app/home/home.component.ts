@@ -4,6 +4,7 @@ import { LocalStorageService } from 'ngx-localstorage';
 import { LMSUser, UserProfile } from '../auth/auth.models';
 import { AuthService } from '../auth/auth.service';
 import { LoginService } from '../auth/login/login.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +35,10 @@ export class HomeComponent implements OnInit {
   }
 
   goToBatches() {
+
+    $(".nav").find(".active").removeClass("active");
+    $("#BatchNav").addClass("active");
+
     this.router.navigate(['/batch/list'])
   }
 

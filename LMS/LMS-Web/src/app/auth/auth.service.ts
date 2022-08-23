@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LMSUser, UserProfile } from './auth.models'
 import { LocalStorageService } from 'ngx-localstorage';
 import { Router } from '@angular/router';
-import { APIURL } from '../appsetting';
+import { APIURL, WebURL } from '../appsetting';
 
 const oAuthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
@@ -69,7 +69,7 @@ export class AuthService {
 
     this.authService.signOut()
 
-    this.router.navigate(['/'])
+    window.location.href = WebURL + "login"
 
   }
 

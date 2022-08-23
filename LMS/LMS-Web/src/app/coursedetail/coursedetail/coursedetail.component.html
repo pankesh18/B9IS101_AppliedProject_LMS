@@ -2,11 +2,11 @@
 
 
 <div class="row p-3" style="border-bottom:1px groove">
-  <p>coursedetail works!</p>
+
 
 </div>
 <div class="row p-5">
-  <div class="container">
+  <div class="container" >
 
 
     <!--<p-splitter>
@@ -24,67 +24,82 @@
 
 
 
-    <p-tabView [scrollable]="true" [(activeIndex)]="tabIndex">
+    <p-tabView [scrollable]="true" [(activeIndex)]="tabIndex" >
       <p-tabPanel header="Batch Meetings">
 
-        <p-virtualScroller [value]="MeetingList" scrollHeight="500px" [itemSize]="150">
+        <div style="min-height:600px">
 
-          <ng-template pTemplate="header">
-            <div class="row">
-              <div class="col-6 my-2">
-                <span class="p-float-label" style="width:100%">
-                  <input id="MeetingTopic" type="text" [(ngModel)]="topicSearchKey" (ngModelChange)="searchByMeetingTopic()" pInputText style="width:100%">
-                  <label for="MeetingTopic">Meeting Topic</label>
-                </span>
+          <p-virtualScroller [value]="MeetingList" scrollHeight="500px" [itemSize]="150">
+
+            <ng-template pTemplate="header">
+              <div class="row">
+                <div class="col-6 my-2">
+                  <span class="p-float-label" style="width:100%">
+                    <input id="MeetingTopic" type="text" [(ngModel)]="topicSearchKey" (ngModelChange)="searchByMeetingTopic()" pInputText style="width:100%">
+                    <label for="MeetingTopic">Meeting Topic</label>
+                  </span>
+                </div>
+
+                <div class="col-4 my-2">
+                  <span class="p-float-label" style="width: 100%">
+
+                    <p-calendar id="meeting-starttime" [(ngModel)]="searchrangeDates" (onSelect)="searchByDateRange()" selectionMode="range" [showButtonBar]="true" [showClear]="true" style="width:100%" [inputStyle]="{'width': '100%'}"></p-calendar>
+
+                    <label for="meeting-starttime">Meeting StartTime</label>
+                  </span>
+
+                </div>
+
+                <div class="col-2 my-2">
+                  <span class="p-float-label" style="width:100%">
+                    <button pButton label="Clear" pRipple type="button" icon="pi pi-times" class="p-button-rounded  p-button-text" (click)="GetAllMeetingsByBatchId(BatchId)"></button>
+
+                  </span>
+                </div>
+
+
               </div>
 
-              <div class="col-6 my-2">
-                <span class="p-float-label" style="width: 100%">
 
-                  <p-calendar id="meeting-starttime" [(ngModel)]="searchrangeDates" (onSelect)="searchByDateRange()" selectionMode="range" [showButtonBar]="true" [showClear]="true" style="width:100%" [inputStyle]="{'width': '100%'}"></p-calendar>
 
-                  <label for="meeting-starttime">Meeting StartTime</label>
+
+            </ng-template>
+            <ng-template pTemplate="item" let-meeting>
+              <li class="listing">
+                <h4 class="col" style="padding: 2%;">{{meeting.Topic}}</h4>
+                <span class="col" style="color: darkslategray;">
+                  {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
                 </span>
+                <span>
+                  <a class="btn btn-primary" (click)="startZoom(meeting)">
+                    Join
+                  </a>
+                </span>
+              </li>
+            </ng-template>
 
-              </div>
-            </div>
 
 
+          </p-virtualScroller>
 
+
+          <ng-template pTemplate="emptymessage">
+
+            <div *ngIf="MeetingList.length==0" class="text-center">There are no meetings scheduled.</div>
 
           </ng-template>
-          <ng-template pTemplate="item" let-meeting>
-            <li class="listing">
-              <h4 class="col" style="padding: 2%;">{{meeting.Topic}}</h4>
-              <span class="col" style="color: darkslategray;">
-                {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
-              </span>
-              <span>
-                <a class="btn btn-primary" href="{{meeting.JoinUrl}}">
-                  Join
-                </a>
-              </span>
-            </li>
-          </ng-template>
-
-
-
-        </p-virtualScroller>
-
-
-
-
+        </div>
       </p-tabPanel>
       <p-tabPanel header="Files">
 
 
 
 
-        <div class="container mx-0" style="text-align:center; width:100%">
+        <div class="container mx-0" style="text-align:center; width:100%; min-height:60vh">
 
 
 
-          <p-carousel [value]="FileList" [page]="fileIndex">
+          <p-carousel [value]="FileList" [page]="fileIndex" *ngIf="FileList.length>0">
 
             <ng-template let-item pTemplate="item">
               <div class="row">
@@ -129,11 +144,14 @@
 
                 </div>
                 <div class="col-4" [hidden]="!item.IsNotes">
-                  <app-create-notes [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-create-notes>
-
+                  <div *ngIf="item.IsNotes">
+                    <app-create-notes [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-create-notes>
+                  </div>
                 </div>
                 <div class="col-4" [hidden]="!item.IsNoteList">
-                  <app-notes-list [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-notes-list>
+                  <div *ngIf="item.IsNoteList">
+                    <app-notes-list [IsFromBatch]="true" [BatchId]="item.BatchId" [IsFromFile]="true" [BatchFileId]="item.BatchFileId" [IsFromMeeting]="false"></app-notes-list>
+                  </div>
                 </div>
 
 
@@ -156,8 +174,12 @@
 
             </ng-template>
 
+
           </p-carousel>
 
+    
+
+            <div *ngIf="FileList.length==0" class="text-center">There are no files added.</div>
 
 
         </div>
@@ -173,7 +195,7 @@
       </p-tabPanel>
       <p-tabPanel [header]="item.header" *ngFor="let item of Tabs; let i = index">
 
-        <div class="container">
+        <div class="container" style=" min-height:60vh">
           <div class="row">
             <div class="col">
 

@@ -3,13 +3,19 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-localstorage';
 import { tap } from 'rxjs';
+import { APIURL } from '../../appsetting';
 import { LMSUser } from '../auth.models';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  APIURL: string = "https://localhost:44301/api/"
+
+  
+
+  APIURL: string = APIURL
+
   constructor(private http: HttpClient, private localStorage: LocalStorageService, private router: Router) {
 
     //if (!this.isLogin()) {

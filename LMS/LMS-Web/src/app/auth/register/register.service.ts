@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders,  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { APIURL } from '../../appsetting';
 import { LMSUser } from '../auth.models';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { LMSUser } from '../auth.models';
 })
 export class RegisterService {
 
-  APIURL: string = "https://localhost:44301/api/"
+  APIURL: string = APIURL
 
   constructor( private http: HttpClient) { }
 

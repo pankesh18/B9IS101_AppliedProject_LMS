@@ -143,6 +143,8 @@ export class CommonSpaceComponent implements OnInit {
     this.objCommonSpaceService.CreateCommonSpace(objCommonSpaceGroup)
       .subscribe((response) => {
         if (response != null) {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: " Space Created successfully" });
+
           this.objCommonSpaceGroup = new CommonSpaceGroup();
           this.GetCommonSpaceGroup(this.BatchId)
 
@@ -213,6 +215,9 @@ export class CommonSpaceComponent implements OnInit {
     this.objCommonSpaceService.AddCommonSpaceFile(objFormData)
       .subscribe((response) => {
         if (response != null) {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: "File Added successfully" });
+
+
           this.GetCommonSpaceGroup(this.BatchId)
 
         }
@@ -241,6 +246,27 @@ export class CommonSpaceComponent implements OnInit {
   }
 
 
+  DeleteCommonSpaceFile(objCommonSpaceFile: CommonSpaceFile) {
+
+    this.objCommonSpaceService.DeleteCommonSpaceFile(objCommonSpaceFile)
+      .subscribe((response) => {
+
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: " Content Deleted successfully" });
+        this.GetCommonSpaceGroup(this.BatchId);
+
+      }, function (rejection) {
+
+      })
+
+  }
+
+
+
+
+
+
+
+
 
   AddNote(group: CommonSpaceGroup, note: BatchNote) {
 
@@ -264,6 +290,7 @@ export class CommonSpaceComponent implements OnInit {
         this.objCommonSpaceService.ShareBatchNote(group.CommonSpaceGroupStudent, group.BatchId, note.BatchNoteId)
           .subscribe((response) => {
 
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: " Note Added successfully" });
 
           }, function (rejection) {
 

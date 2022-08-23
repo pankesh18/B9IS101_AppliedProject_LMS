@@ -9,12 +9,14 @@ import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import * as $ from 'jquery';
 import { LoginService } from '../../auth/login/login.service';
 import { AuthService } from '../../auth/auth.service';
+import { Message, MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'add-files',
   templateUrl: './add-files.component.html',
-  styleUrls: ['./batch.component.css']
+  styleUrls: ['./batch.component.css'],
+  providers: [MessageService]
 })
 export class AddFilesComponent implements OnInit {
 
@@ -27,7 +29,7 @@ export class AddFilesComponent implements OnInit {
   FileCaption: string;
   isURL: boolean = false;
   URL: string;
-  constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig, private auth: AuthService) {
+  constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig, private auth: AuthService, private messageService: MessageService) {
 
     this.LoggedInUser = auth.getLoggedInUser();
 
@@ -73,6 +75,8 @@ export class AddFilesComponent implements OnInit {
 
     this.objBatchService.AddFileToBatch(formData)
       .subscribe((response) => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: this.FileName + " uploaded successfully" });
+
         this.objBatchFiles = response;
         this.FileList.push(this.objBatchFiles);
 

@@ -243,6 +243,31 @@ namespace LMS_Repository
 
         }
 
+        public static void DeleteCommonSpaceFile(DatabaseService objdatabaseService, CommonSpaceFile objCommonSpaceFile)
+        {
 
+            try
+            {
+
+                objdatabaseService.ClearParameter();
+
+                objdatabaseService.AddParameter("CommonSpaceFileId", objCommonSpaceFile.CommonSpaceFileId);
+
+
+
+                SqlCommand command = objdatabaseService.GetSQLCommand();
+
+                command.CommandText = @"LMS_DeleteCommonSpaceFile";
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new DataLayerException(ex, "Data Layer Exception : " + ex.Message);
+            }
+      
+        }
     }
 }

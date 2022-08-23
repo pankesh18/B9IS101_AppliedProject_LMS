@@ -9,12 +9,13 @@ import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import * as $ from 'jquery';
 import { LoginService } from '../../auth/login/login.service';
 import { AuthService } from '../../auth/auth.service';
-
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'add-meeting',
   templateUrl: './add-meeting.component.html',
-  styleUrls: ['./batch.component.css']
+  styleUrls: ['./batch.component.css'],
+  providers: [MessageService]
 })
 export class AddMeetingComponent implements OnInit, DoCheck {
   BatchName: string;
@@ -31,7 +32,7 @@ export class AddMeetingComponent implements OnInit, DoCheck {
   LoggedInUser: LMSUser;
   MeetingList: StudentMeeting[] = [];
 
-  constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig, private auth: AuthService) {
+  constructor(private dialogService: DialogService, private objBatchService: BatchService, private loginService: LoginService, private primengConfig: PrimeNGConfig, private auth: AuthService, private messageService: MessageService) {
     this.items = [
       { label: 'Step 1: Batch Details' },
       { label: 'Step 2: Add Meetings' },
@@ -64,7 +65,8 @@ export class AddMeetingComponent implements OnInit, DoCheck {
 
     this.objBatchService.AddMeeting(objStudentMeeting)
       .subscribe((response) => {
- 
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: this.MeetingTopic +" added successfully" });
+
         this.stepIndex = 1
 
       }, function (rejection) {

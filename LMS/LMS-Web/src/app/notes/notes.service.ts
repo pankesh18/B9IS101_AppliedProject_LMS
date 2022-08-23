@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
+import { APIURL } from '../appsetting';
 import { LMSUser } from '../auth/auth.models';
 import { BatchNote } from './note.models';
 
@@ -8,7 +9,7 @@ import { BatchNote } from './note.models';
   providedIn: 'root'
 })
 export class NotesService {
-  APIURL: string = "https://localhost:44301/api/"
+  APIURL: string = APIURL
   public Note = new BehaviorSubject<BatchNote>(new BatchNote());
 
   public persistNote = this.Note.asObservable();

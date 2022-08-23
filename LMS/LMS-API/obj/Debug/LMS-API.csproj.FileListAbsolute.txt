@@ -55,6 +55,7 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Azure.C
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Azure.Storage.Blobs.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Azure.Storage.Common.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Models.dll
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Repository.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Service.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -99,10 +100,11 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\System.
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\WebGrease.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Library.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.WindowsAzure.Storage.dll
-C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Repository.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Azure.KeyVault.Core.dll
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Models.pdb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Models.dll.config
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Repository.pdb
+C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Repository.dll.config
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Service.pdb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Service.dll.config
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Antlr3.Runtime.pdb
@@ -149,8 +151,6 @@ C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microso
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Library.pdb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.WindowsAzure.Storage.pdb
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.WindowsAzure.Storage.xml
-C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Repository.pdb
-C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\LMS-Repository.dll.config
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\bin\Microsoft.Azure.KeyVault.Core.xml
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\obj\Debug\LMS-API.csproj.App.config
 C:\Users\Pankesh\source\repos\B9IS101_AppliedProject_LMS\LMS\LMS-API\obj\Debug\LMS-API.csproj.AssemblyReference.cache

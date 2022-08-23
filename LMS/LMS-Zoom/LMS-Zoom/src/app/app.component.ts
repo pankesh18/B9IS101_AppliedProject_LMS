@@ -6,6 +6,7 @@ import { ZoomMtg } from '@zoomus/websdk';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from './app.service';
 import { GroupMeeting, LMSUser, StudentMeeting } from './app.models';
+import { WebURL } from './app.setting';
 
 
 ZoomMtg.setZoomJSLib('https://source.zoom.us/2.5.0/lib', '/av');
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
   sdkKey = 'v1cdxwNPuEPBOowiT3In2vhn2kIlo8Q4sgw6'
   meetingNumber:any
   role = 0
-  leaveUrl = 'http://localhost:4200'
+  leaveUrl = WebURL
   userName:any
   userEmail: any
   passWord: any
@@ -38,8 +39,8 @@ export class AppComponent implements OnInit {
   MeetingId: number
   UserId: number
   LoggedInUser: LMSUser
-  StudentMeeting: StudentMeeting
-  GroupMeeting: GroupMeeting
+  StudentMeeting: StudentMeeting = new StudentMeeting();
+  GroupMeeting: GroupMeeting = new GroupMeeting();
   IsGroupMeeting: boolean = false;
 
   constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document, private route: ActivatedRoute, private objAppService: AppService) {

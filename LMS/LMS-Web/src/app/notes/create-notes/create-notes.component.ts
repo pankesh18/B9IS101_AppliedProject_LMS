@@ -5,11 +5,13 @@ import { LoginService } from '../../auth/login/login.service';
 import { Batch, BatchFiles, StudentMeeting } from '../../batch/batch.models';
 import { BatchNote } from '../note.models';
 import { NotesService } from '../notes.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-create-notes',
   templateUrl: './create-notes.component.html',
-  styleUrls: ['./create-notes.component.css']
+  styleUrls: ['./create-notes.component.css'],
+  providers: [MessageService]
 })
 export class CreateNotesComponent implements OnInit {
   text: string;
@@ -39,7 +41,7 @@ export class CreateNotesComponent implements OnInit {
 
   IsMeeting: boolean = false;
   loggednInUser: LMSUser;
-  constructor(private objNotesService: NotesService, private objLoginService: LoginService, private auth: AuthService) { }
+  constructor(private objNotesService: NotesService, private objLoginService: LoginService, private auth: AuthService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.loggednInUser = this.auth.getLoggedInUser();
@@ -139,6 +141,7 @@ export class CreateNotesComponent implements OnInit {
 
     this.objNotesService.AddBatchNote(objBatchNote)
       .subscribe((response) => {
+        this.messageService.add({ severity: 'success', summary: 'Done!', detail: 'Note created Sucessfully!' })
 
         this.objBatchNote = new BatchNote()
       }, function (rejection) {
@@ -157,6 +160,7 @@ export class CreateNotesComponent implements OnInit {
 
     this.objNotesService.UpdateBatchNote(objBatchNote)
       .subscribe((response) => {
+        this.messageService.add({ severity: 'success', summary: 'Done!', detail: 'Note updated Sucessfully!' })
 
         
       }, function (rejection) {

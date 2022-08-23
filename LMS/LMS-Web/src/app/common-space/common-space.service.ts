@@ -5,12 +5,13 @@ import { TreeNode } from 'primeng/api';
 import { CommonSpaceFile, CommonSpaceGroup } from './common-space.models';
 import { param } from 'jquery';
 import { LMSUser } from '../auth/auth.models';
+import { APIURL } from '../appsetting';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonSpaceService {
-  APIURL: string = "https://localhost:44301/api/"
+  APIURL: string = APIURL
   httpheaders: HttpHeaders
 
 
@@ -172,7 +173,14 @@ export class CommonSpaceService {
     );
   }
 
-
+  public DeleteCommonSpaceFile(objCommonSpaceFile: CommonSpaceFile) {
+    let httpOptions = {
+      headers: this.httpheaders
+    }
+    return this.http.post<any>(this.APIURL + "CommonSpace/DeleteCommonSpaceFile", objCommonSpaceFile, httpOptions).pipe(
+      tap(res => res)
+    );
+  }
 
 
 

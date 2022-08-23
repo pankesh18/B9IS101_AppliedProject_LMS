@@ -272,6 +272,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\web.config" />
+    <None Include="Properties\PublishProfiles\dbs-lms-api - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\lms-dbs-api-net - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -290,8 +293,12 @@
       <Project>{584FDD9A-A55A-418D-B9DA-EEFA51E7198D}</Project>
       <Name>LMS-Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LMS-Repository\LMS-Repository.csproj">
+      <Project>{d7660828-8d23-4d3d-b2e0-2e38c3bd8a34}</Project>
+      <Name>LMS-Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LMS-Service\LMS-Service.csproj">
-      <Project>{E08EC59F-785A-4559-901B-F407F468C66C}</Project>
+      <Project>{e08ec59f-785a-4559-901b-f407f468c66c}</Project>
       <Name>LMS-Service</Name>
     </ProjectReference>
   </ItemGroup>

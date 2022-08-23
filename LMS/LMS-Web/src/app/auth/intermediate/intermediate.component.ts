@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { UserProfile } from '../auth.models'
 import { Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
+import { WebURL } from '../../appsetting';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class IntermediateComponent implements OnInit {
     }
     else {
       console.log('trying to login from intermediate!')
-      window.location.href ='http://localhost:4200/login'
+     // window.location.href = WebURL+'login'
+      this.router.navigate(['/login'])
     }
 
 

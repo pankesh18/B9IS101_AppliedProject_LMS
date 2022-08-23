@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
+import { APIURL } from './app.setting';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-  APIURL: string = "https://localhost:44301/api/"
+  APIURL: string = APIURL
   constructor(private http: HttpClient) { }
 
 

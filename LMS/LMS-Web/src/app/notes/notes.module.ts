@@ -13,6 +13,8 @@ import { TableModule } from 'primeng/table';
 import { ViewnoteComponent } from './viewnote/viewnote.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ListboxModule } from 'primeng/listbox';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
 
 
 @NgModule({
@@ -28,8 +30,9 @@ import { ListboxModule } from 'primeng/listbox';
     ButtonModule,
     DropdownModule,
     MultiSelectModule,
-
+    ToastModule,
     ListboxModule,
+    MessagesModule,
     TableModule,
     OverlayPanelModule,
     InputTextModule,

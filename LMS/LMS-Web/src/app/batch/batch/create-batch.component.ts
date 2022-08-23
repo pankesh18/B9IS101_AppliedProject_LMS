@@ -9,12 +9,14 @@ import { MenuItem } from 'primeng/api';
 import * as $ from 'jquery';
 import { LoginService } from '../../auth/login/login.service';
 import { AuthService } from '../../auth/auth.service';
+import {  MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'create-batch',
   templateUrl: './create-batch.component.html',
-  styleUrls: ['./batch.component.css']
+  styleUrls: ['./batch.component.css'],
+  providers: [MessageService]
 })
 export class CreateBatchComponent implements OnInit, DoCheck {
   BatchName: string;
@@ -31,7 +33,7 @@ export class CreateBatchComponent implements OnInit, DoCheck {
   LoggedInUser: LMSUser;
   stateOptions: any[];
   IsGroupMeetingAllowed: boolean = false;
-  constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService, private auth: AuthService) {
+  constructor(private dialogService: DialogService, private objBatchService: BatchService, private objLoginService: LoginService, private auth: AuthService, private messageService: MessageService) {
     this.stateOptions = [{ label: 'No', value: false }, { label: 'Yes', value: true }];
 
 
@@ -76,7 +78,8 @@ export class CreateBatchComponent implements OnInit, DoCheck {
     this.objBatchService.CreateBatch(this.objBatch)
       .subscribe((response) => {
         this.BatchId = response
-      
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: " Batch Created successfully" });
+
         console.log(this.BatchId)
         this.stepIndex = 1
       }, function (rejection) {

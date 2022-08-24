@@ -68,8 +68,8 @@ export class AuthService {
     localStorage.removeItem("GoogleUser")
 
     this.authService.signOut()
-
-    window.location.href = WebURL + "login"
+/*    this.router.navigate(['/'])*/
+/*    window.location.href = WebURL + "login"*/
 
   }
 

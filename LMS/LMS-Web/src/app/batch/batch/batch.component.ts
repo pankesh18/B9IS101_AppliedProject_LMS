@@ -40,10 +40,12 @@ export class BatchComponent implements OnInit {
       width: '70%',
       height: '85%',
       contentStyle: {  "overflow": "auto" },
-      baseZIndex: 10000
+      baseZIndex: 10000,
     });
 
-
+    this.ref.onClose.subscribe(() => {
+      this.GetAllBatches(this.LoggedInUser.UserId)
+    })
   }
 
   GetAllBatches(UserId:number) {

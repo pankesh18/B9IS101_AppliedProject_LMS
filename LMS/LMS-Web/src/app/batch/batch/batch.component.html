@@ -120,7 +120,7 @@
 
 
 <div *ngFor="let batch of Batches">
-  <p-dialog [style]="{width: '70%', height:'85%'}"  header="Batch Files" [(visible)]="batch.BatchId==selectedbatchId && isMeetingShow" (onHide)="selectedbatchId=0;isMeetingShow=false ">
+  <p-dialog [style]="{width: '70%', height:'85%'}"  header="Batch Files" [(visible)]="batch.BatchId==selectedbatchId && isMeetingShow" (onHide)="selectedbatchId=0;isMeetingShow=false; ">
     <add-meeting *ngIf="batch.BatchId==selectedbatchId && isMeetingShow" [BatchId]="batch.BatchId"></add-meeting>
   </p-dialog>
 

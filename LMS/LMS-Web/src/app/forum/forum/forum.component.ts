@@ -41,14 +41,20 @@ export class ForumComponent implements OnInit {
 
   ngOnInit(): void {
     this.LoggedInUser = this.auth.getLoggedInUser()
-    this.GetAllBatches(this.LoggedInUser.UserId)
+    if (this.LoggedInUser.UserType == 1) {
+      this.GetAllBatches(this.LoggedInUser.UserId)
+    }
+    else {
+      this.GetAllStudentBatches(this.LoggedInUser.UserId)
+
+    }
     this.GetAllDiscussionForum(this.BatchId);
   }
         
 
 
 
-  GetAllBatches(UserId: number) {
+  GetAllStudentBatches(UserId: number) {
     this.BatchOptions = [];
     this.FilterBatchOptions = [{ name : 'All Batches', value:0}];
     this.objForumService.GetAllStudentBatches(UserId)
@@ -69,6 +75,37 @@ export class ForumComponent implements OnInit {
 
       })
   }
+
+
+
+
+
+  GetAllBatches(UserId: number) {
+    this.BatchOptions = [];
+    this.FilterBatchOptions = [{ name: 'All Batches', value: 0 }];
+    this.objForumService.GetAllBatches(UserId)
+      .subscribe((response) => {
+        if (response != null) {
+          this.StudentBatches = response;
+          this.StudentBatches.forEach(item => {
+            let batch = { name: item.BatchName.concat('-', new Date(item.BatchYear).getFullYear().toString()), value: item.BatchId }
+            this.BatchOptions.push(batch);
+            this.FilterBatchOptions.push(batch);
+          })
+          console.log(response)
+
+        }
+
+
+      }, function (rejection) {
+
+      })
+  }
+
+
+
+
+
 
   sanitizeHTML(HtmlText: any) {
     return this.sanitizer.bypassSecurityTrustHtml(HtmlText)

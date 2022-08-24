@@ -21,3 +21,11 @@
   border-bottom-color: dimgray;
   padding: 2%;
 }
+
+.QuestionWrap {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  overflow:scroll;
+}
+
+

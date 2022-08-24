@@ -11,13 +11,13 @@
 
         <div class="header mx-1">
           <div class="row">
-            <div class="col-3 my-2">
+            <div class="col-3 my-2 mx-0">
               <span class="p-float-label" style="width:100%">
                 <input id="MeetingTopic" type="text" [(ngModel)]="topicSearchKey" (ngModelChange)="searchByMeetingTopic()" pInputText style="width:100%">
                 <label for="MeetingTopic">Meeting Topic</label>
               </span>
             </div>
-            <div class="col-2 my-2">
+            <div class="col-2 my-2 mx-0 p-0">
               <span class="p-float-label" style="width:100%">
                 <input id="batchName" type="text" [(ngModel)]="batchSearchKey" (ngModelChange)="searchByBatchName()" pInputText style="width:100%">
                 <label for="batchName">Batch Name</label>
@@ -53,13 +53,13 @@
         <div  style="overflow-y:scroll; max-height:450px">
           <li class="listing" *ngFor="let meeting of StudentMeetings">
             <h4 class="col" >{{meeting.Topic}}</h4>
-            <span class="col" style="color: darkslategray;">
+            <span class="col mx-5" style="color: darkslategray;">
               {{meeting.BatchName}}-{{meeting.BatchYear | date:'yyyy'}}
             </span>
-            <span class="col" style="color: darkslategray;">
+            <span class="col mx-5" style="color: darkslategray;">
               {{meeting.CourseName}}
             </span>
-            <span class="col" style="color: darkslategray;">
+            <span class="col  mx-5" style="color: darkslategray;">
               {{meeting.StartTime | date:'fullDate'}} {{meeting.StartTime | date:'shortTime'}}
             </span>
             <span>

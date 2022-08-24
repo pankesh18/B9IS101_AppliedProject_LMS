@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   sdkKey = 'v1cdxwNPuEPBOowiT3In2vhn2kIlo8Q4sgw6'
   meetingNumber:any
   role = 0
-  leaveUrl = WebURL
+  leaveUrl = WebURL +'dash';
   userName:any
   userEmail: any
   passWord: any
@@ -53,7 +53,15 @@ export class AppComponent implements OnInit {
     this.MeetingId = parseInt( urlParams.get('MeetingId'))
     this.UserId = parseInt(urlParams.get('UserId'))
     this.role = parseInt(urlParams.get('Role'))
-    this.IsGroupMeeting = Boolean(urlParams.get('IsGroupMeeting'))
+
+    this.IsGroupMeeting = urlParams.get('IsGroupMeeting') == 'true' ? true : false;
+
+
+    //this.route.params.subscribe(params => {
+    //  console.log(params)
+    //})
+
+
     this.GetUserDetails(this.UserId);
  
     //this.route.params.subscribe((params) => {

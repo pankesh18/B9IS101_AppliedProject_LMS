@@ -26,7 +26,15 @@ export class ForumService {
     );
   }
 
-
+  public GetAllBatches(UserId: number) {
+    let httpOptions = {
+      headers: this.httpheaders,
+      params: { UserId: UserId }
+    }
+    return this.http.get<any>(this.APIURL + "Batch/GetAllBatches", httpOptions).pipe(
+      tap(res => res)
+    );
+  }
   public PostForumQuestion(objForumQuestion: ForumQuestion) {
     let httpOptions = { headers: this.httpheaders }
     return this.http.post<any>(this.APIURL + "Forum/PostForumQuestion", objForumQuestion).pipe(

@@ -56,9 +56,10 @@
               </div>
             </div>
             <div class="col-10 b-2">
-              <span [innerHTML]="sanitizeHTML(question.QuestionBody)"></span>
+              <div class="QuestionWrap">
+                <span  [innerHTML]="sanitizeHTML(question.QuestionBody)"></span>
 
-
+              </div>
             </div>
 
           </div>

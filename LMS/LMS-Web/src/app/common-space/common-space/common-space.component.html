@@ -183,9 +183,11 @@
                       <span *ngIf="file.ContentType==1">{{file.FileSize | number  }} MB</span>
                     </td>
                     <td>
-                    <button pButton pRipple type="button" (click)="displayFileViewer=true;FileView=file; ViewFile(file)" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-plain"></button>
-                    <button pButton pRipple type="button" (click)="DeleteCommonSpaceFile(file)" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain"></button>
-                    
+                      <a *ngIf="file.ContentType==1" pButton pRipple type="button" href="{{file.FileURL}}" icon="pi pi-download" class="p-button-rounded p-button-text p-button-plain"></a>
+                      <a  *ngIf="file.ContentType==2" style="visibility:hidden" pButton pRipple type="button" href="{{file.FileURL}}" icon="pi pi-download" class="p-button-rounded p-button-text p-button-plain"></a>
+                      <button pButton pRipple type="button" (click)="displayFileViewer=true;FileView=file; ViewFile(file)" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-plain"></button>
+                      <button pButton pRipple type="button" (click)="DeleteCommonSpaceFile(file)" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain"></button>
+
                     </td>
                   </tr>
 

@@ -60,7 +60,7 @@ export class LoginService {
 
 
   public loginUser(UserEmail: string, GoogleUserId: string) {
-    var token = this.auth.getToken()
+
 
     let httpheaders = new HttpHeaders()
     httpheaders.append('content-type', 'application/json')

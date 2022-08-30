@@ -46,7 +46,6 @@ namespace LMS_API.Controllers
                 LMSUser loggedInUser;
                 LMSUserService objLMSUserService = new LMSUserService();
                 // LMSUser objLMSUser = null;
-                var context = HttpContext.Current.Request.Headers.Get("AccessToken");
                 loggedInUser =objLMSUserService.LoginUser(UserEmail, GoogleUserId);
 
                 return Request.CreateResponse(HttpStatusCode.OK, loggedInUser);

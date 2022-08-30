@@ -254,6 +254,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\AuthorizationAttribute.cs" />
     <Compile Include="Controllers\BatchController.cs" />
     <Compile Include="Controllers\CommonSpaceController.cs" />
     <Compile Include="Controllers\ForumController.cs" />

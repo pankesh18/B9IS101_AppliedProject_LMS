@@ -1,4 +1,4 @@
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { DoCheck, Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
@@ -29,16 +29,17 @@ export class AuthService {
   userProfile: UserProfile = new UserProfile;
 
   APIURL: string = APIURL
-
+  accessTokenValue= new BehaviorSubject<any>(undefined);
   public isLogin = new BehaviorSubject<boolean>(false);
-
+  accessToken = this.accessTokenValue.asObservable()
   isUserLogin = this.isLogin.asObservable()
-
+  Token: any;
   constructor(private http: HttpClient, private authService: SocialAuthService, private localStorage: LocalStorageService, private router: Router) {
 
     this.authService.authState
       .subscribe(user => {
         if (user) {
+     
           this.isLogin.next(true);
         }
         else {
@@ -90,7 +91,6 @@ export class AuthService {
   }
 
 
-  
 
   //isLogin() {
 

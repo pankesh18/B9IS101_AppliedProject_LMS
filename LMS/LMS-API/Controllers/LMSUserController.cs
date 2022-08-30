@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -45,7 +46,8 @@ namespace LMS_API.Controllers
                 LMSUser loggedInUser;
                 LMSUserService objLMSUserService = new LMSUserService();
                 // LMSUser objLMSUser = null;
-                loggedInUser=objLMSUserService.LoginUser(UserEmail, GoogleUserId);
+                var context = HttpContext.Current.Request.Headers.Get("AccessToken");
+                loggedInUser =objLMSUserService.LoginUser(UserEmail, GoogleUserId);
 
                 return Request.CreateResponse(HttpStatusCode.OK, loggedInUser);
             }

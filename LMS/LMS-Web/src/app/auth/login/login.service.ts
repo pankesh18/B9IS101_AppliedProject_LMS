@@ -5,6 +5,7 @@ import { LocalStorageService } from 'ngx-localstorage';
 import { tap } from 'rxjs';
 import { APIURL } from '../../appsetting';
 import { LMSUser } from '../auth.models';
+import { AuthService } from '../auth.service';
 
 
 @Injectable({
@@ -13,15 +14,14 @@ import { LMSUser } from '../auth.models';
 export class LoginService {
 
   
-
+  accessToken: any;
   APIURL: string = APIURL
 
-  constructor(private http: HttpClient, private localStorage: LocalStorageService, private router: Router) {
+  constructor(private http: HttpClient, private localStorage: LocalStorageService, private router: Router, private auth: AuthService) {
 
     //if (!this.isLogin()) {
     //  this.router.navigate(['/login'])
     //}
-
   }
 
   //public isLogin() {
@@ -59,14 +59,17 @@ export class LoginService {
 
 
 
-  public loginUser(UserEmail: string, GoogleUserId:string) {
+  public loginUser(UserEmail: string, GoogleUserId: string) {
+    var token = this.auth.getToken()
+
     let httpheaders = new HttpHeaders()
     httpheaders.append('content-type', 'application/json')
     httpheaders.append('Access-Control-Allow-Origin', '*')
     httpheaders.append('Accept', 'application/json')
+
     let httpOptions = { headers: httpheaders }
 
-    return this.http.get<any>(this.APIURL + "LMSUser/LoginUser", { params: { UserEmail: UserEmail, GoogleUserId: GoogleUserId } }).pipe(
+    return this.http.get<any>(this.APIURL + "LMSUser/LoginUser", { params: { UserEmail: UserEmail, GoogleUserId: GoogleUserId }, headers: httpheaders }).pipe(
       tap(res => res)    
     );
   }

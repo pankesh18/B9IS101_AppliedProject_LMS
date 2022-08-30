@@ -156,12 +156,26 @@
 
 
               </div>
-
+              <p-toolbar>
+                <div class="mx-0 p-0">
+                  <strong>
+                    {{item.FileName}} : {{item.Caption}}
+                  </strong>
+                </div>
+              </p-toolbar>
 
               <p-toolbar>
+
                 <div class="p-toolbar-group-left">
 
                   <i class="pi pi-bars" [hidden]="true"></i>
+                  <div *ngIf="!item.isURL">
+                    <a class="btn btn-primary bi bi-download" href="{{item.FileURL}}">
+                      Download
+                    </a>
+                  </div>
+                  
+                  <!--<p-button icon="pi pi-download" label="Download" class="m-2" ></p-button>-->
 
                 </div>
 
